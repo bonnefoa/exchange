@@ -4,13 +4,14 @@ import exchange.model.StockOption;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.List;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Implementation of the view
  */
 public class View implements IView {
+
     /**
      * Subscribe button
      */
@@ -22,7 +23,7 @@ public class View implements IView {
     /**
      * List of stock option
      */
-    private List stockList;
+    private JList stockList;
     /**
      * Text area
      */
@@ -59,8 +60,8 @@ public class View implements IView {
         //Create and set up the window.
         frame = new JFrame("Exchange");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocation(100,100);
-        frame.setPreferredSize(new Dimension(600,600));
+        frame.setLocation(100, 100);
+        frame.setPreferredSize(new Dimension(600, 600));
 
         //Set up the content pane.
         addComponentsToPane(frame.getContentPane());
@@ -74,12 +75,12 @@ public class View implements IView {
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
-        c.insets =  new Insets(10,2,2,2);
-        Dimension dimButton = new Dimension(30,20);
+        c.insets = new Insets(10, 2, 2, 2);
+        Dimension dimButton = new Dimension(30, 20);
 
         //List
-        stockList = new List();
-        stockList.setMultipleMode(false);
+        stockList = new JList();
+        stockList.setDragEnabled(true);
         c.gridx = 0;
         c.gridy = 0;
         c.weightx = 0.5;
@@ -112,7 +113,7 @@ public class View implements IView {
         c.gridx = 1;
         c.weightx = 0.5;
         login = new JTextField();
-        login.setMinimumSize(new Dimension(40,20));
+        login.setMinimumSize(new Dimension(40, 20));
         pane.add(login, c);
 
         //Connect button
@@ -126,10 +127,21 @@ public class View implements IView {
     }
 
     public void displayMessageQuote(String message) {
-        textArea.append(message);
+        textArea.append(message+newline);
     }
 
-    public void displayStockOptions(java.util.List<StockOption> stockOptionList) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void displayStockOptions(List<StockOption> stockOptionList) {
+        stockList.setListData(stockOptionList.toArray());
     }
+
+    public List<StockOption> getSelectedStocksOption() {
+        StockOption tabsStockOptions[] = (StockOption[]) stockList.getSelectedValues();
+        return Arrays.asList(tabsStockOptions);
+    }
+
+    public String getLoginName() {
+        return login.getText();
+    }
+
+
 }
