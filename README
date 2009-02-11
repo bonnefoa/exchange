@@ -1,0 +1,16 @@
+TODO 
+· User can connect to a user-friendly Exchange system:
+	· login with a nickname
+	· listing of existing stock options (at connection)
+	· subscription to one or more stock options (or unsubscription)
+· help available (command list, stock options list...)
+	· Subscribers to a stock option are warned when the quote changes:
+	· random variation of the quote
+	· complete information in warning messages
+	· disconnection from the system causes unsubscription
+	· An administration interface is expected:
+	· definition of new stock options
+· deletion of dead options (notification to subscribers)
+	· options with null quote are automatically deleted
+	· make use of EJB when desired
+
