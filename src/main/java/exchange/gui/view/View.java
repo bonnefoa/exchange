@@ -4,6 +4,7 @@ import exchange.model.StockOption;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,13 +15,9 @@ public class View extends JFrame implements IView
 {
 
     /**
-     * Subscribe button
+     * Subscribe and  button
      */
-    private JButton subscribe;
-    /**
-     * Unsubscribe button
-     */
-    private JButton unsubscribe;
+    private JButton buttonSubscribe;
     /**
      * List of stock option
      */
@@ -30,13 +27,9 @@ public class View extends JFrame implements IView
      */
     private JTextArea textArea;
     /**
-     * Connect button
+     * Connect and disconnect button
      */
-    private JButton connect;
-    /**
-     * Disconnect button
-     */
-    private JButton disconnect;
+    private JButton buttonConnect;
     /**
      * Login field
      */
@@ -63,29 +56,34 @@ public class View extends JFrame implements IView
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(100, 100);
         this.setPreferredSize(new Dimension(600, 600));
-
         //Set up the content pane.
         addComponentsToPane(this.getContentPane());
-
         //Display the window.
         this.pack();
         this.setVisible(true);
     }
-//
-//    /**
-//     * initialise the listeners on events
-//     */
-//    public void initListeners()
-//    {
-//        subscribe.addMouseListener(new MouseAdapter()
-//        {
-//            @Override
-//            public void mouseClicked(MouseEvent e)
-//            {
-//                subscribe();
-//            }
-//        });
-//    }
+
+    /**
+     * initialise the listeners on events
+     *
+     * @param connectListener
+     * @param subscribeListener
+     */
+    public void initListeners(MouseListener connectListener, MouseListener subscribeListener)
+    {
+        buttonConnect.addMouseListener(connectListener);
+        buttonSubscribe.addMouseListener(subscribeListener);
+    }
+
+    private void connectHandler()
+    {
+        //To change body of created methods use File | Settings | File Templates.
+    }
+
+    private void subscribeHandler()
+    {
+        //To change body of created methods use File | Settings | File Templates.
+    }
 
 
     private void addComponentsToPane(Container pane)
@@ -120,12 +118,9 @@ public class View extends JFrame implements IView
 
         //Subscribe button
         c.gridx = 0;
-        subscribe = new JButton("Subscribe");
-        unsubscribe = new JButton("Unsubscribe");
-        subscribe.setPreferredSize(dimButton);
-        unsubscribe.setPreferredSize(dimButton);
-        pane.add(subscribe, c);
-        pane.add(unsubscribe, c);
+        buttonSubscribe = new JButton("Subscribe");
+        buttonSubscribe.setPreferredSize(dimButton);
+        pane.add(buttonSubscribe, c);
 
         //Login field
         c.gridx = 1;
@@ -136,12 +131,9 @@ public class View extends JFrame implements IView
 
         //Connect button
         c.gridx = 2;
-        connect = new JButton("Connect");
-        connect.setPreferredSize(dimButton);
-        pane.add(connect, c);
-        disconnect = new JButton("Disconnect");
-        disconnect.setPreferredSize(dimButton);
-        pane.add(disconnect, c);
+        buttonConnect = new JButton("Connect");
+        buttonConnect.setPreferredSize(dimButton);
+        pane.add(buttonConnect, c);
     }
 
     public void displayMessageQuote(String message)
@@ -164,6 +156,4 @@ public class View extends JFrame implements IView
     {
         return login.getText();
     }
-
-
 }

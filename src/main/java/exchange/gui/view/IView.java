@@ -2,12 +2,14 @@ package exchange.gui.view;
 
 import exchange.model.StockOption;
 
+import java.awt.event.MouseListener;
 import java.util.List;
 
 /**
  * Interface for the view
  */
-public interface IView {
+public interface IView
+{
     final static String newline = "\n";
 
     /**
@@ -38,4 +40,5 @@ public interface IView {
      */
     String getLoginName();
 
+    void initListeners(MouseListener connectListener, MouseListener subscribeListener);
 }
