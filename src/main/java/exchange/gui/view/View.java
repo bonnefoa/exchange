@@ -10,7 +10,8 @@ import java.util.List;
 /**
  * Implementation of the view
  */
-public class View implements IView {
+public class View extends JFrame implements IView
+{
 
     /**
      * Subscribe button
@@ -40,14 +41,13 @@ public class View implements IView {
      * Login field
      */
     private JTextField login;
-    /**
-     * Frame of the view
-     */
-    private JFrame frame;
 
-    public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
+    public static void main(String[] args)
+    {
+        javax.swing.SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new View();
             }
         });
@@ -56,22 +56,40 @@ public class View implements IView {
     /**
      * Create the GUI and show it.
      */
-    public View() {
+    public View()
+    {
         //Create and set up the window.
-        frame = new JFrame("Exchange");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocation(100, 100);
-        frame.setPreferredSize(new Dimension(600, 600));
+        super("Exchange");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocation(100, 100);
+        this.setPreferredSize(new Dimension(600, 600));
 
         //Set up the content pane.
-        addComponentsToPane(frame.getContentPane());
+        addComponentsToPane(this.getContentPane());
 
         //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+        this.pack();
+        this.setVisible(true);
     }
+//
+//    /**
+//     * initialise the listeners on events
+//     */
+//    public void initListeners()
+//    {
+//        subscribe.addMouseListener(new MouseAdapter()
+//        {
+//            @Override
+//            public void mouseClicked(MouseEvent e)
+//            {
+//                subscribe();
+//            }
+//        });
+//    }
 
-    private void addComponentsToPane(Container pane) {
+
+    private void addComponentsToPane(Container pane)
+    {
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
@@ -126,20 +144,24 @@ public class View implements IView {
         pane.add(disconnect, c);
     }
 
-    public void displayMessageQuote(String message) {
-        textArea.append(message+newline);
+    public void displayMessageQuote(String message)
+    {
+        textArea.append(message + newline);
     }
 
-    public void displayStockOptions(List<StockOption> stockOptionList) {
+    public void displayStockOptions(List<StockOption> stockOptionList)
+    {
         stockList.setListData(stockOptionList.toArray());
     }
 
-    public List<StockOption> getSelectedStocksOption() {
+    public List<StockOption> getSelectedStocksOption()
+    {
         StockOption tabsStockOptions[] = (StockOption[]) stockList.getSelectedValues();
         return Arrays.asList(tabsStockOptions);
     }
 
-    public String getLoginName() {
+    public String getLoginName()
+    {
         return login.getText();
     }
 
