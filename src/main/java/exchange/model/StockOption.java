@@ -1,11 +1,12 @@
 package exchange.model;
 
 import java.rmi.Remote;
+import java.io.Serializable;
 
 /**
  * Model  for stockOptions
  */
-public class StockOption implements Remote {
+public class StockOption implements Remote , Serializable{
     private String title;
     private String company;
     private float quote;

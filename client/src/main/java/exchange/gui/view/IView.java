@@ -40,5 +40,5 @@ public interface IView
      */
     String getLoginName();
 
-    void initListeners(MouseListener connectListener, MouseListener subscribeListener);
+    void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener);
 }

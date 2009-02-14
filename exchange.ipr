@@ -44,6 +44,9 @@
       <entry name="?*.ftl" />
     </wildcardResourcePatterns>
   </component>
+  <component name="CopyrightManager" default="">
+    <module2copyright />
+  </component>
   <component name="DependencyValidationManager">
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
@@ -65,7 +68,7 @@
     <option name="DEBUGGING_INFO" value="true" />
     <option name="GENERATE_NO_WARNINGS" value="false" />
     <option name="DEPRECATION" value="true" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-target 1.5" />
     <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="JavadocGenerationManager">
@@ -89,6 +92,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/client/pom.xml" />
+        <option value="$PROJECT_DIR$/server/pom.xml" />
       </list>
     </option>
   </component>
@@ -217,9 +222,14 @@
     <option name="projectName" value="exchange" />
   </component>
   <component name="ProjectFileVersion" converted="true" />
+  <component name="ProjectKey">
+    <option name="state" value="project:///home/sora/IdeaProjects/exchange/exchange.ipr" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
       <module fileurl="file://$PROJECT_DIR$/exchange.iml" filepath="$PROJECT_DIR$/exchange.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
@@ -262,6 +272,8 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
+    <mapping directory="$PROJECT_DIR$/client" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/server" vcs="Git" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -298,17 +310,6 @@
     </GetOptions>
   </component>
   <component name="libraryTable">
-    <library name="Maven: junit:junit:3.8.1">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/junit/junit/3.8.1/junit-3.8.1-sources.jar!/" />
-      </SOURCES>
-    </library>
     <library name="Maven: junit:junit:4.5">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.5/junit-4.5.jar!/" />
@@ -340,6 +341,83 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/com/google/code/guice/guice/1.0/guice-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: fest:fest-swing:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-swing/1.0/fest-swing-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-swing/1.0/fest-swing-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-swing/1.0/fest-swing-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: mrj:MRJToolkitStubs:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/mrj/MRJToolkitStubs/1.0/MRJToolkitStubs-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/mrj/MRJToolkitStubs/1.0/MRJToolkitStubs-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/mrj/MRJToolkitStubs/1.0/MRJToolkitStubs-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: fest:fest-util:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-util/1.0/fest-util-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-util/1.0/fest-util-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-util/1.0/fest-util-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: fest:fest-assert:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-assert/1.0/fest-assert-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-assert/1.0/fest-assert-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-assert/1.0/fest-assert-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: fest:fest-reflect:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-reflect/1.0/fest-reflect-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-reflect/1.0/fest-reflect-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-reflect/1.0/fest-reflect-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: net.jcip:jcip-annotations:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/jcip/jcip-annotations/1.0/jcip-annotations-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/net/jcip/jcip-annotations/1.0/jcip-annotations-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/net/jcip/jcip-annotations/1.0/jcip-annotations-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: swinghelper:debug:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/swinghelper/debug/1.0/debug-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/swinghelper/debug/1.0/debug-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/swinghelper/debug/1.0/debug-1.0-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

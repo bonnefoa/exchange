@@ -8,9 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * User: sora
- * Date: 12 févr. 2009
- * Time: 18:33:48
+ * Unit testing on the user interface
  */
 public class UITest
 {

@@ -11,13 +11,16 @@ import java.util.List;
 /**
  * Implementation of the view
  */
-public class View extends JFrame implements IView
-{
+public class View extends JFrame implements IView {
 
     /**
-     * Subscribe and  button
+     * Subscribe button
      */
     private JButton buttonSubscribe;
+    /**
+     * Unsubscribe button
+     */
+    private JButton buttonUnsubscribe;
     /**
      * List of stock option
      */
@@ -25,7 +28,7 @@ public class View extends JFrame implements IView
     /**
      * Text area
      */
-    private JTextArea textArea; 
+    private JTextArea textArea;
     /**
      * Connect and disconnect button
      */
@@ -35,12 +38,9 @@ public class View extends JFrame implements IView
      */
     private JTextField login;
 
-    public static void main(String[] args)
-    {
-        javax.swing.SwingUtilities.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
                 new View();
             }
         });
@@ -49,8 +49,7 @@ public class View extends JFrame implements IView
     /**
      * Create the GUI and show it.
      */
-    public View()
-    {
+    public View() {
         //Create and set up the window.
         super("Exchange");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,32 +67,22 @@ public class View extends JFrame implements IView
      *
      * @param connectListener
      * @param subscribeListener
+     * @param unsubscribeListener
      */
-    public void initListeners(MouseListener connectListener, MouseListener subscribeListener)
-    {
+    public void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener) {
         buttonConnect.addMouseListener(connectListener);
         buttonSubscribe.addMouseListener(subscribeListener);
+        buttonUnsubscribe.addMouseListener(unsubscribeListener);
     }
 
-    private void connectHandler()
-    {
-        //To change body of created methods use File | Settings | File Templates.
-    }
-
-    private void subscribeHandler()
-    {
-        //To change body of created methods use File | Settings | File Templates.
-    }
-
-
-    private void addComponentsToPane(Container pane)
-    {
+    private void addComponentsToPane(Container pane) {
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.insets = new Insets(10, 2, 2, 2);
         Dimension dimButton = new Dimension(30, 20);
 
+        c.gridwidth = 2;
         //List
         stockList = new JList();
         stockList.setDragEnabled(true);
@@ -105,15 +94,14 @@ public class View extends JFrame implements IView
 
         //Text area
         textArea = new JTextArea("Cours de la bourse");
-        c.gridx = 1;
-        c.gridwidth = 2;
+        c.gridx = 2;
         pane.add(textArea, c);
 
         //Second row
         c.gridwidth = 1;
         c.gridy = 2;
         c.weighty = 0;
-        c.weightx = 0;
+        c.weightx = 0.5;
         c.fill = GridBagConstraints.HORIZONTAL;
 
         //Subscribe button
@@ -122,38 +110,38 @@ public class View extends JFrame implements IView
         buttonSubscribe.setPreferredSize(dimButton);
         pane.add(buttonSubscribe, c);
 
-        //Login field
         c.gridx = 1;
-        c.weightx = 0.5;
+        buttonUnsubscribe = new JButton("Unsubscribe");
+        buttonUnsubscribe.setPreferredSize(dimButton);
+        pane.add(buttonUnsubscribe, c);
+
+        //Login field
+        c.gridx = 2;
         login = new JTextField();
         login.setMinimumSize(new Dimension(40, 20));
         pane.add(login, c);
 
         //Connect button
-        c.gridx = 2;
+        c.gridx = 3;
         buttonConnect = new JButton("Connect");
         buttonConnect.setPreferredSize(dimButton);
         pane.add(buttonConnect, c);
     }
 
-    public void displayMessageQuote(String message)
-    {
+    public void displayMessageQuote(String message) {
         textArea.append(message + newline);
     }
 
-    public void displayStockOptions(List<StockOption> stockOptionList)
-    {
+    public void displayStockOptions(List<StockOption> stockOptionList) {
         stockList.setListData(stockOptionList.toArray());
     }
 
-    public List<StockOption> getSelectedStocksOption()
-    {
+    public List<StockOption> getSelectedStocksOption() {
         StockOption tabsStockOptions[] = (StockOption[]) stockList.getSelectedValues();
         return Arrays.asList(tabsStockOptions);
     }
 
-    public String getLoginName()
-    {
+    public String getLoginName() {
         return login.getText();
     }
 }
