@@ -25,7 +25,7 @@ public class View extends JFrame implements IView
     /**
      * Text area
      */
-    private JTextArea textArea;
+    private JTextArea textArea; 
     /**
      * Connect and disconnect button
      */
