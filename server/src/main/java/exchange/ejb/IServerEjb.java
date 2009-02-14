@@ -1,10 +1,11 @@
 package exchange.ejb;
 
 import javax.ejb.Remote;
+import javax.ejb.Local;
 
 /**
  * Interface of the ejb server
  */
-@Remote
+@Local
 public interface IServerEjb {
 }

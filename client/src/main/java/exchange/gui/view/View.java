@@ -38,14 +38,6 @@ public class View extends JFrame implements IView {
      */
     private JTextField login;
 
-    public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new View();
-            }
-        });
-    }
-
     /**
      * Create the GUI and show it.
      */

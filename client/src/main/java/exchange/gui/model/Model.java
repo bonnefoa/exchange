@@ -10,6 +10,8 @@ import java.util.List;
  */
 public class Model implements IModel {
 
+    
+
     private String name;
 
     private List<StockOption> subscribed;
