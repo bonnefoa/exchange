@@ -25,6 +25,7 @@ public interface IModel {
 
     /**
      * Connect the client
+     *
      * @param name Name of the client
      * @return
      */
@@ -37,7 +38,22 @@ public interface IModel {
 
     /**
      * State of the connection
+     *
      * @return
      */
     boolean isConnected();
+
+    /**
+     * Get the name of the user
+     *
+     * @return Name of the user
+     */
+    String getName();
+
+    /**
+     * Get the list of stockOptions
+     *
+     * @return List of stock options
+     */
+    List<StockOption> getStockOptions();
 }

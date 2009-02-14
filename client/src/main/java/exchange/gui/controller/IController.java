@@ -1,10 +1,10 @@
 package exchange.gui.controller;
 
+import exchange.model.StockOption;
+
 /**
- * User: sora
- * Date: 12 févr. 2009
- * Time: 19:10:37
+ * Interface for the controller
  */
-public interface IController
-{
+public interface IController {
+    void warnSubscribed(StockOption stockOption);
 }

@@ -28,12 +28,7 @@
             <artifactId>guice</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>fest</groupId>
-            <artifactId>fest-swing</artifactId>
-            <version>1.0</version>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
     <build>
         <finalName>exchange</finalName>

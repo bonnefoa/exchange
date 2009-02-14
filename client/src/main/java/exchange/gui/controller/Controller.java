@@ -7,7 +7,7 @@ import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Presenter linking the view and the controller
@@ -17,33 +17,34 @@ public class Controller implements IController {
 
     private IView view;
 
+    @Inject
+    public Controller(IModel model, IView view) {
+        this.model = model;
+        this.view = view;
+        initListener();
+    }
+
     private void subscribeHandler() {
-        List<StockOption> list = view.getSelectedStocksOption();
-        model.subscribe(list);
+        model.subscribe(view.getSelectedStocksOption());
     }
 
     private void connectHandler() {
         if (model.isConnected()) {
             model.disconnect();
+            view.displayStockOptions(new ArrayList<StockOption>());
+            view.setLoginFieldEditable(true);
+            view.setTextButtonConnect("Connect");
         } else {
             String name = view.getLoginName();
             model.connect(name);
+            view.displayStockOptions(model.getStockOptions());
+            view.setLoginFieldEditable(false);
+            view.setTextButtonConnect("Disconnect");
         }
     }
 
     private void unsubscribeHandler() {
-        List<StockOption> list = view.getSelectedStocksOption();
-        model.unsubscribe(list);
-    }
-
-    @Inject
-    public void setModel(IModel model) {
-        this.model = model;
-    }
-
-    @Inject
-    public void setView(IView view) {
-        this.view = view;
+        model.unsubscribe(view.getSelectedStocksOption());
     }
 
     private void initListener() {
@@ -51,14 +52,14 @@ public class Controller implements IController {
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        subscribeHandler();
+                        connectHandler();
                     }
                 }
                 ,
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        connectHandler();
+                        subscribeHandler();
                     }
                 },
                 new MouseAdapter() {
@@ -69,4 +70,7 @@ public class Controller implements IController {
                 });
     }
 
+    public void warnSubscribed(StockOption stockOption) {
+        view.displayMessageQuote(stockOption.toString() + ':' + stockOption.getQuote());
+    }
 }

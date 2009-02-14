@@ -433,6 +433,50 @@
         <root url="jar://$MAVEN_REPOSITORY$/swinghelper/debug/1.0/debug-1.0-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: fest:fest-mocks:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-mocks/1.0/fest-mocks-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-mocks/1.0/fest-mocks-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/fest/fest-mocks/1.0/fest-mocks-1.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.easymock:easymockclassextension:2.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymockclassextension/2.2/easymockclassextension-2.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymockclassextension/2.2/easymockclassextension-2.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymockclassextension/2.2/easymockclassextension-2.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.easymock:easymock:2.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymock/2.2/easymock-2.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymock/2.2/easymock-2.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easymock/easymock/2.2/easymock-2.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: cglib:cglib-nodep:2.1_3">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib-nodep/2.1_3/cglib-nodep-2.1_3-sources.jar!/" />
+      </SOURCES>
+    </library>
   </component>
   <UsedPathMacros>
     <macro name="MAVEN_REPOSITORY" description="Maven Local Repostiry" />

@@ -5,8 +5,8 @@ import exchange.model.StockOption;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
-import java.util.Arrays;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Implementation of the view
@@ -37,6 +37,10 @@ public class View extends JFrame implements IView {
      * Login field
      */
     private JTextField login;
+    /**
+     * Label for login
+     */
+    private JLabel labelLogin;
 
     /**
      * Create the GUI and show it.
@@ -54,13 +58,6 @@ public class View extends JFrame implements IView {
         this.setVisible(true);
     }
 
-    /**
-     * initialise the listeners on events
-     *
-     * @param connectListener
-     * @param subscribeListener
-     * @param unsubscribeListener
-     */
     public void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener) {
         buttonConnect.addMouseListener(connectListener);
         buttonSubscribe.addMouseListener(subscribeListener);
@@ -77,6 +74,7 @@ public class View extends JFrame implements IView {
         c.gridwidth = 2;
         //List
         stockList = new JList();
+        stockList.setName(STOCK_LIST);
         stockList.setDragEnabled(true);
         c.gridx = 0;
         c.gridy = 0;
@@ -85,7 +83,9 @@ public class View extends JFrame implements IView {
         pane.add(stockList, c);
 
         //Text area
+        c.gridwidth = 3;
         textArea = new JTextArea("Cours de la bourse");
+        textArea.setName(TEXT_AREA);
         c.gridx = 2;
         pane.add(textArea, c);
 
@@ -100,22 +100,34 @@ public class View extends JFrame implements IView {
         c.gridx = 0;
         buttonSubscribe = new JButton("Subscribe");
         buttonSubscribe.setPreferredSize(dimButton);
+        buttonSubscribe.setName(BUTTON_SUBSCRIBE);
         pane.add(buttonSubscribe, c);
 
         c.gridx = 1;
         buttonUnsubscribe = new JButton("Unsubscribe");
+        buttonUnsubscribe.setName(BUTTON_UNSUBSCRIBE);
         buttonUnsubscribe.setPreferredSize(dimButton);
         pane.add(buttonUnsubscribe, c);
 
-        //Login field
+        //Login label
         c.gridx = 2;
+        c.weightx = 0;
+        labelLogin = new JLabel("Login :");
+        labelLogin.setName(LABEL_LOGIN);
+        pane.add(labelLogin, c);
+
+        //Login field
+        c.gridx = 3;
+        c.weightx = 0.5;
         login = new JTextField();
+        login.setName(LOGIN_FIED);
         login.setMinimumSize(new Dimension(40, 20));
         pane.add(login, c);
 
         //Connect button
-        c.gridx = 3;
+        c.gridx = 4;
         buttonConnect = new JButton("Connect");
+        buttonConnect.setName(BUTTON_CONNECT);
         buttonConnect.setPreferredSize(dimButton);
         pane.add(buttonConnect, c);
     }
@@ -129,8 +141,19 @@ public class View extends JFrame implements IView {
     }
 
     public List<StockOption> getSelectedStocksOption() {
-        StockOption tabsStockOptions[] = (StockOption[]) stockList.getSelectedValues();
-        return Arrays.asList(tabsStockOptions);
+        List<StockOption> res = new ArrayList<StockOption>();
+        for (Object o : stockList.getSelectedValues()) {
+            res.add((StockOption) o);
+        }
+        return res;
+    }
+
+    public void setLoginFieldEditable(boolean editable) {
+        login.setEditable(editable);
+    }
+
+    public void setTextButtonConnect(String text) {
+        buttonConnect.setText(text);
     }
 
     public String getLoginName() {
