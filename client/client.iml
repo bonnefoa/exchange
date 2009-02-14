@@ -21,6 +21,7 @@
     <orderEntry type="library" name="Maven: fest:fest-reflect:1.0" level="project" />
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Maven: swinghelper:debug:1.0" level="project" />
+    <orderEntry type="module" module-name="exchange" />
   </component>
 </module>
 

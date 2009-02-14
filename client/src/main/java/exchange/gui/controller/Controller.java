@@ -67,7 +67,6 @@ public class Controller implements IController {
                         unsubscribeHandler();
                     }
                 });
-
     }
 
 }
