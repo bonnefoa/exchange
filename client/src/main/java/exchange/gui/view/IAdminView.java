@@ -16,10 +16,33 @@
 
 package exchange.gui.view;
 
+import java.awt.event.MouseListener;
+
 /**
  * Interface for the admin view.
  * Present a special gui for the administrator
  *
  */
-public interface IAdminView {
+public interface IAdminView extends StockOptionListManager{
+    final static String newline = "\n";
+    static final String LOGIN_FIED = "loginField";
+    static final String STOCK_LIST = "stockList";
+    static final String TEXT_AREA_COMPANY_NAME = "textAreaCompany";
+    static final String TEXT_AREA_TITLE_NAME = "textAreaTitle";
+    static final String TEXT_AREA_QUOTE = "textAreaQuote";
+    static final String BUTTON_CREATE = "buttonSubscribe";
+    static final String BUTTON_DELETE = "buttonUnsubscribe";
+    static final String LABEL_LOGIN = "labelLogin";
+    static final String BUTTON_DISCONNECT = "buttonConnect";
+
+    /**
+     * Init the listeners for buttons
+     *
+     * @param connectListener     listener for connect button
+     * @param subscribeListener   Listener for subscribe button
+     * @param unsubscribeListener Listener for unsubscribe button
+     */
+    void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener);
+
+
 }

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 /**
  * Implementation of the view
  */
-public class ClientView extends JFrame implements IClientView {
+public class ClientView extends BaseViewClass implements IClientView {
 
     /**
      * Subscribe button
@@ -38,10 +38,6 @@ public class ClientView extends JFrame implements IClientView {
      * Unsubscribe button
      */
     private JButton buttonUnsubscribe;
-    /**
-     * List of stock option
-     */
-    private JList stockList;
     /**
      * Text area
      */
@@ -153,28 +149,6 @@ public class ClientView extends JFrame implements IClientView {
 
     public void displayMessageQuote(String message) {
         textArea.append(message + newline);
-    }
-
-    public void displayStockOptions(List<StockOption> stockOptionList) {
-        stockList.setListData(stockOptionList.toArray());
-    }
-
-    public List<StockOption> getSelectedStocksOptions() {
-        List<StockOption> res = new ArrayList<StockOption>();
-        for (Object o : stockList.getSelectedValues()) {
-            res.add((StockOption) o);
-        }
-        return res;
-    }
-
-    public List<StockOption> getStockOptions() {
-        List<StockOption> res = new ArrayList<StockOption>();
-        ListModel listModel = stockList.getModel();
-        for (int i = 0; i < listModel.getSize(); i++) {
-            Object o = listModel.getElementAt(i);
-            res.add((StockOption) o);
-        }   
-        return res;
     }
 
     public void setLoginFieldEditable(boolean editable) {

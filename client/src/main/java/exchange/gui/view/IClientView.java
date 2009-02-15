@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Interface for the view
  */
-public interface IClientView {
+public interface IClientView extends StockOptionListManager {
     final static String newline = "\n";
     static final String LOGIN_FIED = "loginField";
     static final String STOCK_LIST = "stockList";
@@ -40,27 +40,6 @@ public interface IClientView {
      * @param message Message to display
      */
     void displayMessageQuote(String message);
-
-    /**
-     * Display the list of stockOption
-     *
-     * @param stockOptionList List to display
-     */
-    void displayStockOptions(List<StockOption> stockOptionList);
-
-    /**
-     * Get the selected stocks options
-     *
-     * @return List of selected stock option
-     */
-    List<StockOption> getSelectedStocksOptions();
-
-    /**
-     * Get the list of stock options displayed by the Jlist
-     *
-     * @return List of stock options displayed
-     */
-    List<StockOption> getStockOptions();
 
     /**
      * Get the login entered

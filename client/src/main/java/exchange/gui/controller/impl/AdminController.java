@@ -16,10 +16,38 @@
 
 package exchange.gui.controller.impl;
 
+import com.google.inject.Inject;
 import exchange.gui.controller.IAdminController;
+import exchange.gui.model.IAdminModel;
+import exchange.gui.view.IAdminView;
+import exchange.model.StockOption;
 
 /**
  * Implementation of the admin controller
  */
-public class AdminController implements IAdminController{
+public class AdminController implements IAdminController {
+    /**
+     * View of the admin GUI
+     */
+    private IAdminView adminView;
+    /**
+     * Model of the admin GUI
+     */
+    private IAdminModel adminModel;
+
+    @Inject
+    public AdminController(IAdminView adminView, IAdminModel adminModel) {
+        this.adminView = adminView;
+        this.adminModel = adminModel;
+    }
+
+    public void deleteStockOptions(StockOption stockOption) {
+        adminModel.deleteStockOption(stockOption);
+        adminView.displayStockOptions(adminModel.getStockOptionList());
+    }
+
+    public void addStockOption(StockOption stockOption) {
+        adminModel.createNewStockOption(stockOption);
+        adminView.displayStockOptions(adminModel.getStockOptionList());
+    }
 }

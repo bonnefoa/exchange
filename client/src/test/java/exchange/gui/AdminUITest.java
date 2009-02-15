@@ -66,11 +66,7 @@ public class AdminUITest extends BaseClass {
     }
 
     @Test
-    public void testSomething() {
-        assertTrue(true);
-    }
-
-    @Test
     public void testConnect() {
+        
     }
 }

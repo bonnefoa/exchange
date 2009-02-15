@@ -18,6 +18,8 @@ package exchange.gui.model;
 
 import exchange.model.StockOption;
 
+import java.util.List;
+
 /**
  * Interface for the admin model.
  * Talk to the server for admin operations.
@@ -36,4 +38,11 @@ public interface IAdminModel {
      * @param stockOption Stock option to delete
      */
     void deleteStockOption(StockOption stockOption);
+
+    /**
+     * Get the stock option list of the server
+     *
+     * @return Stock option list
+     */
+    List<StockOption> getStockOptionList();
 }

@@ -93,10 +93,6 @@ public class ClientUITest extends BaseClass {
         assertEquals("Disconnect", window.button(IClientView.BUTTON_CONNECT).text());
 
         assertEquals(2, window.list(IClientView.STOCK_LIST).contents().length);
-        List<StockOption> stockOptions = clientView.getStockOptions();
-        assertEquals(2, stockOptions.size());
-        assertEquals(option1, stockOptions.get(0));
-        assertEquals(option2, stockOptions.get(1));
     }
 
     @Test
@@ -107,7 +103,6 @@ public class ClientUITest extends BaseClass {
         window.textBox(IClientView.LOGIN_FIED).requireEditable();
         assertEquals("Connect", window.button(IClientView.BUTTON_CONNECT).text());
         assertEquals(0, window.list(IClientView.STOCK_LIST).contents().length);
-        assertEquals(0, clientView.getStockOptions().size());
 
         window.button(IClientView.BUTTON_SUBSCRIBE).requireDisabled();
         window.button(IClientView.BUTTON_UNSUBSCRIBE).requireDisabled();
@@ -172,9 +167,10 @@ public class ClientUITest extends BaseClass {
         connect();
         clientController.addStockOption(option3);
         assertEquals(3, window.list(IClientView.STOCK_LIST).contents().length);
-        List<StockOption> stockOptions = clientView.getStockOptions();
-        assertEquals(3, stockOptions.size());
-        assertEquals(option3, stockOptions.get(2));
+        assertEquals(3, clientModel.getStockOptionDisplayed().size());
+        assertEquals(option1, clientModel.getStockOptionDisplayed().get(0));
+        assertEquals(option2, clientModel.getStockOptionDisplayed().get(1));
+        assertEquals(option3, clientModel.getStockOptionDisplayed().get(2));
     }
 
     @Test
@@ -182,9 +178,8 @@ public class ClientUITest extends BaseClass {
         connect();
         clientController.deleteStockOptions(option1);
         assertEquals(1, window.list(IClientView.STOCK_LIST).contents().length);
-        List<StockOption> stockOptions = clientView.getStockOptions();
-        assertEquals(1, stockOptions.size());
-        assertEquals(option2, stockOptions.get(0));        
+        assertEquals(1, clientModel.getStockOptionDisplayed().size());
+        assertEquals(option2, clientModel.getStockOptionDisplayed().get(0));
     }
 
     @Inject

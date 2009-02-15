@@ -14,37 +14,28 @@
  * limitations under the License.
  */
 
-package exchange.gui.model.impl;
+package exchange.gui.view;
 
-import exchange.gui.model.IAdminModel;
 import exchange.model.StockOption;
 
 import java.util.List;
-import java.util.ArrayList;
 
 /**
- * Implementation of the admin model
+ * Interface for the management of the jlist of stock options
  */
-public class AdminModel implements IAdminModel {
+public interface StockOptionListManager {
+    /**
+     * Display the list of stockOption
+     *
+     * @param stockOptionList List to display
+     */
+    void displayStockOptions(List<StockOption> stockOptionList);
 
     /**
-     * List of stock options
+     * Get the selected stocks options
+     *
+     * @return List of selected stock option
      */
-    private List<StockOption> stockOptionList;
+    List<StockOption> getSelectedStocksOptions();
 
-    public AdminModel() {
-        stockOptionList = new ArrayList<StockOption>();
-    }
-
-    public void createNewStockOption(StockOption stockOption) {
-        stockOptionList.add(stockOption);
-    }
-
-    public void deleteStockOption(StockOption stockOption) {
-        stockOptionList.remove(stockOption);
-    }
-
-    public List<StockOption> getStockOptionList() {
-        return stockOptionList;
-    }
 }

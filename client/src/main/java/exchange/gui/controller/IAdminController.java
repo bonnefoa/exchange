@@ -16,8 +16,24 @@
 
 package exchange.gui.controller;
 
+import exchange.model.StockOption;
+
 /**
  * Interface for the administration controller
  */
 public interface IAdminController {
+
+    /**
+     * Delete the current stockOption from the server
+     *
+     * @param stockOption Stock option to delete of the server
+     */
+    void deleteStockOptions(StockOption stockOption);
+
+    /**
+     * Add the given stock option to the server
+     *
+     * @param stockOption Stock option to add to the server
+     */
+    void addStockOption(StockOption stockOption);
 }
