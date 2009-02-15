@@ -37,8 +37,7 @@ public class StockOption implements Serializable {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append(title).append(' ');
-        sb.append(company).append(' ');
-        sb.append(quote);
+        sb.append(company);
         return sb.toString();
     }
 

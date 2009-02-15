@@ -37,7 +37,7 @@ public class Controller implements IController {
         } else {
             String name = view.getLoginName();
             model.connect(name);
-            view.displayStockOptions(model.getStockOptions());
+            view.displayStockOptions(model.getStockOptionsFromServer());
             view.setLoginFieldEditable(false);
             view.setTextButtonConnect("Disconnect");
         }

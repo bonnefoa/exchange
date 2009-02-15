@@ -4,7 +4,6 @@ import exchange.model.StockOption;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 
 /**
  * Implementation of model
@@ -23,15 +22,16 @@ public class Model implements IModel{
 
     public void subscribe(List<StockOption> list) {
         subscribed.addAll(list);
-        // TODO Subscribe to composant
+        // TODO Subscribe to serveur
     }
 
     public void unsubscribe(List<StockOption> list) {
         subscribed.removeAll(list);
-        // TODO Unsubscribe to composant
+        // TODO Unsubscribe to serveur
     }
 
     public String connect(String name) {
+        // TODO Connect to the server
         this.name = name;
         connected = true;
         return name;
@@ -39,6 +39,8 @@ public class Model implements IModel{
 
     public void disconnect() {
         connected = false;
+        subscribed.clear();
+        // TODO Disconnect of the server
     }
 
     public boolean isConnected() {
@@ -49,7 +51,12 @@ public class Model implements IModel{
         return name;
     }
 
-    public List<StockOption> getStockOptions() {
+    public List<StockOption> getStockOptionsFromServer() {
+        // TODO Get stocks from serveur
         return null;
+    }
+
+    public List<StockOption> getSubscribed() {
+        return subscribed;
     }
 }

@@ -55,5 +55,7 @@ public interface IModel {
      *
      * @return List of stock options
      */
-    List<StockOption> getStockOptions();
+    List<StockOption> getStockOptionsFromServer();
+
+    List<StockOption> getSubscribed();
 }

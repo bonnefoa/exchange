@@ -54,33 +54,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UITest.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="UITest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/UITest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="54" selection-start="2733" selection-end="2733" vertical-scroll-proportion="0.0">
+            <state line="133" column="1" selection-start="4033" selection-end="4033" vertical-scroll-proportion="0.80487806">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/controller/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="17" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/model/Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="16" selection-start="499" selection-end="499" vertical-scroll-proportion="0.6">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -237,6 +217,28 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
         </PATH_ELEMENT>
       </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="exchange" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="client" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="exchange" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="gui" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="controller" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+        </PATH_ELEMENT>
+      </PATH>
     </subPane>
   </component>
   <component name="ProjectLevelVcsManager">
@@ -303,8 +305,8 @@
       <recent name="exchange.guiceBinding" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UITest">
-    <tempConfiguration default="false" name="UITest" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
+  <component name="RunManager" selected="JUnit.UITest.testDisconnect">
+    <tempConfiguration default="false" name="UITest.testDisconnect" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <pattern>
         <option name="PATTERN" value="exchange.gui.*" />
         <option name="ENABLED" value="true" />
@@ -314,8 +316,8 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="exchange.gui" />
       <option name="MAIN_CLASS_NAME" value="exchange.gui.UITest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="testDisconnect" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -384,7 +386,7 @@
       <envs />
     </configuration>
     <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.UITest" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.UITest.testDisconnect" />
     </list>
     <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false" runner="emma">
       <module name="" />
@@ -474,7 +476,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23874755" sideWeight="0.6969697" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29186603" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29186603" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
@@ -516,13 +518,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/guice/guice/1.0/guice-1.0-sources.jar!/com/google/inject/binder/ScopedBindingBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/view/IView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="68" column="17" selection-start="1681" selection-end="1681" vertical-scroll-proportion="0.0">
@@ -551,13 +546,6 @@
     <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/model/MockModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="56" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/exchange/model/StockOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="36" selection-start="150" selection-end="150" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -613,18 +601,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/UITest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/exchange/model/StockOption.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="54" selection-start="2733" selection-end="2733" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="39" column="27" selection-start="825" selection-end="825" vertical-scroll-proportion="0.80487806">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/fest/fest-swing/1.0/fest-swing-1.0-sources.jar!/org/fest/swing/fixture/JTextComponentFixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="17" selection-start="628" selection-end="628" vertical-scroll-proportion="0.0">
+        <state line="32" column="22" selection-start="768" selection-end="768" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -633,8 +626,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/model/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="16" selection-start="499" selection-end="499" vertical-scroll-proportion="0.6">
-          <folding />
+        <state line="42" column="27" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/UITest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="1" selection-start="4033" selection-end="4033" vertical-scroll-proportion="0.80487806">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

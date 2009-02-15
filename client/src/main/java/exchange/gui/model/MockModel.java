@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class MockModel extends Model {
 
     @Override
-    public List<StockOption> getStockOptions() {
+    public List<StockOption> getStockOptionsFromServer() {
         ArrayList<StockOption> res = new ArrayList<StockOption>();
         res.add(new StockOption("titre", "company", 15));
         res.add(new StockOption("titre2", "company2", 30));
