@@ -1,6 +1,23 @@
-package exchange.gui.view;
+/*
+ * Copyright (C) 2009 Anthonin Bonnefoy and David Duponchel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package exchange.gui.view.impl;
 
 import exchange.model.StockOption;
+import exchange.gui.view.IClientView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +28,7 @@ import java.util.ArrayList;
 /**
  * Implementation of the view
  */
-public class View extends JFrame implements IView {
+public class ClientView extends JFrame implements IClientView {
 
     /**
      * Subscribe button
@@ -45,7 +62,7 @@ public class View extends JFrame implements IView {
     /**
      * Create the GUI and show it.
      */
-    public View() {
+    public ClientView() {
         //Create and set up the window.
         super("Exchange");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -140,11 +157,21 @@ public class View extends JFrame implements IView {
         stockList.setListData(stockOptionList.toArray());
     }
 
-    public List<StockOption> getSelectedStocksOption() {
+    public List<StockOption> getSelectedStocksOptions() {
         List<StockOption> res = new ArrayList<StockOption>();
         for (Object o : stockList.getSelectedValues()) {
             res.add((StockOption) o);
         }
+        return res;
+    }
+
+    public List<StockOption> getStockOptions() {
+        List<StockOption> res = new ArrayList<StockOption>();
+        ListModel listModel = stockList.getModel();
+        for (int i = 0; i < listModel.getSize(); i++) {
+            Object o = listModel.getElementAt(i);
+            res.add((StockOption) o);
+        }   
         return res;
     }
 

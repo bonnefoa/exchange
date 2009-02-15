@@ -14,27 +14,24 @@
  * limitations under the License.
  */
 
-package exchange;
+package exchange.gui.model.impl;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
+import exchange.gui.model.impl.ClientModel;
+import exchange.model.StockOption;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /**
- * Junit class
+ * Presenter linking the view and the controller
  */
-public abstract class BaseClass {
+public class MockClientModel extends ClientModel {
 
-    @Before
-    public void setUp() {
-        Injector injector = Guice.createInjector(getModule());
-        injector.injectMembers(this);
+    @Override
+    public List<StockOption> getStockOptionsFromServer() {
+        ArrayList<StockOption> res = new ArrayList<StockOption>();
+        res.add(new StockOption("titre", "company", 15));
+        res.add(new StockOption("titre2", "company2", 30));
+        return res;
     }
-
-    public abstract Module getModule();
-
 }

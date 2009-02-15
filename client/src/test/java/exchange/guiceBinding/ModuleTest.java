@@ -17,20 +17,29 @@
 package exchange.guiceBinding;
 
 import com.google.inject.AbstractModule;
-import exchange.gui.controller.impl.ClientController;
+import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
+import exchange.gui.controller.impl.AdminController;
+import exchange.gui.controller.impl.ClientController;
+import exchange.gui.model.IAdminModel;
 import exchange.gui.model.IClientModel;
-import exchange.gui.model.impl.ClientModel;
+import exchange.gui.model.impl.AdminModel;
+import exchange.gui.model.impl.MockClientModel;
+import exchange.gui.view.IAdminView;
 import exchange.gui.view.IClientView;
+import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
 
 /**
- * Main module for injection
+ * Module  Guice for testing
  */
-public class MainModule extends AbstractModule {
+public class ModuleTest extends AbstractModule {
     protected void configure() {
-        bind(IClientView.class).to(ClientView.class);
-        bind(IClientModel.class).to(ClientModel.class);
+        bind(IClientView.class).to(ClientView.class).asEagerSingleton();
+        bind(IClientModel.class).to(MockClientModel.class).asEagerSingleton();
         bind(IClientController.class).to(ClientController.class);
+        bind(IAdminModel.class).to(AdminModel.class);
+        bind(IAdminController.class).to(AdminController.class);
+        bind(IAdminView.class).to(AdminView.class);
     }
 }

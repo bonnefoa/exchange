@@ -14,27 +14,26 @@
  * limitations under the License.
  */
 
-package exchange;
+package exchange.gui.model;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
+import exchange.model.StockOption;
 
 /**
- * Junit class
+ * Interface for the admin model.
+ * Talk to the server for admin operations.
  */
-public abstract class BaseClass {
+public interface IAdminModel {
+    /**
+     * Create the new given stock option
+     *
+     * @param stockOption Stock Option to create
+     */
+    void createNewStockOption(StockOption stockOption);
 
-    @Before
-    public void setUp() {
-        Injector injector = Guice.createInjector(getModule());
-        injector.injectMembers(this);
-    }
-
-    public abstract Module getModule();
-
+    /**
+     * Delete the given stock option
+     *
+     * @param stockOption Stock option to delete
+     */
+    void deleteStockOption(StockOption stockOption);
 }

@@ -14,27 +14,12 @@
  * limitations under the License.
  */
 
-package exchange;
+package exchange.gui.controller.impl;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
+import exchange.gui.controller.IAdminController;
 
 /**
- * Junit class
+ * Implementation of the admin controller
  */
-public abstract class BaseClass {
-
-    @Before
-    public void setUp() {
-        Injector injector = Guice.createInjector(getModule());
-        injector.injectMembers(this);
-    }
-
-    public abstract Module getModule();
-
+public class AdminController implements IAdminController{
 }

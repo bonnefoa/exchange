@@ -1,6 +1,23 @@
-package exchange.gui.model;
+/*
+ * Copyright (C) 2009 Anthonin Bonnefoy and David Duponchel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package exchange.gui.model.impl;
 
 import exchange.model.StockOption;
+import exchange.gui.model.IClientModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +25,7 @@ import java.util.List;
 /**
  * Implementation of model
  */
-public class Model implements IModel{
+public class ClientModel implements IClientModel {
 
     private String name;
 
@@ -16,7 +33,7 @@ public class Model implements IModel{
 
     private boolean connected;
 
-    public Model() {
+    public ClientModel() {
         subscribed = new ArrayList<StockOption>();
     }
 

@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2009 Anthonin Bonnefoy and David Duponchel
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package exchange.gui.view;
 
 import exchange.model.StockOption;
@@ -9,7 +25,7 @@ import java.util.List;
 /**
  * Interface for the view
  */
-public interface IView {
+public interface IClientView {
     final static String newline = "\n";
     static final String LOGIN_FIED = "loginField";
     static final String STOCK_LIST = "stockList";
@@ -38,7 +54,14 @@ public interface IView {
      *
      * @return List of selected stock option
      */
-    List<StockOption> getSelectedStocksOption();
+    List<StockOption> getSelectedStocksOptions();
+
+    /**
+     * Get the list of stock options displayed by the Jlist
+     *
+     * @return List of stock options displayed
+     */
+    List<StockOption> getStockOptions();
 
     /**
      * Get the login entered

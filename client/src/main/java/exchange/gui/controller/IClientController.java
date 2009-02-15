@@ -14,41 +14,32 @@
  * limitations under the License.
  */
 
-package exchange;
+package exchange.gui.controller;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import exchange.model.StockOption;
 
 /**
- * Unit test for simple App.
+ * Interface for the controller
  */
-public class AppTest 
-    extends TestCase
-{
+public interface IClientController {
     /**
-     * Create the test case
+     * Warn the client of the new state of the option
      *
-     * @param testName name of the test case
+     * @param stockOption Stock option to update
      */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+    void warnSubscribed(StockOption stockOption);
 
     /**
-     * @return the suite of tests being tested
+     * Delete the current stockOption from the list
+     *
+     * @param stockOption Stock option to delete of the list
      */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+    void deleteStockOptions(StockOption stockOption);
 
     /**
-     * Rigourous Test :-)
+     * Add the given stock option to the list
+     *
+     * @param stockOption Stock option to add
      */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+    void addStockOption(StockOption stockOption);
 }

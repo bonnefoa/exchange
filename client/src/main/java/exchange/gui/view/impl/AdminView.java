@@ -14,27 +14,15 @@
  * limitations under the License.
  */
 
-package exchange;
+package exchange.gui.view.impl;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
+import exchange.gui.view.IAdminView;
+
+import javax.swing.*;
 
 /**
- * Junit class
+ * Implementation of the administrator GUI
  */
-public abstract class BaseClass {
-
-    @Before
-    public void setUp() {
-        Injector injector = Guice.createInjector(getModule());
-        injector.injectMembers(this);
-    }
-
-    public abstract Module getModule();
-
+public class AdminView extends JFrame implements IAdminView  {
+    
 }

@@ -14,27 +14,20 @@
  * limitations under the License.
  */
 
-package exchange;
+package exchange.gui.model.impl;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
+import exchange.gui.model.IAdminModel;
+import exchange.model.StockOption;
 
 /**
- * Junit class
+ * Implementation of the admin model
  */
-public abstract class BaseClass {
-
-    @Before
-    public void setUp() {
-        Injector injector = Guice.createInjector(getModule());
-        injector.injectMembers(this);
+public class AdminModel implements IAdminModel {
+    public void createNewStockOption(StockOption stockOption) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    public abstract Module getModule();
-
+    public void deleteStockOption(StockOption stockOption) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
