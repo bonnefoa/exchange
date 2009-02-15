@@ -118,12 +118,14 @@ public class ClientView extends JFrame implements IClientView {
         buttonSubscribe = new JButton("Subscribe");
         buttonSubscribe.setPreferredSize(dimButton);
         buttonSubscribe.setName(BUTTON_SUBSCRIBE);
+        buttonSubscribe.setEnabled(false);
         pane.add(buttonSubscribe, c);
 
         c.gridx = 1;
         buttonUnsubscribe = new JButton("Unsubscribe");
         buttonUnsubscribe.setName(BUTTON_UNSUBSCRIBE);
         buttonUnsubscribe.setPreferredSize(dimButton);
+        buttonUnsubscribe.setEnabled(false);
         pane.add(buttonUnsubscribe, c);
 
         //Login label
@@ -177,6 +179,11 @@ public class ClientView extends JFrame implements IClientView {
 
     public void setLoginFieldEditable(boolean editable) {
         login.setEditable(editable);
+    }
+
+    public void setButtonsSubscribeEnable(boolean enable) {
+        buttonSubscribe.setEnabled(enable);
+        buttonUnsubscribe.setEnabled(enable);
     }
 
     public void setTextButtonConnect(String text) {

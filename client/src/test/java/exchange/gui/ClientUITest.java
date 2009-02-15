@@ -49,6 +49,8 @@ public class ClientUITest extends BaseClass {
 
     private StockOption option1;
     private StockOption option2;
+    private StockOption option3;
+    private StockOption option4;
 
     @Before
     public void setUp() {
@@ -57,6 +59,8 @@ public class ClientUITest extends BaseClass {
         window.show();
         option1 = new StockOption("titre", "company", 15);
         option2 = new StockOption("titre2", "company2", 30);
+        option3 = new StockOption("titre3", "company2", 40);
+        option4 = new StockOption("titre4", "company4", 4);
     }
 
     public Module getModule() {
@@ -76,27 +80,37 @@ public class ClientUITest extends BaseClass {
     @Test
     public void testConnect() throws InterruptedException {
         assertFalse(clientModel.isConnected());
+        window.button(IClientView.BUTTON_SUBSCRIBE).requireDisabled();
+        window.button(IClientView.BUTTON_UNSUBSCRIBE).requireDisabled();
         connect();
+        window.button(IClientView.BUTTON_SUBSCRIBE).requireEnabled();
+        window.button(IClientView.BUTTON_UNSUBSCRIBE).requireEnabled();
+
         assertTrue(clientModel.isConnected());
         assertEquals("testLogin", clientModel.getName());
+
         window.textBox(IClientView.LOGIN_FIED).requireNotEditable();
         assertEquals("Disconnect", window.button(IClientView.BUTTON_CONNECT).text());
-        assertEquals(2,window.list(IClientView.STOCK_LIST).contents().length);
+
+        assertEquals(2, window.list(IClientView.STOCK_LIST).contents().length);
         List<StockOption> stockOptions = clientView.getStockOptions();
         assertEquals(2, stockOptions.size());
-        assertEquals(option1,stockOptions.get(0));
-        assertEquals(option2,stockOptions.get(1));
+        assertEquals(option1, stockOptions.get(0));
+        assertEquals(option2, stockOptions.get(1));
     }
 
     @Test
     public void testDisconnect() throws InterruptedException {
         connect();
         window.button(IClientView.BUTTON_CONNECT).click();
+
         window.textBox(IClientView.LOGIN_FIED).requireEditable();
         assertEquals("Connect", window.button(IClientView.BUTTON_CONNECT).text());
-        assertEquals(0,window.list(IClientView.STOCK_LIST).contents().length);
-        List<StockOption> stockOptions = clientView.getStockOptions();
-        assertEquals(0, stockOptions.size());
+        assertEquals(0, window.list(IClientView.STOCK_LIST).contents().length);
+        assertEquals(0, clientView.getStockOptions().size());
+
+        window.button(IClientView.BUTTON_SUBSCRIBE).requireDisabled();
+        window.button(IClientView.BUTTON_UNSUBSCRIBE).requireDisabled();
     }
 
     private void connect() {
@@ -108,9 +122,8 @@ public class ClientUITest extends BaseClass {
     public void testSubscribeFirst() {
         connect();
         window.list(IClientView.STOCK_LIST).selectItem(0);
-        assertEquals(1, clientView.getSelectedStocksOptions().size());
-        assertEquals(option1, clientView.getSelectedStocksOptions().get(0));
         window.button(IClientView.BUTTON_SUBSCRIBE).click();
+
         assertEquals(1, clientModel.getSubscribed().size());
         assertEquals(option1, clientModel.getSubscribed().get(0));
     }
@@ -119,9 +132,8 @@ public class ClientUITest extends BaseClass {
     public void testSubscribeSecond() {
         connect();
         window.list(IClientView.STOCK_LIST).selectItem(1);
-        assertEquals(1, clientView.getSelectedStocksOptions().size());
-        assertEquals(option2, clientView.getSelectedStocksOptions().get(0));
         window.button(IClientView.BUTTON_SUBSCRIBE).click();
+
         assertEquals(1, clientModel.getSubscribed().size());
         assertEquals(option2, clientModel.getSubscribed().get(0));
     }
@@ -130,15 +142,50 @@ public class ClientUITest extends BaseClass {
     public void testSubscribeBoth() {
         connect();
         window.list(IClientView.STOCK_LIST).selectItems(0, 1);
-        assertEquals(2, clientView.getSelectedStocksOptions().size());
-        assertEquals(option1, clientView.getSelectedStocksOptions().get(0));
-        assertEquals(option2, clientView.getSelectedStocksOptions().get(1));
         window.button(IClientView.BUTTON_SUBSCRIBE).click();
+
         assertEquals(2, clientModel.getSubscribed().size());
         assertEquals(option1, clientModel.getSubscribed().get(0));
         assertEquals(option2, clientModel.getSubscribed().get(1));
     }
 
+    @Test
+    public void testSubscribeAndUnsubscribe() {
+        connect();
+        window.list(IClientView.STOCK_LIST).selectItems(0, 1);
+        window.button(IClientView.BUTTON_SUBSCRIBE).click();
+
+        window.list(IClientView.STOCK_LIST).selectItems(1);
+        window.button(IClientView.BUTTON_UNSUBSCRIBE).click();
+
+        assertEquals(1, clientModel.getSubscribed().size());
+        assertEquals(option1, clientModel.getSubscribed().get(0));
+
+        window.list(IClientView.STOCK_LIST).selectItems(0);
+        window.button(IClientView.BUTTON_UNSUBSCRIBE).click();
+
+        assertEquals(0, clientModel.getSubscribed().size());
+    }
+
+    @Test
+    public void testAddStockOption() {
+        connect();
+        clientController.addStockOption(option3);
+        assertEquals(3, window.list(IClientView.STOCK_LIST).contents().length);
+        List<StockOption> stockOptions = clientView.getStockOptions();
+        assertEquals(3, stockOptions.size());
+        assertEquals(option3, stockOptions.get(2));
+    }
+
+    @Test
+    public void testRemoveStockOption() {
+        connect();
+        clientController.deleteStockOptions(option1);
+        assertEquals(1, window.list(IClientView.STOCK_LIST).contents().length);
+        List<StockOption> stockOptions = clientView.getStockOptions();
+        assertEquals(1, stockOptions.size());
+        assertEquals(option2, stockOptions.get(0));        
+    }
 
     @Inject
     public void setView(IClientView clientView) {

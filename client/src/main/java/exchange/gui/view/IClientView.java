@@ -18,7 +18,6 @@ package exchange.gui.view;
 
 import exchange.model.StockOption;
 
-import javax.swing.*;
 import java.awt.event.MouseListener;
 import java.util.List;
 
@@ -78,6 +77,13 @@ public interface IClientView {
     void setLoginFieldEditable(boolean editable);
 
     /**
+     * Set the subscribe and unsubscribe buttons editable
+     *
+     * @param editable State to put the button
+     */
+    void setButtonsSubscribeEnable(boolean editable);
+
+    /**
      * Change the text on the connect button
      *
      * @param text Text to display
@@ -87,9 +93,9 @@ public interface IClientView {
     /**
      * Init the listeners for buttons
      *
-     * @param connectListener
-     * @param subscribeListener
-     * @param unsubscribeListener
+     * @param connectListener     listener for connect button
+     * @param subscribeListener   Listener for subscribe button
+     * @param unsubscribeListener Listener for unsubscribe button
      */
     void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener);
 }

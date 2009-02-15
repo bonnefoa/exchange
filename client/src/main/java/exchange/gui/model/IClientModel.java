@@ -80,4 +80,5 @@ public interface IClientModel {
      */
     List<StockOption> getSubscribed();
 
+    List<StockOption> getStockOptionDisplayed();
 }

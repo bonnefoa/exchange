@@ -31,10 +31,13 @@ public class ClientModel implements IClientModel {
 
     private List<StockOption> subscribed;
 
+    private List<StockOption> stockOptionDisplayed;
+
     private boolean connected;
 
     public ClientModel() {
         subscribed = new ArrayList<StockOption>();
+        stockOptionDisplayed = new ArrayList<StockOption>();
     }
 
     public void subscribe(List<StockOption> list) {
@@ -51,12 +54,14 @@ public class ClientModel implements IClientModel {
         // TODO Connect to the server
         this.name = name;
         connected = true;
+        stockOptionDisplayed = getStockOptionsFromServer();
         return name;
     }
 
     public void disconnect() {
         connected = false;
         subscribed.clear();
+        stockOptionDisplayed.clear();
         // TODO Disconnect of the server
     }
 
@@ -71,6 +76,10 @@ public class ClientModel implements IClientModel {
     public List<StockOption> getStockOptionsFromServer() {
         // TODO Get stocks from serveur
         return null;
+    }
+
+    public List<StockOption> getStockOptionDisplayed() {
+        return stockOptionDisplayed;
     }
 
     public List<StockOption> getSubscribed() {

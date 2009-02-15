@@ -17,9 +17,9 @@
 package exchange.gui.controller.impl;
 
 import com.google.inject.Inject;
+import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
-import exchange.gui.controller.IClientController;
 import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
@@ -43,6 +43,7 @@ public class ClientController implements IClientController {
 
     private void subscribeHandler() {
         clientModel.subscribe(clientView.getSelectedStocksOptions());
+        //TODO Modifier la vue (mettre en gras?)
     }
 
     private void connectHandler() {
@@ -50,18 +51,21 @@ public class ClientController implements IClientController {
             clientModel.disconnect();
             clientView.displayStockOptions(new ArrayList<StockOption>());
             clientView.setLoginFieldEditable(true);
+            clientView.setButtonsSubscribeEnable(false);
             clientView.setTextButtonConnect("Connect");
         } else {
             String name = clientView.getLoginName();
             clientModel.connect(name);
-            clientView.displayStockOptions(clientModel.getStockOptionsFromServer());
+            clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
             clientView.setLoginFieldEditable(false);
+            clientView.setButtonsSubscribeEnable(true);
             clientView.setTextButtonConnect("Disconnect");
         }
     }
 
     private void unsubscribeHandler() {
         clientModel.unsubscribe(clientView.getSelectedStocksOptions());
+        //TODO Modifier la vue (mettre en maigre?)
     }
 
     private void initListener() {
@@ -92,10 +96,12 @@ public class ClientController implements IClientController {
     }
 
     public void deleteStockOptions(StockOption stockOption) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        clientModel.getStockOptionDisplayed().remove(stockOption);
+        clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
     }
 
     public void addStockOption(StockOption stockOption) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        clientModel.getStockOptionDisplayed().add(stockOption);
+        clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
     }
 }
