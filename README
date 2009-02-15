@@ -14,3 +14,14 @@ TODO
 	· options with null quote are automatically deleted
 	· make use of EJB when desired
 
+Client side :
+	2 GUI 
+		client GUI. It lets you to connect to the server, display stockOption, subscribe/unsubscribe to these stockOptions and disconect.
+		Admin Gui. It permits you to add/remove stock options 
+
+Server side : 
+	The server has to keep a list of stock options.
+ 	Those stockOptions will have their quotes change randomly.
+	A rmi communication can be used to communicate with clients
+	The best solution could be a message-driven bean. It's an EJB after all...
+
