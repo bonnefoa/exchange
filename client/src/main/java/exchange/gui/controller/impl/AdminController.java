@@ -22,6 +22,9 @@ import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
 import exchange.model.StockOption;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  * Implementation of the admin controller
  */
@@ -39,6 +42,27 @@ public class AdminController implements IAdminController {
     public AdminController(IAdminView adminView, IAdminModel adminModel) {
         this.adminView = adminView;
         this.adminModel = adminModel;
+        adminView.displayStockOptions(adminModel.getStockOptionList());
+        adminView.initListeners(
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        connectHandler();
+                    }
+                }
+                ,
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        subscribeHandler();
+                    }
+                },
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        unsubscribeHandler();
+                    }
+                });
     }
 
     public void deleteStockOptions(StockOption stockOption) {

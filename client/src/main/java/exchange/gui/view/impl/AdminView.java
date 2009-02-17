@@ -78,22 +78,48 @@ public class AdminView extends BaseViewClass implements IAdminView {
     private void addComponentsToPane(Container pane) {
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        c.insets = new Insets(10, 2, 2, 2);
+        Insets inset = new Insets(10, 2, 2, 2);
         Dimension dimButton = new Dimension(120, 20);
-        Dimension preferedAreaSize = new Dimension(80, 20);
-        c.gridwidth = 1;
+        Dimension preferedAreaSize = new Dimension(180, 20);
         //List
         stockList = new JList();
         stockList.setName(STOCK_LIST);
         stockList.setDragEnabled(true);
+
         c.gridx = 0;
         c.gridy = 0;
-        c.weightx = 0.5;
-        c.weighty = 1;
-        c.gridheight = 4;
+        c.weightx = 0.7;
+        c.weighty = 0.9;
+        c.gridheight = 1;
+        c.gridwidth = 1;
+        c.fill = GridBagConstraints.BOTH;
         pane.add(stockList, c);
 
+        // Delete Button
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weightx = 0;
+        c.weighty = 0;
+        c.gridheight = 1;
+        c.gridwidth = 1;
+        c.fill = GridBagConstraints.CENTER;
+        buttonDelete = new JButton("Delete");
+        buttonDelete.setName(BUTTON_DELETE);
+        pane.add(buttonDelete,c);
+
+        //Add of the disconnect button
+        c.gridx = 1;
+        c.gridy = 1;
+        c.weightx = 0;
+        c.weighty = 0;
+        c.gridheight = 1;
+        c.gridwidth = 1;
+        c.fill = GridBagConstraints.CENTER;
+        buttonDisconnect = new JButton("Disconnect");
+        buttonDisconnect.setName(BUTTON_DISCONNECT);
+        pane.add(buttonDisconnect, c);
+
+        //Panel containing the creation of a new option
         JPanel panelCreateStockOption = new JPanel();
         panelCreateStockOption.setLayout(new GridBagLayout());
         c.gridx = 1;
@@ -101,6 +127,8 @@ public class AdminView extends BaseViewClass implements IAdminView {
         c.weightx = 0;
         c.weighty = 0;
         c.gridheight = 1;
+        c.gridwidth = 1;
+        c.insets=inset;
         c.fill = GridBagConstraints.NONE;
         //Text area
         titleNameArea = new JTextArea();
@@ -136,29 +164,14 @@ public class AdminView extends BaseViewClass implements IAdminView {
         c.gridwidth = 2;
         panelCreateStockOption.add(buttonCreate, c);
 
+        //Add of the panel
         c.fill = GridBagConstraints.BOTH;
-        c.weightx = 0.5;
+        c.weightx = 0.3;
         c.weighty = 0;
         c.gridheight = 1;
         c.gridx = 1;
         c.gridy = 0;
         pane.add(panelCreateStockOption, c);
-
-        c.fill = GridBagConstraints.NONE;
-        buttonDisconnect = new JButton("Disconnect");
-        buttonDisconnect.setPreferredSize(dimButton);
-        buttonDisconnect.setName(BUTTON_DISCONNECT);
-        c.gridy = 1;
-        pane.add(buttonDisconnect, c);
     }
 
-    public java.util.List<StockOption> getStockOptions() {
-        java.util.List<StockOption> res = new ArrayList<StockOption>();
-        ListModel listModel = stockList.getModel();
-        for (int i = 0; i < listModel.getSize(); i++) {
-            Object o = listModel.getElementAt(i);
-            res.add((StockOption) o);
-        }
-        return res;
-    }
 }

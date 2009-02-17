@@ -21,9 +21,8 @@ import java.awt.event.MouseListener;
 /**
  * Interface for the admin view.
  * Present a special gui for the administrator
- *
  */
-public interface IAdminView extends StockOptionListManager{
+public interface IAdminView extends StockOptionListManager {
     final static String newline = "\n";
     static final String LOGIN_FIED = "loginField";
     static final String STOCK_LIST = "stockList";
@@ -38,11 +37,9 @@ public interface IAdminView extends StockOptionListManager{
     /**
      * Init the listeners for buttons
      *
-     * @param connectListener     listener for connect button
-     * @param subscribeListener   Listener for subscribe button
-     * @param unsubscribeListener Listener for unsubscribe button
+     * @param disconnectListener listener for disconnect button
+     * @param createListener     Listener for create button
+     * @param deleteListener     Listener for delete button
      */
-    void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener);
-
-
+    void initListeners(MouseListener disconnectListener, MouseListener createListener, MouseListener deleteListener);
 }

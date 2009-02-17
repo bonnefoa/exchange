@@ -70,11 +70,12 @@ public class ClientUITest extends BaseClass {
     @After
     public void tearDown() {
         window.cleanUp();
+        clientView = null;
     }
 
-    @Test
-    public void testSomething() {
-        assertTrue(true);
+    private void connect() {
+        window.textBox(IClientView.LOGIN_FIED).enterText("testLogin");
+        window.button(IClientView.BUTTON_CONNECT).click();
     }
 
     @Test
@@ -106,11 +107,6 @@ public class ClientUITest extends BaseClass {
 
         window.button(IClientView.BUTTON_SUBSCRIBE).requireDisabled();
         window.button(IClientView.BUTTON_UNSUBSCRIBE).requireDisabled();
-    }
-
-    private void connect() {
-        window.textBox(IClientView.LOGIN_FIED).enterText("testLogin");
-        window.button(IClientView.BUTTON_CONNECT).click();
     }
 
     @Test

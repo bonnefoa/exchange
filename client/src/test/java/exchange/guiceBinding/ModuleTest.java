@@ -17,6 +17,7 @@
 package exchange.guiceBinding;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.controller.impl.AdminController;
@@ -25,6 +26,7 @@ import exchange.gui.model.IAdminModel;
 import exchange.gui.model.IClientModel;
 import exchange.gui.model.impl.AdminModel;
 import exchange.gui.model.impl.MockClientModel;
+import exchange.gui.model.impl.MockAdminModel;
 import exchange.gui.view.IAdminView;
 import exchange.gui.view.IClientView;
 import exchange.gui.view.impl.AdminView;
@@ -35,11 +37,11 @@ import exchange.gui.view.impl.ClientView;
  */
 public class ModuleTest extends AbstractModule {
     protected void configure() {
-        bind(IClientView.class).to(ClientView.class).asEagerSingleton();
-        bind(IClientModel.class).to(MockClientModel.class).asEagerSingleton();
+        bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);
+        bind(IClientModel.class).to(MockClientModel.class).in(Scopes.SINGLETON);
         bind(IClientController.class).to(ClientController.class);
-        bind(IAdminModel.class).to(AdminModel.class);
+        bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
+        bind(IAdminModel.class).to(MockAdminModel.class).in(Scopes.SINGLETON);
         bind(IAdminController.class).to(AdminController.class);
-        bind(IAdminView.class).to(AdminView.class);
     }
 }
