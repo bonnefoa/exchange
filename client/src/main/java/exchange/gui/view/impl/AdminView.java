@@ -174,4 +174,19 @@ public class AdminView extends BaseViewClass implements IAdminView {
         pane.add(panelCreateStockOption, c);
     }
 
+    public String getCompanyNameFromTextArea() {
+        return companyNameArea.getText();
+    }
+
+    public String getTitleNameFromTextArea() {
+        return titleNameArea.getText();
+    }
+
+    public String getQuoteFromTextArea() {
+        return quoteArea.getText();
+    }
+
+    public void displayError(String error) {
+        
+    }
 }

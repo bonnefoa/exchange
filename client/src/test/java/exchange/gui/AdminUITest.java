@@ -16,19 +16,17 @@
 
 package exchange.gui;
 
-import com.google.inject.Module;
 import com.google.inject.Inject;
+import com.google.inject.Module;
 import exchange.BaseClass;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
-import exchange.gui.view.IClientView;
 import exchange.guiceBinding.ModuleTest;
 import exchange.model.StockOption;
-import org.fest.swing.fixture.FrameFixture;
 import static org.fest.assertions.Fail.fail;
+import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,10 +62,10 @@ public class AdminUITest extends BaseClass {
         option2 = new StockOption("titre2", "company2", 30);
     }
 
-
     @After
     public void tearDown() {
         window.cleanUp();
+        adminView = null;
     }
 
     @Test
@@ -75,9 +73,9 @@ public class AdminUITest extends BaseClass {
         assertEquals(2, window.list(IAdminView.STOCK_LIST).contents().length);
         assertEquals(option1, adminModel.getStockOptionList().get(0));
         assertEquals(option2, adminModel.getStockOptionList().get(1));
-        assertEquals(0,window.textBox(IAdminView.TEXT_AREA_COMPANY_NAME).text().length());
-        assertEquals(0,window.textBox(IAdminView.TEXT_AREA_TITLE_NAME).text().length());
-        assertEquals(0,window.textBox(IAdminView.TEXT_AREA_QUOTE).text().length());
+        assertEquals(0, window.textBox(IAdminView.TEXT_AREA_COMPANY_NAME).text().length());
+        assertEquals(0, window.textBox(IAdminView.TEXT_AREA_TITLE_NAME).text().length());
+        assertEquals(0, window.textBox(IAdminView.TEXT_AREA_QUOTE).text().length());
     }
 
     @Test
@@ -85,8 +83,8 @@ public class AdminUITest extends BaseClass {
         window.list(IAdminView.STOCK_LIST).selectItem(0);
         window.button(IAdminView.BUTTON_DELETE).click();
 
-        assertEquals(1,adminModel.getStockOptionList().size());
-        assertEquals(option2,adminModel.getStockOptionList().get(0));
+        assertEquals(1, adminModel.getStockOptionList().size());
+        assertEquals(option2, adminModel.getStockOptionList().get(0));
         assertEquals(1, window.list(IAdminView.STOCK_LIST).contents().length);
     }
 
@@ -95,17 +93,17 @@ public class AdminUITest extends BaseClass {
         window.list(IAdminView.STOCK_LIST).selectItem(1);
         window.button(IAdminView.BUTTON_DELETE).click();
 
-        assertEquals(1,adminModel.getStockOptionList().size());
-        assertEquals(option1,adminModel.getStockOptionList().get(0));
+        assertEquals(1, adminModel.getStockOptionList().size());
+        assertEquals(option1, adminModel.getStockOptionList().get(0));
         assertEquals(1, window.list(IAdminView.STOCK_LIST).contents().length);
     }
 
     @Test
     public void testDeleteBothOptions() {
-        window.list(IAdminView.STOCK_LIST).selectItems(0,1);
+        window.list(IAdminView.STOCK_LIST).selectItems(0, 1);
         window.button(IAdminView.BUTTON_DELETE).click();
 
-        assertEquals(0,adminModel.getStockOptionList().size());
+        assertEquals(0, adminModel.getStockOptionList().size());
         assertEquals(0, window.list(IAdminView.STOCK_LIST).contents().length);
     }
 
@@ -115,8 +113,8 @@ public class AdminUITest extends BaseClass {
         completeAreaText(stockTest);
         window.button(IAdminView.BUTTON_CREATE).click();
 
-        assertEquals(3,adminModel.getStockOptionList().size());
-        assertEquals(stockTest,adminModel.getStockOptionList().get(2));
+        assertEquals(3, adminModel.getStockOptionList().size());
+        assertEquals(stockTest, adminModel.getStockOptionList().get(2));
 
         assertEquals(3, window.list(IAdminView.STOCK_LIST).contents().length);
     }
@@ -132,7 +130,7 @@ public class AdminUITest extends BaseClass {
     private void completeAreaText(StockOption stockTest) {
         window.textBox(IAdminView.TEXT_AREA_COMPANY_NAME).enterText(stockTest.getCompany());
         window.textBox(IAdminView.TEXT_AREA_TITLE_NAME).enterText(stockTest.getTitle());
-        window.textBox(IAdminView.TEXT_AREA_QUOTE).enterText(stockTest.getQuote()+"");
+        window.textBox(IAdminView.TEXT_AREA_QUOTE).enterText(stockTest.getQuote() + "");
     }
 
     @Test

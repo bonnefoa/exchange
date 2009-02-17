@@ -37,7 +37,7 @@ public interface IAdminModel {
      *
      * @param stockOption Stock option to delete
      */
-    void deleteStockOption(StockOption stockOption);
+    void deleteStockOption(List<StockOption> stockOption);
 
     /**
      * Get the stock option list of the server

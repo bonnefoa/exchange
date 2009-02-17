@@ -24,6 +24,7 @@ import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 
 /**
  * Implementation of the admin controller
@@ -38,6 +39,8 @@ public class AdminController implements IAdminController {
      */
     private IAdminModel adminModel;
 
+    private ResourceBundle bundle;
+
     @Inject
     public AdminController(IAdminView adminView, IAdminModel adminModel) {
         this.adminView = adminView;
@@ -47,31 +50,47 @@ public class AdminController implements IAdminController {
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        connectHandler();
+                        disconnectHandler();
                     }
                 }
                 ,
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        subscribeHandler();
+                        createOptionHandler();
                     }
                 },
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        unsubscribeHandler();
+                        deleteOptionHandler();
                     }
                 });
+        bundle = ResourceBundle.getBundle(getClass().getName());
     }
 
-    public void deleteStockOptions(StockOption stockOption) {
-        adminModel.deleteStockOption(stockOption);
+    private void deleteOptionHandler() {
+        adminModel.deleteStockOption(adminView.getSelectedStocksOptions());
         adminView.displayStockOptions(adminModel.getStockOptionList());
     }
 
-    public void addStockOption(StockOption stockOption) {
-        adminModel.createNewStockOption(stockOption);
-        adminView.displayStockOptions(adminModel.getStockOptionList());
+    private void createOptionHandler() {
+        try {
+            String companyName = adminView.getCompanyNameFromTextArea();
+            String titleName = adminView.getTitleNameFromTextArea();
+            Float quote = Float.parseFloat(adminView.getQuoteFromTextArea());
+            StockOption stockOption = new StockOption(companyName, titleName, quote);
+            adminModel.createNewStockOption(stockOption);
+            adminView.displayStockOptions(adminModel.getStockOptionList());
+        } catch (NumberFormatException e) {
+            adminView.displayError(bundle.getString("QUOTE_ERROR"));
+        } catch (IllegalArgumentException e) {
+            adminView.displayError(e.getMessage());
+        }
     }
+
+    private void disconnectHandler() {
+        
+    }
+
 }

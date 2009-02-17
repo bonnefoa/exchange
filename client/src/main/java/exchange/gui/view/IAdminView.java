@@ -16,6 +16,8 @@
 
 package exchange.gui.view;
 
+import exchange.model.StockOption;
+
 import java.awt.event.MouseListener;
 
 /**
@@ -42,4 +44,32 @@ public interface IAdminView extends StockOptionListManager {
      * @param deleteListener     Listener for delete button
      */
     void initListeners(MouseListener disconnectListener, MouseListener createListener, MouseListener deleteListener);
+
+    /**
+     * Get the Company name of the created option
+     *
+     * @return Company name of the option
+     */
+    String getCompanyNameFromTextArea();
+
+    /**
+     * Get the title name for the created option
+     *
+     * @return Title name of the option
+     */
+    String getTitleNameFromTextArea();
+
+    /**
+     * Get the quote for the option
+     *
+     * @return Quote of the option
+     */
+    String getQuoteFromTextArea();
+
+    /**
+     * Display a window error for the user
+     *
+     * @param error Message to display
+     */
+    void displayError(String error);
 }

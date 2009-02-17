@@ -19,8 +19,8 @@ package exchange.gui.model.impl;
 import exchange.gui.model.IAdminModel;
 import exchange.model.StockOption;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation of the admin model
@@ -38,10 +38,12 @@ public class AdminModel implements IAdminModel {
 
     public void createNewStockOption(StockOption stockOption) {
         stockOptionList.add(stockOption);
+        //TODO Contact serveur for add
     }
 
-    public void deleteStockOption(StockOption stockOption) {
-        stockOptionList.remove(stockOption);
+    public void deleteStockOption(List<StockOption> stockOption) {
+        stockOptionList.removeAll(stockOption);
+        //TODO Contact serveur for deletion
     }
 
     public List<StockOption> getStockOptionList() {
