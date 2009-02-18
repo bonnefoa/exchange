@@ -16,14 +16,12 @@
 
 package exchange.gui.controller;
 
+import exchange.gui.view.impl.GlobalFrame;
+
+import java.util.Observer;
+
 /**
  * Interface for the administration controller
  */
-public interface IAdminController {
-    /**
-     * Active or desactivate the admin GUI
-     *
-     * @param show Show the GUI if true
-     */
-    void setVisibility(boolean show);
+public interface IAdminController extends IAbstractController {
 }

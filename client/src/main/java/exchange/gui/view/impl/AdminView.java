@@ -17,17 +17,15 @@
 package exchange.gui.view.impl;
 
 import exchange.gui.view.IAdminView;
-import exchange.model.StockOption;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 /**
  * Implementation of the administrator GUI
  */
-public class AdminView extends BaseViewClass implements IAdminView {
+public class AdminView extends AbstractView implements IAdminView {
     /**
      * Subscribe button
      */
@@ -109,7 +107,7 @@ public class AdminView extends BaseViewClass implements IAdminView {
         //Add of the disconnect button
         c.gridx = 1;
         c.gridy = 1;
-        c.weightx = 0;
+        c.weightx = 1;
         c.weighty = 0;
         c.gridheight = 1;
         c.gridwidth = 1;

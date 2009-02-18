@@ -43,17 +43,17 @@ public class GlobalFrame implements IGlobalFrame {
     public GlobalFrame(IClientController clientController, IAdminController adminController) {
         this.clientController = clientController;
         this.adminController = adminController;
-        ((Observable) clientController).addObserver(this);
-        ((Observable) adminController).addObserver(this);
+        clientController.setParent(this);
+        adminController.setParent(this);
     }
 
-    public void update(Observable o, Object arg) {
-        if (arg.equals(SwitchView.ACTIVATE_ADMIN)) {
-            clientController.setVisibility(false);
-            adminController.setVisibility(true);
-        } else if (arg.equals(SwitchView.ACTIVATE_CLIENT)) {
-            adminController.setVisibility(false);
-            clientController.setVisibility(true);
-        }
+    public void switchToAdmin() {
+        clientController.setVisibility(false);
+        adminController.setVisibility(true);
+    }
+
+    public void switchToClient() {
+        adminController.setVisibility(false);
+        clientController.setVisibility(true);
     }
 }

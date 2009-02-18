@@ -21,7 +21,7 @@ import java.awt.event.MouseListener;
 /**
  * Interface for the view
  */
-public interface IClientView extends CommonView {
+public interface IClientView extends IAbstractView {
     final static String newline = "\n";
     static final String LOGIN_FIED = "loginField";
     static final String ADMIN_FIED = "adminField";

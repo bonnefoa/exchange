@@ -32,8 +32,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.Frame;
-import java.util.List;
+import java.awt.*;
 
 /**
  * Unit testing on the user interface
@@ -94,6 +93,9 @@ public class ClientUITest extends BaseClass {
         assertEquals("Disconnect", window.button(IClientView.BUTTON_CONNECT).text());
 
         assertEquals(2, window.list(IClientView.STOCK_LIST).contents().length);
+
+        window.textBox(IClientView.ADMIN_FIED).requireNotEditable();
+        window.button(IClientView.BUTTON_CONNECT_ADMIN).requireDisabled();
     }
 
     @Test
@@ -107,6 +109,9 @@ public class ClientUITest extends BaseClass {
 
         window.button(IClientView.BUTTON_SUBSCRIBE).requireDisabled();
         window.button(IClientView.BUTTON_UNSUBSCRIBE).requireDisabled();
+
+        window.textBox(IClientView.ADMIN_FIED).requireEditable();
+        window.button(IClientView.BUTTON_CONNECT_ADMIN).requireEnabled();
     }
 
     @Test

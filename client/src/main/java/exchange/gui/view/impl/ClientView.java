@@ -25,7 +25,7 @@ import java.awt.event.MouseListener;
 /**
  * Implementation of the view
  */
-public class ClientView extends BaseViewClass implements IClientView {
+public class ClientView extends AbstractView implements IClientView {
 
     /**
      * Subscribe button

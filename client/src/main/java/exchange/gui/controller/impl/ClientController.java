@@ -21,6 +21,7 @@ import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
 import exchange.gui.view.impl.SwitchView;
+import exchange.gui.view.impl.GlobalFrame;
 import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
@@ -31,7 +32,7 @@ import java.util.Observable;
 /**
  * Presenter linking the view and the controller
  */
-public class ClientController extends Observable implements IClientController {
+public class ClientController extends AbstractController implements IClientController {
     /**
      * Client model
      */
@@ -56,6 +57,7 @@ public class ClientController extends Observable implements IClientController {
     private void connectHandler() {
         if (clientModel.isConnected()) {
             clientModel.disconnect();
+            clientView.setAdminAccesEnable(true);
             clientView.displayStockOptions(new ArrayList<StockOption>());
             clientView.setLoginFieldEditable(true);
             clientView.setButtonsSubscribeEnable(false);
@@ -66,6 +68,7 @@ public class ClientController extends Observable implements IClientController {
             clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
             clientView.setLoginFieldEditable(false);
             clientView.setButtonsSubscribeEnable(true);
+            clientView.setAdminAccesEnable(false);            
             clientView.setTextButtonConnect("Disconnect");
         }
     }
@@ -106,7 +109,7 @@ public class ClientController extends Observable implements IClientController {
 
     private void adminAccesHandler() {
         if (clientView.getPassword().equals(IClientController.PASSWORD)) {
-            notifyObservers(SwitchView.ACTIVATE_ADMIN);
+            parent.switchToAdmin();
         } else {
             clientView.displayError(IClientController.INCORRECT_PASSWORD);
         }

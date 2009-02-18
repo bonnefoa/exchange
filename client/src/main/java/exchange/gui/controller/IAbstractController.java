@@ -14,19 +14,25 @@
  * limitations under the License.
  */
 
-package exchange.gui.view;
+package exchange.gui.controller;
+
+import exchange.gui.view.IGlobalFrame;
 
 /**
- * Interface for the globalFrame
+ * Interface common to both controllers
  */
-public interface IGlobalFrame {
+public interface IAbstractController {
     /**
-     * Switch the GUI to the admin GUI
+     * Set the parent controller
+     *
+     * @param parent Parent of both frame
      */
-    void switchToAdmin();
+    void setParent(IGlobalFrame parent);
 
     /**
-     * Switch the GUI to the client GUI
+     * Active or desactivate the admin GUI
+     *
+     * @param show Show the GUI if true
      */
-    void switchToClient();
+    void setVisibility(boolean show);
 }

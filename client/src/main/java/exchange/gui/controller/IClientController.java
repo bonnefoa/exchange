@@ -17,11 +17,15 @@
 package exchange.gui.controller;
 
 import exchange.model.StockOption;
+import exchange.gui.view.impl.GlobalFrame;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Interface for the controller
  */
-public interface IClientController {
+public interface IClientController  extends IAbstractController{
     String INCORRECT_PASSWORD = "Incorrect password";
     String PASSWORD = "adminadmin";
 
@@ -45,11 +49,4 @@ public interface IClientController {
      * @param stockOption Stock option to add
      */
     void addStockOption(StockOption stockOption);
-
-    /**
-     * Active or desactivate the admin GUI
-     *
-     * @param show Show the GUI if true
-     */
-    void setVisibility(boolean show);
 }

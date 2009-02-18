@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
-package exchange.gui.view;
+package exchange.gui.controller.impl;
+
+import exchange.gui.view.impl.GlobalFrame;
+import exchange.gui.view.IGlobalFrame;
+import exchange.gui.controller.IAbstractController;
+
+import java.util.Observable;
 
 /**
- * Interface for the globalFrame
+ * Abstract class for common logic of both controller
  */
-public interface IGlobalFrame {
+public abstract class AbstractController implements IAbstractController {
     /**
-     * Switch the GUI to the admin GUI
+     * Parent frame
      */
-    void switchToAdmin();
+    protected IGlobalFrame parent;
 
-    /**
-     * Switch the GUI to the client GUI
-     */
-    void switchToClient();
+    public void setParent(IGlobalFrame parent) {
+        this.parent = parent;
+    }
 }

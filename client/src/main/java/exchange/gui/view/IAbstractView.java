@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Common methods shared by both views
  */
-public interface CommonView {
+public interface IAbstractView {
 
     /**
      * Show or hide the window
