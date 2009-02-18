@@ -184,8 +184,4 @@ public class AdminView extends BaseViewClass implements IAdminView {
     public String getQuoteFromTextArea() {
         return quoteArea.getText();
     }
-
-    public void displayError(String error) {
-        JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
-    }
 }

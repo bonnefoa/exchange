@@ -22,6 +22,9 @@ import exchange.model.StockOption;
  * Interface for the controller
  */
 public interface IClientController {
+    String INCORRECT_PASSWORD = "Incorrect password";
+    String PASSWORD = "adminadmin";
+
     /**
      * Warn the client of the new state of the option
      *
@@ -42,4 +45,11 @@ public interface IClientController {
      * @param stockOption Stock option to add
      */
     void addStockOption(StockOption stockOption);
+
+    /**
+     * Active or desactivate the admin GUI
+     *
+     * @param show Show the GUI if true
+     */
+    void setVisibility(boolean show);
 }

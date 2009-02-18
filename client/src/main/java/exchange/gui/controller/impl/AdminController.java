@@ -20,16 +20,18 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
+import exchange.gui.view.impl.SwitchView;
 import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
+import java.util.Observable;
 
 /**
  * Implementation of the admin controller
  */
-public class AdminController implements IAdminController {
+public class AdminController extends Observable implements IAdminController {
     /**
      * View of the admin GUI
      */
@@ -85,7 +87,10 @@ public class AdminController implements IAdminController {
     }
 
     private void disconnectHandler() {
-        
+        notifyObservers(SwitchView.ACTIVATE_CLIENT);        
     }
 
+    public void setVisibility(boolean activate) {
+        adminView.setVisible(activate);
+    }
 }

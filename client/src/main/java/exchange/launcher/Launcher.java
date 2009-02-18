@@ -17,16 +17,14 @@
 package exchange.launcher;
 
 import com.google.inject.Guice;
-import com.google.inject.Injector;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
+import exchange.gui.view.IGlobalFrame;
 import exchange.guiceBinding.MainModule;
-import exchange.gui.view.impl.ClientView;
-import exchange.gui.view.impl.AdminView;
-import exchange.gui.view.impl.GlobalFrame;
-import exchange.gui.view.IClientView;
-import exchange.gui.view.IAdminView;
 
 public class Launcher {
+
+    private IGlobalFrame globalFrame;
 
     public static void main(java.lang.String[] args) {
         Launcher launcher = new Launcher();
@@ -43,4 +41,8 @@ public class Launcher {
         injector.injectMembers(launcher);
     }
 
+    @Inject
+    public void setGlobalFrame(IGlobalFrame globalFrame) {
+        this.globalFrame = globalFrame;
+    }
 }

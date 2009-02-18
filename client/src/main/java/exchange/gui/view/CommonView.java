@@ -45,4 +45,11 @@ public interface CommonView {
      * @return List of selected stock option
      */
     List<StockOption> getSelectedStocksOptions();
+
+    /**
+     * Display a window error for the user
+     *
+     * @param error Message to display
+     */
+    void displayError(String error);
 }

@@ -64,10 +64,4 @@ public interface IAdminView extends CommonView {
      */
     String getQuoteFromTextArea();
 
-    /**
-     * Display a window error for the user
-     *
-     * @param error Message to display
-     */
-    void displayError(String error);
 }

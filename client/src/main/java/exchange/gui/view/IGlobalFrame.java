@@ -14,16 +14,12 @@
  * limitations under the License.
  */
 
-package exchange.gui.controller;
+package exchange.gui.view;
+
+import java.util.Observer;
 
 /**
- * Interface for the administration controller
+ * Interface for the globalFrame
  */
-public interface IAdminController {
-    /**
-     * Active or desactivate the admin GUI
-     *
-     * @param show Show the GUI if true
-     */
-    void setVisibility(boolean show);
+public interface IGlobalFrame extends Observer {
 }

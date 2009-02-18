@@ -20,7 +20,7 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
-import exchange.gui.view.IAdminView;
+import exchange.gui.view.impl.SwitchView;
 import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
@@ -105,9 +105,10 @@ public class ClientController extends Observable implements IClientController {
     }
 
     private void adminAccesHandler() {
-        if (clientView.getPassword().equals("adminadmin")) {
-            clientView.setVisible(false);
-            notifyObservers();
+        if (clientView.getPassword().equals(IClientController.PASSWORD)) {
+            notifyObservers(SwitchView.ACTIVATE_ADMIN);
+        } else {
+            clientView.displayError(IClientController.INCORRECT_PASSWORD);
         }
     }
 
@@ -123,5 +124,9 @@ public class ClientController extends Observable implements IClientController {
     public void addStockOption(StockOption stockOption) {
         clientModel.getStockOptionDisplayed().add(stockOption);
         clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
+    }
+
+    public void setVisibility(boolean show) {
+        clientView.setVisible(show);
     }
 }

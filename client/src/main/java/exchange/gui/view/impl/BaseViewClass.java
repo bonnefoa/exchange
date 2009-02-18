@@ -58,4 +58,8 @@ public abstract class BaseViewClass extends JFrame implements CommonView {
         }
         return res;
     }
+
+    public void displayError(String error) {
+        JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
+    }    
 }

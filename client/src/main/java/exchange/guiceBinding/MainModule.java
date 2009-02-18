@@ -28,8 +28,10 @@ import exchange.gui.model.impl.AdminModel;
 import exchange.gui.model.impl.ClientModel;
 import exchange.gui.view.IAdminView;
 import exchange.gui.view.IClientView;
+import exchange.gui.view.IGlobalFrame;
 import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
+import exchange.gui.view.impl.GlobalFrame;
 
 /**
  * Main module for injection
@@ -42,5 +44,6 @@ public class MainModule extends AbstractModule {
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
         bind(IAdminModel.class).to(AdminModel.class).in(Scopes.SINGLETON);
         bind(IAdminController.class).to(AdminController.class).in(Scopes.SINGLETON);
+        bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
     }
 }

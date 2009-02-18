@@ -75,7 +75,7 @@ public class ClientModel implements IClientModel {
 
     public List<StockOption> getStockOptionsFromServer() {
         // TODO Get stocks from serveur
-        return null;
+        return new ArrayList<StockOption>();
     }
 
     public List<StockOption> getStockOptionDisplayed() {

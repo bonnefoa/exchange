@@ -19,6 +19,7 @@ package exchange.gui.view.impl;
 import com.google.inject.Inject;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
+import exchange.gui.view.IGlobalFrame;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -26,8 +27,7 @@ import java.util.Observer;
 /**
  * Global frame containing the client or the admin GUI
  */
-public class GlobalFrame implements Observer {
-    
+public class GlobalFrame implements IGlobalFrame {
 
     /**
      * Client GUI
@@ -48,6 +48,12 @@ public class GlobalFrame implements Observer {
     }
 
     public void update(Observable o, Object arg) {
-
+        if (arg.equals(SwitchView.ACTIVATE_ADMIN)) {
+            clientController.setVisibility(false);
+            adminController.setVisibility(true);
+        } else if (arg.equals(SwitchView.ACTIVATE_CLIENT)) {
+            adminController.setVisibility(false);
+            clientController.setVisibility(true);
+        }
     }
 }
