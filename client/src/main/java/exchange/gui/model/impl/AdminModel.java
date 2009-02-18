@@ -31,12 +31,16 @@ public class AdminModel implements IAdminModel {
      * List of stock options
      */
     private List<StockOption> stockOptionList;
+    public static final String ALREADY_EXISTE = "Title already exists";
 
     public AdminModel() {
         stockOptionList = new ArrayList<StockOption>();
     }
 
     public void createNewStockOption(StockOption stockOption) {
+        if (stockOptionList.contains(stockOption)){
+            throw new IllegalArgumentException(ALREADY_EXISTE);
+        }
         stockOptionList.add(stockOption);
         //TODO Contact serveur for add
     }

@@ -24,7 +24,6 @@ import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
 import exchange.guiceBinding.ModuleTest;
 import exchange.model.StockOption;
-import static org.fest.assertions.Fail.fail;
 import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;
@@ -66,6 +65,7 @@ public class AdminUITest extends BaseClass {
     public void tearDown() {
         window.cleanUp();
         adminView = null;
+        adminModel = null;
     }
 
     @Test
@@ -82,7 +82,6 @@ public class AdminUITest extends BaseClass {
     public void testDeleteFirstOption() {
         window.list(IAdminView.STOCK_LIST).selectItem(0);
         window.button(IAdminView.BUTTON_DELETE).click();
-
         assertEquals(1, adminModel.getStockOptionList().size());
         assertEquals(option2, adminModel.getStockOptionList().get(0));
         assertEquals(1, window.list(IAdminView.STOCK_LIST).contents().length);
@@ -110,7 +109,7 @@ public class AdminUITest extends BaseClass {
     @Test
     public void testAddOption() {
         StockOption stockTest = new StockOption("TitleNameTest", "CompanyNameUnitTest", 55);
-        completeAreaText(stockTest);
+        completeAreaText(stockTest.getTitle(), stockTest.getCompany(), stockTest.getQuote());
         window.button(IAdminView.BUTTON_CREATE).click();
 
         assertEquals(3, adminModel.getStockOptionList().size());
@@ -121,38 +120,56 @@ public class AdminUITest extends BaseClass {
 
     @Test
     public void testAddOptionWithExistingName() {
-        StockOption stockTest = new StockOption(option1.getTitle(), option1.getCompany(), 55);
-        completeAreaText(stockTest);
+        completeAreaText(option1.getTitle(), option1.getCompany(), 55);
         window.button(IAdminView.BUTTON_CREATE).click();
-        fail("Find how to check an error");
+        window.optionPane().requireErrorMessage();
     }
 
-    private void completeAreaText(StockOption stockTest) {
-        window.textBox(IAdminView.TEXT_AREA_COMPANY_NAME).enterText(stockTest.getCompany());
-        window.textBox(IAdminView.TEXT_AREA_TITLE_NAME).enterText(stockTest.getTitle());
-        window.textBox(IAdminView.TEXT_AREA_QUOTE).enterText(stockTest.getQuote() + "");
+    private void completeAreaText(String title, String company, float quote) {
+        completeAreaText(title, company, new Float(quote));
+    }
+
+    private void completeAreaText(String title, String company, Float quote) {
+        window.textBox(IAdminView.TEXT_AREA_COMPANY_NAME).enterText(company);
+        window.textBox(IAdminView.TEXT_AREA_TITLE_NAME).enterText(title);
+        if (quote != null) {
+            window.textBox(IAdminView.TEXT_AREA_QUOTE).enterText(quote + "");
+        }
     }
 
     @Test
     public void testAddOptionWithoutName() {
-        StockOption stockTest = new StockOption("", "company", 55);
-        completeAreaText(stockTest);
+        completeAreaText("", "company", 55);
         window.button(IAdminView.BUTTON_CREATE).click();
-        fail("Find how to check an error");
+        window.optionPane().requireErrorMessage().requireMessage(StockOption.TITLE_NAME_EMPTY);
     }
 
     @Test
     public void testAddOptionWithoutCompanyName() {
-        StockOption stockTest = new StockOption("title", "", 55);
-        completeAreaText(stockTest);
-        fail("Find how to check an error");
+        completeAreaText("title", "", 55);
+        window.button(IAdminView.BUTTON_CREATE).click();
+        window.optionPane().requireErrorMessage().requireMessage(StockOption.COMPANY_NAME_EMPTY);
     }
 
     @Test
-    public void testAddOptionWithoutQuote() {
-        StockOption stockTest = new StockOption("title", "company", 0);
-        completeAreaText(stockTest);
-        fail("Find how to check an error");
+    public void testAddOptionWithZeroQuote() {
+        completeAreaText("title", "company", 0);
+        window.button(IAdminView.BUTTON_CREATE).click();
+        window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
+    }
+
+    @Test
+    public void testAddOptionWithInvalidQuote() {
+        completeAreaText("title", "company", -99);
+        window.button(IAdminView.BUTTON_CREATE).click();
+        window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
+    }
+
+    @Test
+    public void testAddOptionWithNullQuote() {
+        completeAreaText("title", "company", null);
+        window.button(IAdminView.BUTTON_CREATE).click();
+        window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
     }
 
     @Inject

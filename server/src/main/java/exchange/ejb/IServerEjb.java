@@ -23,6 +23,6 @@ import java.util.Observable;
 /**
  * Interface of the ejb server
  */
-@Local
+//@Local
 public interface IServerEjb {
 }

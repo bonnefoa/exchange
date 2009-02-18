@@ -67,6 +67,7 @@ public class AdminView extends BaseViewClass implements IAdminView {
         //Display the window.
         this.pack();
         this.setVisible(true);
+        
     }
 
     public void initListeners(MouseListener disconnectListener, MouseListener createListener, MouseListener deleteListener) {
@@ -187,6 +188,6 @@ public class AdminView extends BaseViewClass implements IAdminView {
     }
 
     public void displayError(String error) {
-        
+        JOptionPane.showMessageDialog(this, error, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

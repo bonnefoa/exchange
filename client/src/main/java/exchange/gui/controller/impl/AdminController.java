@@ -39,8 +39,6 @@ public class AdminController implements IAdminController {
      */
     private IAdminModel adminModel;
 
-    private ResourceBundle bundle;
-
     @Inject
     public AdminController(IAdminView adminView, IAdminModel adminModel) {
         this.adminView = adminView;
@@ -66,7 +64,6 @@ public class AdminController implements IAdminController {
                         deleteOptionHandler();
                     }
                 });
-        bundle = ResourceBundle.getBundle(getClass().getName());
     }
 
     private void deleteOptionHandler() {
@@ -78,19 +75,17 @@ public class AdminController implements IAdminController {
         try {
             String companyName = adminView.getCompanyNameFromTextArea();
             String titleName = adminView.getTitleNameFromTextArea();
-            Float quote = Float.parseFloat(adminView.getQuoteFromTextArea());
-            StockOption stockOption = new StockOption(companyName, titleName, quote);
+            String quote = adminView.getQuoteFromTextArea();
+            StockOption stockOption = new StockOption(titleName,companyName, quote);
             adminModel.createNewStockOption(stockOption);
             adminView.displayStockOptions(adminModel.getStockOptionList());
-        } catch (NumberFormatException e) {
-            adminView.displayError(bundle.getString("QUOTE_ERROR"));
         } catch (IllegalArgumentException e) {
             adminView.displayError(e.getMessage());
         }
     }
 
     private void disconnectHandler() {
-        
+
     }
 
 }

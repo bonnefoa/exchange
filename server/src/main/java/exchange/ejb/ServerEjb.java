@@ -21,6 +21,6 @@ import javax.ejb.Stateless;
 /**
  * Implementation of the ejb server
  */
-@Stateless
+//@Stateless
 public class ServerEjb implements IServerEjb {
 }

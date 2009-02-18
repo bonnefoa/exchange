@@ -39,9 +39,9 @@ public class ModuleTest extends AbstractModule {
     protected void configure() {
         bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);
         bind(IClientModel.class).to(MockClientModel.class).in(Scopes.SINGLETON);
-        bind(IClientController.class).to(ClientController.class);
+        bind(IClientController.class).to(ClientController.class).in(Scopes.SINGLETON);
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
         bind(IAdminModel.class).to(MockAdminModel.class).in(Scopes.SINGLETON);
-        bind(IAdminController.class).to(AdminController.class);
+        bind(IAdminController.class).to(AdminController.class).in(Scopes.SINGLETON);
     }
 }

@@ -11,9 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: junit:junit:4.5" level="project" />
-    <orderEntry type="library" exported="" name="Maven: hsqldb:hsqldb:1.8.0.7" level="project" />
-    <orderEntry type="library" exported="" name="Maven: com.google.code.guice:guice:1.0" level="project" />
+    <orderEntry type="module" module-name="exchange" exported="" />
     <orderEntry type="library" name="Maven: fest:fest-swing:1.0" level="project" />
     <orderEntry type="library" name="Maven: mrj:MRJToolkitStubs:1.0" level="project" />
     <orderEntry type="library" name="Maven: fest:fest-util:1.0" level="project" />
@@ -21,11 +19,8 @@
     <orderEntry type="library" name="Maven: fest:fest-reflect:1.0" level="project" />
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Maven: swinghelper:debug:1.0" level="project" />
-    <orderEntry type="library" name="Maven: fest:fest-mocks:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.easymock:easymockclassextension:2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.easymock:easymock:2.2" level="project" />
-    <orderEntry type="library" name="Maven: cglib:cglib-nodep:2.1_3" level="project" />
-    <orderEntry type="module" module-name="exchange" />
+    <orderEntry type="library" exported="" name="Maven: com.google.code.guice:guice:1.0" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.5" level="project" />
   </component>
 </module>
 
