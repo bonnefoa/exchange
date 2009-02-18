@@ -56,6 +56,7 @@ public class AdminUITest extends BaseClass {
     public void setUp() {
         super.setUp();
         window = new FrameFixture((Frame) adminView);
+        adminView.setVisible(true);
         window.show();
         option1 = new StockOption("titre", "company", 15);
         option2 = new StockOption("titre2", "company2", 30);
@@ -101,14 +102,13 @@ public class AdminUITest extends BaseClass {
     public void testDeleteBothOptions() {
         window.list(IAdminView.STOCK_LIST).selectItems(0, 1);
         window.button(IAdminView.BUTTON_DELETE).click();
-
         assertEquals(0, adminModel.getStockOptionList().size());
         assertEquals(0, window.list(IAdminView.STOCK_LIST).contents().length);
     }
 
     @Test
     public void testAddOption() {
-        StockOption stockTest = new StockOption("TitleNameTest", "CompanyNameUnitTest", 55);
+        StockOption stockTest = new StockOption("test", "test", 55);
         completeAreaText(stockTest.getTitle(), stockTest.getCompany(), stockTest.getQuote());
         window.button(IAdminView.BUTTON_CREATE).click();
 
@@ -126,14 +126,14 @@ public class AdminUITest extends BaseClass {
     }
 
     private void completeAreaText(String title, String company, float quote) {
-        completeAreaText(title, company, new Float(quote));
+        completeAreaText(title, company, quote + "");
     }
 
-    private void completeAreaText(String title, String company, Float quote) {
+    private void completeAreaText(String title, String company, String quote) {
         window.textBox(IAdminView.TEXT_AREA_COMPANY_NAME).enterText(company);
         window.textBox(IAdminView.TEXT_AREA_TITLE_NAME).enterText(title);
         if (quote != null) {
-            window.textBox(IAdminView.TEXT_AREA_QUOTE).enterText(quote + "");
+            window.textBox(IAdminView.TEXT_AREA_QUOTE).enterText(quote);
         }
     }
 
@@ -159,8 +159,15 @@ public class AdminUITest extends BaseClass {
     }
 
     @Test
-    public void testAddOptionWithInvalidQuote() {
+    public void testAddOptionWithInvalidNegativeQuote() {
         completeAreaText("title", "company", -99);
+        window.button(IAdminView.BUTTON_CREATE).click();
+        window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
+    }
+
+    @Test
+    public void testAddOptionWithInvalidStringQuote() {
+        completeAreaText("title", "company", "tes");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
     }
@@ -170,6 +177,23 @@ public class AdminUITest extends BaseClass {
         completeAreaText("title", "company", null);
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
+    }
+
+    @Test
+    public void testAddOptionWithTwoErrors() {
+        completeAreaText("title", null, null);
+        window.button(IAdminView.BUTTON_CREATE).click();
+        window.optionPane().requireErrorMessage().requireMessage(StockOption.COMPANY_NAME_EMPTY +
+                StockOption.QUOTE_INVALID);
+    }
+
+    @Test
+    public void testAddOptionWithThreeErrors() {
+        completeAreaText(null, null, null);
+        window.button(IAdminView.BUTTON_CREATE).click();
+        window.optionPane().requireErrorMessage().requireMessage(StockOption.TITLE_NAME_EMPTY +
+                StockOption.COMPANY_NAME_EMPTY +
+                StockOption.QUOTE_INVALID);
     }
 
     @Inject

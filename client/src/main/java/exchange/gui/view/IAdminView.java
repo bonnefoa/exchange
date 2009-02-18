@@ -16,15 +16,13 @@
 
 package exchange.gui.view;
 
-import exchange.model.StockOption;
-
 import java.awt.event.MouseListener;
 
 /**
  * Interface for the admin view.
  * Present a special gui for the administrator
  */
-public interface IAdminView extends StockOptionListManager {
+public interface IAdminView extends CommonView {
     final static String newline = "\n";
     static final String LOGIN_FIED = "loginField";
     static final String STOCK_LIST = "stockList";

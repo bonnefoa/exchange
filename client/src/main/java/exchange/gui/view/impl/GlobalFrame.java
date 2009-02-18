@@ -16,8 +16,38 @@
 
 package exchange.gui.view.impl;
 
+import com.google.inject.Inject;
+import exchange.gui.controller.IAdminController;
+import exchange.gui.controller.IClientController;
+
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Global frame containing the client or the admin GUI
  */
-public class GlobalFrame {
+public class GlobalFrame implements Observer {
+    
+
+    /**
+     * Client GUI
+     */
+    private IClientController clientController;
+
+    /**
+     * Admin GUI
+     */
+    private IAdminController adminController;
+
+    @Inject
+    public GlobalFrame(IClientController clientController, IAdminController adminController) {
+        this.clientController = clientController;
+        this.adminController = adminController;
+        ((Observable) clientController).addObserver(this);
+        ((Observable) adminController).addObserver(this);
+    }
+
+    public void update(Observable o, Object arg) {
+
+    }
 }

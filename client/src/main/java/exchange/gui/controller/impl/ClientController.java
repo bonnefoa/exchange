@@ -20,18 +20,25 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
+import exchange.gui.view.IAdminView;
 import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * Presenter linking the view and the controller
  */
-public class ClientController implements IClientController {
+public class ClientController extends Observable implements IClientController {
+    /**
+     * Client model
+     */
     private IClientModel clientModel;
-
+    /**
+     * Client gui
+     */
     private IClientView clientView;
 
     @Inject
@@ -88,7 +95,20 @@ public class ClientController implements IClientController {
                     public void mouseClicked(MouseEvent e) {
                         unsubscribeHandler();
                     }
+                },
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        adminAccesHandler();
+                    }
                 });
+    }
+
+    private void adminAccesHandler() {
+        if (clientView.getPassword().equals("adminadmin")) {
+            clientView.setVisible(false);
+            notifyObservers();
+        }
     }
 
     public void warnSubscribed(StockOption stockOption) {

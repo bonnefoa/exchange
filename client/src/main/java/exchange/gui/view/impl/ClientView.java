@@ -16,14 +16,11 @@
 
 package exchange.gui.view.impl;
 
-import exchange.model.StockOption;
 import exchange.gui.view.IClientView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Implementation of the view
@@ -47,13 +44,25 @@ public class ClientView extends BaseViewClass implements IClientView {
      */
     private JButton buttonConnect;
     /**
+     * Connect button for administration zone
+     */
+    private JButton buttonConnectAdmin;
+    /**
      * Login field
      */
-    private JTextField login;
+    private JTextField loginField;
+    /**
+     * Admin password field
+     */
+    private JPasswordField adminField;
     /**
      * Label for login
      */
     private JLabel labelLogin;
+    /**
+     * Label for admin
+     */
+    private JLabel labelAdmin;
 
     /**
      * Create the GUI and show it.
@@ -71,10 +80,11 @@ public class ClientView extends BaseViewClass implements IClientView {
         this.setVisible(true);
     }
 
-    public void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener) {
+    public void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener, MouseListener adminAccessListener) {
         buttonConnect.addMouseListener(connectListener);
         buttonSubscribe.addMouseListener(subscribeListener);
         buttonUnsubscribe.addMouseListener(unsubscribeListener);
+        buttonConnectAdmin.addMouseListener(adminAccessListener);
     }
 
     private void addComponentsToPane(Container pane) {
@@ -98,7 +108,7 @@ public class ClientView extends BaseViewClass implements IClientView {
         //Text area
         c.gridwidth = 3;
         textArea = new JTextArea("Cours de la bourse");
-        textArea.setName(TEXT_AREA);
+        textArea.setName(TEXT_AREA_MESSAGES);
         c.gridx = 2;
         pane.add(textArea, c);
 
@@ -110,6 +120,7 @@ public class ClientView extends BaseViewClass implements IClientView {
         c.fill = GridBagConstraints.HORIZONTAL;
 
         //Subscribe button
+        c.gridheight = 1;
         c.gridx = 0;
         buttonSubscribe = new JButton("Subscribe");
         buttonSubscribe.setPreferredSize(dimButton);
@@ -125,6 +136,7 @@ public class ClientView extends BaseViewClass implements IClientView {
         pane.add(buttonUnsubscribe, c);
 
         //Login label
+        c.gridheight = 1;
         c.gridx = 2;
         c.weightx = 0;
         labelLogin = new JLabel("Login :");
@@ -134,10 +146,10 @@ public class ClientView extends BaseViewClass implements IClientView {
         //Login field
         c.gridx = 3;
         c.weightx = 0.5;
-        login = new JTextField();
-        login.setName(LOGIN_FIED);
-        login.setMinimumSize(new Dimension(40, 20));
-        pane.add(login, c);
+        loginField = new JTextField();
+        loginField.setName(LOGIN_FIED);
+        loginField.setMinimumSize(new Dimension(40, 20));
+        pane.add(loginField, c);
 
         //Connect button
         c.gridx = 4;
@@ -145,6 +157,39 @@ public class ClientView extends BaseViewClass implements IClientView {
         buttonConnect.setName(BUTTON_CONNECT);
         buttonConnect.setPreferredSize(dimButton);
         pane.add(buttonConnect, c);
+
+        // Separator
+        c.gridy++;
+        c.gridx = 2;
+        c.gridwidth = 3;
+        c.fill = GridBagConstraints.CENTER;
+        JLabel label = new JLabel("Admin access");
+        pane.add(label, c);
+
+        //Admin label
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridwidth = 1;
+        c.gridy++;
+        c.gridx = 2;
+        c.weightx = 0;
+        labelAdmin = new JLabel("Password :");
+        labelAdmin.setName(LABEL_ADMIN);
+        pane.add(labelAdmin, c);
+
+        //Admin password field
+        c.gridx = 3;
+        c.weightx = 0.5;
+        adminField = new JPasswordField();
+        adminField.setName(ADMIN_FIED);
+        adminField.setMinimumSize(new Dimension(40, 20));
+        pane.add(adminField, c);
+
+        //Connect button
+        c.gridx = 4;
+        buttonConnectAdmin = new JButton("Admin zone");
+        buttonConnectAdmin.setName(BUTTON_CONNECT_ADMIN);
+        buttonConnectAdmin.setPreferredSize(dimButton);
+        pane.add(buttonConnectAdmin, c);
     }
 
     public void displayMessageQuote(String message) {
@@ -152,7 +197,7 @@ public class ClientView extends BaseViewClass implements IClientView {
     }
 
     public void setLoginFieldEditable(boolean editable) {
-        login.setEditable(editable);
+        loginField.setEditable(editable);
     }
 
     public void setButtonsSubscribeEnable(boolean enable) {
@@ -160,11 +205,20 @@ public class ClientView extends BaseViewClass implements IClientView {
         buttonUnsubscribe.setEnabled(enable);
     }
 
+    public void setAdminAccesEnable(boolean accessibility) {
+        adminField.setEditable(accessibility);
+        buttonConnectAdmin.setEnabled(accessibility);
+    }
+
+    public String getPassword() {
+        return adminField.getText();
+    }
+
     public void setTextButtonConnect(String text) {
         buttonConnect.setText(text);
     }
 
     public String getLoginName() {
-        return login.getText();
+        return loginField.getText();
     }
 }

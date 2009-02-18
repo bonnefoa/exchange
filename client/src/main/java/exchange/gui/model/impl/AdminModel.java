@@ -48,6 +48,7 @@ public class AdminModel implements IAdminModel {
     public void deleteStockOption(List<StockOption> stockOption) {
         stockOptionList.removeAll(stockOption);
         //TODO Contact serveur for deletion
+        //TODO Notify to the subscribers
     }
 
     public List<StockOption> getStockOptionList() {

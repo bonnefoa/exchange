@@ -18,29 +18,19 @@ package exchange.launcher;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Inject;
 import exchange.guiceBinding.MainModule;
 import exchange.gui.view.impl.ClientView;
 import exchange.gui.view.impl.AdminView;
+import exchange.gui.view.impl.GlobalFrame;
+import exchange.gui.view.IClientView;
+import exchange.gui.view.IAdminView;
 
 public class Launcher {
 
     public static void main(java.lang.String[] args) {
         Launcher launcher = new Launcher();
         bootstrap(launcher);
-        launcher.run(); 
-    }
-
-    private void run() {
-//        javax.swing.SwingUtilities.invokeLater(new java.lang.Runnable() {
-//            public void run() {
-//                new ClientView();
-//            }
-//        });
-        javax.swing.SwingUtilities.invokeLater(new java.lang.Runnable() {
-            public void run() {
-                new AdminView();
-            }
-        });
     }
 
     /**
@@ -52,4 +42,5 @@ public class Launcher {
         Injector injector = Guice.createInjector(new MainModule());
         injector.injectMembers(launcher);
     }
+
 }

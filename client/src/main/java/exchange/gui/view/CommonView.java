@@ -21,9 +21,17 @@ import exchange.model.StockOption;
 import java.util.List;
 
 /**
- * Interface for the management of the jlist of stock options
+ * Common methods shared by both views
  */
-public interface StockOptionListManager {
+public interface CommonView {
+
+    /**
+     * Show or hide the window
+     *
+     * @param show Control the appareance of the window
+     */
+    void setVisible(boolean show);
+
     /**
      * Display the list of stockOption
      *
@@ -37,5 +45,4 @@ public interface StockOptionListManager {
      * @return List of selected stock option
      */
     List<StockOption> getSelectedStocksOptions();
-
 }

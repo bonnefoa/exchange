@@ -16,23 +16,24 @@
 
 package exchange.gui.view;
 
-import exchange.model.StockOption;
-
 import java.awt.event.MouseListener;
-import java.util.List;
 
 /**
  * Interface for the view
  */
-public interface IClientView extends StockOptionListManager {
+public interface IClientView extends CommonView {
     final static String newline = "\n";
     static final String LOGIN_FIED = "loginField";
+    static final String ADMIN_FIED = "adminField";
     static final String STOCK_LIST = "stockList";
-    static final String TEXT_AREA = "textArea";
+    static final String TEXT_AREA_MESSAGES = "textAreaMessages";
     static final String BUTTON_SUBSCRIBE = "buttonSubscribe";
     static final String BUTTON_UNSUBSCRIBE = "buttonUnsubscribe";
     static final String LABEL_LOGIN = "labelLogin";
+    static final String LABEL_ADMIN = "labelAdmin";
     static final String BUTTON_CONNECT = "buttonConnect";
+    static final String BUTTON_CONNECT_ADMIN = "buttonConnectAdmin";
+
 
     /**
      * Display a message to the text area
@@ -70,11 +71,26 @@ public interface IClientView extends StockOptionListManager {
     void setTextButtonConnect(String text);
 
     /**
+     * Get the entered password
+     *
+     * @return Password entered by the user
+     */
+    String getPassword();
+
+    /**
+     * Set the accessibitlity of the admin part
+     *
+     * @param accessibility Enable if true
+     */
+    void setAdminAccesEnable(boolean accessibility);
+
+    /**
      * Init the listeners for buttons
      *
      * @param connectListener     listener for connect button
      * @param subscribeListener   Listener for subscribe button
      * @param unsubscribeListener Listener for unsubscribe button
+     * @param adminAccessListener Listener for admin acces button
      */
-    void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener);
+    void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener, MouseListener adminAccessListener);
 }

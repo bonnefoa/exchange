@@ -17,6 +17,7 @@
 package exchange.gui.view.impl;
 
 import exchange.model.StockOption;
+import exchange.gui.view.CommonView;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import java.util.List;
  * Base classe for view.
  * It regoups the logic for the treatement of the JList.
  */
-public abstract class BaseViewClass extends JFrame {
+public abstract class BaseViewClass extends JFrame implements CommonView {
     /**
      * List of stock option
      */
@@ -57,5 +58,4 @@ public abstract class BaseViewClass extends JFrame {
         }
         return res;
     }
-
 }

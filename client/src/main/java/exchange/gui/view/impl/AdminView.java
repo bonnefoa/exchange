@@ -66,8 +66,6 @@ public class AdminView extends BaseViewClass implements IAdminView {
         addComponentsToPane(this.getContentPane());
         //Display the window.
         this.pack();
-        this.setVisible(true);
-        
     }
 
     public void initListeners(MouseListener disconnectListener, MouseListener createListener, MouseListener deleteListener) {

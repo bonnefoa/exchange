@@ -17,11 +17,18 @@
 package exchange.guiceBinding;
 
 import com.google.inject.AbstractModule;
-import exchange.gui.controller.impl.ClientController;
+import com.google.inject.Scopes;
+import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
+import exchange.gui.controller.impl.AdminController;
+import exchange.gui.controller.impl.ClientController;
+import exchange.gui.model.IAdminModel;
 import exchange.gui.model.IClientModel;
+import exchange.gui.model.impl.AdminModel;
 import exchange.gui.model.impl.ClientModel;
+import exchange.gui.view.IAdminView;
 import exchange.gui.view.IClientView;
+import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
 
 /**
@@ -29,8 +36,11 @@ import exchange.gui.view.impl.ClientView;
  */
 public class MainModule extends AbstractModule {
     protected void configure() {
-        bind(IClientView.class).to(ClientView.class);
-        bind(IClientModel.class).to(ClientModel.class);
-        bind(IClientController.class).to(ClientController.class);
+        bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);
+        bind(IClientModel.class).to(ClientModel.class).in(Scopes.SINGLETON);
+        bind(IClientController.class).to(ClientController.class).in(Scopes.SINGLETON);
+        bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
+        bind(IAdminModel.class).to(AdminModel.class).in(Scopes.SINGLETON);
+        bind(IAdminController.class).to(AdminController.class).in(Scopes.SINGLETON);
     }
 }
