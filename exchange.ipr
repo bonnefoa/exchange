@@ -171,6 +171,7 @@
         <option value="$PROJECT_DIR$/client/pom.xml" />
         <option value="$PROJECT_DIR$/server/pom.xml" />
         <option value="$PROJECT_DIR$/common/pom.xml" />
+        <option value="$PROJECT_DIR$/ejbStockOption/pom.xml" />
       </list>
     </option>
   </component>
@@ -306,6 +307,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ejbStockOption/ejbStockOption.iml" filepath="$PROJECT_DIR$/ejbStockOption/ejbStockOption.iml" />
       <module fileurl="file://$PROJECT_DIR$/exchange.iml" filepath="$PROJECT_DIR$/exchange.iml" />
       <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
     </modules>
@@ -395,17 +397,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.5/junit-4.5-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: hsqldb:hsqldb:1.8.0.7">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: com.google.code.guice:guice:1.0">

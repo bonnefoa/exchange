@@ -47,9 +47,10 @@ public class StockOptionEjb implements IStockOptionEjb {
 
     public void changesQuotes() {
         for (StockOption stockOption : stockOptionList) {
-            double rand = Math.random() % 3;
-            float variation = (float) (Math.random() / Integer.MAX_VALUE);
+            int rand = (int) ((Math.random() * 3) % 3);
+            float variation = (float) (Math.random() * 10);
             float quote = stockOption.getQuote();
+            System.out.println(rand);
             if (rand == 0) {
                 stockOption.setQuote(quote - variation);
             } else if (rand == 2) {

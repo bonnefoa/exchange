@@ -16,8 +16,10 @@
 
 package exchange.ejb;
 
-import org.junit.Test;
+import exchange.model.StockOption;
+import static org.junit.Assert.fail;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Test for ejb
@@ -26,16 +28,49 @@ public class StockOptionEjbTest {
     IStockOptionEjb stockOptionEjb;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         stockOptionEjb = new StockOptionEjb();
         StockOption option1 = new StockOption("titre", "company", 15);
-        StockOption option2 = new StockOption("titre2", "company2", 30);        
-        stockOptionEjb.createNewStockOption();
+        StockOption option2 = new StockOption("titre2", "company2", 30);
+        stockOptionEjb.createNewStockOption(option1);
+        stockOptionEjb.createNewStockOption(option2);
     }
 
 
     @Test
-    public void testChangesQuotes() {
-        // Add your code here
+    public void testChangesQuotesDontChange() {
+        for (int i = 0; i < 1000; i++) {
+            float oldQuote = stockOptionEjb.getStockOptionList().get(0).getQuote();
+            stockOptionEjb.changesQuotes();
+            if (oldQuote == stockOptionEjb.getStockOptionList().get(0).getQuote()) {
+                return;
+            }
+        }
+        fail("Should not passe here");
     }
+
+    @Test
+    public void testChangesQuotesGoUp() {
+        for (int i = 0; i < 1000; i++) {
+            float oldQuote = stockOptionEjb.getStockOptionList().get(0).getQuote();
+            stockOptionEjb.changesQuotes();
+            if (oldQuote > stockOptionEjb.getStockOptionList().get(0).getQuote()) {
+                return;
+            }
+        }
+        fail("Should not passe here");
+    }
+
+    @Test
+    public void testChangesQuotesGoDown() {
+        for (int i = 0; i < 1000; i++) {
+            float oldQuote = stockOptionEjb.getStockOptionList().get(0).getQuote();
+            stockOptionEjb.changesQuotes();
+            if (oldQuote < stockOptionEjb.getStockOptionList().get(0).getQuote()) {
+                return;
+            }
+        }
+        fail("Should not passe here");
+    }
+
 }
