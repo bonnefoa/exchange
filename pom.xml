@@ -25,6 +25,7 @@
         <module>client</module>
         <module>server</module>
         <module>common</module>
+        <module>ejbStockOption</module>
     </modules>
     <name>exchange</name>
     <url>http://maven.apache.org</url>
