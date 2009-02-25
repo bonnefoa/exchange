@@ -24,17 +24,12 @@ import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
 import exchange.gui.view.IGlobalFrame;
 import exchange.guiceBinding.ModuleTest;
-import exchange.model.StockOption;
-import static junit.framework.Assert.assertFalse;
 import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.Frame;
-import java.util.List;
+import java.awt.*;
 
 /**
  * Unit testing on the admin access

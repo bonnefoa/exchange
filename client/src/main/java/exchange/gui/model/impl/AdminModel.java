@@ -27,6 +27,8 @@ import java.util.List;
  */
 public class AdminModel implements IAdminModel {
 
+    private IStockOptionEjb stockOptionEjb;
+
     /**
      * List of stock options
      */
