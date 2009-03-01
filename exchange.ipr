@@ -300,7 +300,7 @@
   </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectKey">
-    <option name="state" value="project:///home/sora/IdeaProjects/exchange/exchange.ipr" />
+    <option name="state" value="project:///home/sora/IdeaProjects/rmiexchange/exchange.ipr" />
   </component>
   <component name="ProjectModuleManager">
     <modules>
@@ -385,6 +385,7 @@
       <option name="VERSION" />
     </GetOptions>
   </component>
+  <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="libraryTable">
     <library name="Maven: junit:junit:4.5">
       <CLASSES>
@@ -395,17 +396,6 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.5/junit-4.5-sources.jar!/" />
-      </SOURCES>
-    </library>
-    <library name="Maven: hsqldb:hsqldb:1.8.0.7">
-      <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7.jar!/" />
-      </CLASSES>
-      <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7-javadoc.jar!/" />
-      </JAVADOC>
-      <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/hsqldb/hsqldb/1.8.0.7/hsqldb-1.8.0.7-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: com.google.code.guice:guice:1.0">
@@ -496,15 +486,246 @@
         <root url="jar://$MAVEN_REPOSITORY$/swinghelper/debug/1.0/debug-1.0-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: javax.ejb:ejb:3.0">
+    <library name="Maven: org.easyb:maven-easyb-plugin:0.9">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/javax/ejb/ejb/3.0/ejb-3.0.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/easyb/maven-easyb-plugin/0.9/maven-easyb-plugin-0.9.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/javax/ejb/ejb/3.0/ejb-3.0-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/easyb/maven-easyb-plugin/0.9/maven-easyb-plugin-0.9-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/javax/ejb/ejb/3.0/ejb-3.0-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/easyb/maven-easyb-plugin/0.9/maven-easyb-plugin-0.9-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-plugin-api:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-plugin-api/2.0.8/maven-plugin-api-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-plugin-api/2.0.8/maven-plugin-api-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-plugin-api/2.0.8/maven-plugin-api-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-artifact:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-artifact/2.0.8/maven-artifact-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-artifact/2.0.8/maven-artifact-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-artifact/2.0.8/maven-artifact-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.codehaus.plexus:plexus-utils:1.4.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-utils/1.4.6/plexus-utils-1.4.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-utils/1.4.6/plexus-utils-1.4.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-utils/1.4.6/plexus-utils-1.4.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-project:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-project/2.0.8/maven-project-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-project/2.0.8/maven-project-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-project/2.0.8/maven-project-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-settings:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-settings/2.0.8/maven-settings-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-settings/2.0.8/maven-settings-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-settings/2.0.8/maven-settings-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-model:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-model/2.0.8/maven-model-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-model/2.0.8/maven-model-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-model/2.0.8/maven-model-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: classworlds:classworlds:1.1-alpha-2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-profile:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-profile/2.0.8/maven-profile-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-profile/2.0.8/maven-profile-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-profile/2.0.8/maven-profile-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-artifact-manager:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-artifact-manager/2.0.8/maven-artifact-manager-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-artifact-manager/2.0.8/maven-artifact-manager-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-artifact-manager/2.0.8/maven-artifact-manager-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-repository-metadata:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-repository-metadata/2.0.8/maven-repository-metadata-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-repository-metadata/2.0.8/maven-repository-metadata-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-repository-metadata/2.0.8/maven-repository-metadata-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven.wagon:wagon-provider-api:1.0-beta-2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/wagon/wagon-provider-api/1.0-beta-2/wagon-provider-api-1.0-beta-2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/wagon/wagon-provider-api/1.0-beta-2/wagon-provider-api-1.0-beta-2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/wagon/wagon-provider-api/1.0-beta-2/wagon-provider-api-1.0-beta-2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.maven:maven-plugin-registry:2.0.8">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-plugin-registry/2.0.8/maven-plugin-registry-2.0.8.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-plugin-registry/2.0.8/maven-plugin-registry-2.0.8-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/maven/maven-plugin-registry/2.0.8/maven-plugin-registry-2.0.8-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.codehaus.groovy:groovy-all:1.5.4">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-all/1.5.4/groovy-all-1.5.4.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-all/1.5.4/groovy-all-1.5.4-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/codehaus/groovy/groovy-all/1.5.4/groovy-all-1.5.4-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.ant:ant:1.7.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant/1.7.0/ant-1.7.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant/1.7.0/ant-1.7.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant/1.7.0/ant-1.7.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.ant:ant-launcher:1.7.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant-launcher/1.7.0/ant-launcher-1.7.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant-launcher/1.7.0/ant-launcher-1.7.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/ant/ant-launcher/1.7.0/ant-launcher-1.7.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: jline:jline:0.9.93">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/jline/jline/0.9.93/jline-0.9.93.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/jline/jline/0.9.93/jline-0.9.93-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/jline/jline/0.9.93/jline-0.9.93-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.easyb:easyb:0.9">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easyb/easyb/0.9/easyb-0.9.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easyb/easyb/0.9/easyb-0.9-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/easyb/easyb/0.9/easyb-0.9-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: commons-cli:commons-cli:1.1">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-cli/commons-cli/1.1/commons-cli-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-cli/commons-cli/1.1/commons-cli-1.1-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-cli/commons-cli/1.1/commons-cli-1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: javaee:javaee-api:5">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/javaee/javaee-api/5/javaee-api-5.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/javaee/javaee-api/5/javaee-api-5-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/javaee/javaee-api/5/javaee-api-5-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: aopalliance:aopalliance:1.0">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0-sources.jar!/" />
       </SOURCES>
     </library>
   </component>
