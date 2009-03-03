@@ -75,7 +75,7 @@ public interface IClientView extends IAbstractView {
      *
      * @return Password entered by the user
      */
-    String getPassword();
+    char[] getPassword();
 
     /**
      * Set the accessibitlity of the admin part

@@ -18,6 +18,7 @@ package exchange.guiceBinding;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import exchange.ejb.IStockOptionEjb;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.controller.impl.AdminController;
@@ -33,17 +34,46 @@ import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
 import exchange.gui.view.impl.GlobalFrame;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 /**
  * Main module for injection
  */
-public class MainModule extends AbstractModule {
-    protected void configure() {
+public class MainModule extends AbstractModule
+{
+
+    private InitialContext initialContext;
+    
+
+    protected void configure()
+    {
+        try
+        {
+            initialContext = new InitialContext();
+        } catch (NamingException e)
+        {
+            e.printStackTrace();
+        }
         bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);
         bind(IClientModel.class).to(ClientModel.class).in(Scopes.SINGLETON);
         bind(IClientController.class).to(ClientController.class).in(Scopes.SINGLETON);
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
-        bind(IAdminModel.class).to(AdminModel.class).in(Scopes.SINGLETON);
+//        bind(IAdminModel.class).to(AdminModel.class).in(Scopes.SINGLETON);
+        bind(IAdminModel.class).toInstance(getAdminModelInstance());        
         bind(IAdminController.class).to(AdminController.class).in(Scopes.SINGLETON);
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
+    }
+
+    private IAdminModel getAdminModelInstance()
+    {
+        try
+        {
+            return new AdminModel((IStockOptionEjb) initialContext.lookup("exchange.ejb.IStockOptionEjb"));
+        } catch (NamingException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

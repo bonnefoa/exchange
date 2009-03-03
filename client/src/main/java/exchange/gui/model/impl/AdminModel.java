@@ -16,44 +16,45 @@
 
 package exchange.gui.model.impl;
 
+import exchange.ejb.IStockOptionEjb;
 import exchange.gui.model.IAdminModel;
 import exchange.model.StockOption;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Implementation of the admin model
  */
-public class AdminModel implements IAdminModel {
+public class AdminModel implements IAdminModel
+{
 
     private IStockOptionEjb stockOptionEjb;
 
-    /**
-     * List of stock options
-     */
-    private List<StockOption> stockOptionList;
+
     public static final String ALREADY_EXISTE = "Title already exists";
 
-    public AdminModel() {
-        stockOptionList = new ArrayList<StockOption>();
+    public AdminModel(IStockOptionEjb stockOptionEjb)
+    {
+        this.stockOptionEjb = stockOptionEjb;
     }
 
-    public void createNewStockOption(StockOption stockOption) {
-        if (stockOptionList.contains(stockOption)){
+    public void createNewStockOption(StockOption stockOption)
+    {
+        if (stockOptionEjb.getStockOptionList().contains(stockOption))
+        {
             throw new IllegalArgumentException(ALREADY_EXISTE);
         }
-        stockOptionList.add(stockOption);
-        //TODO Contact serveur for add
+        stockOptionEjb.createNewStockOption(stockOption);
     }
 
-    public void deleteStockOption(List<StockOption> stockOption) {
-        stockOptionList.removeAll(stockOption);
-        //TODO Contact serveur for deletion
+    public void deleteStockOption(List<StockOption> stockOption)
+    {
+        stockOptionEjb.deleteStockOption(stockOption);
         //TODO Notify to the subscribers
     }
 
-    public List<StockOption> getStockOptionList() {
-        return stockOptionList;
+    public List<StockOption> getStockOptionList()
+    {
+        return stockOptionEjb.getStockOptionList();
     }
 }

@@ -23,6 +23,7 @@ import exchange.gui.controller.IAdminController;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
 import exchange.guiceBinding.ModuleTest;
+import exchange.model.StockOption;
 import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
 import static org.junit.Assert.assertEquals;

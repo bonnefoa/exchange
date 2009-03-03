@@ -6,7 +6,11 @@ import exchange.guiceBinding.ModuleTest
 import java.awt.Frame
 import org.fest.swing.fixture.FrameFixture
 
+before "", {}
+
 scenario "User try to connect to the administrator part with wrong password", {
+
+
   given "Client UI shown", {
     def injector = Guice.createInjector(new ModuleTest())
     def clientView = injector.getInstance(IClientView.class)
@@ -26,8 +30,7 @@ scenario "User try to connect to the administrator part with wrong password", {
     window.cleanUp()
   }
 }
-//
-//
+
 //scenario "User try to connect to the administrator part", {
 //  given "Client UI shown", {
 //    window.show();

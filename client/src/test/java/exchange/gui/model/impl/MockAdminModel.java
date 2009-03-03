@@ -18,6 +18,7 @@ package exchange.gui.model.impl;
 
 import exchange.gui.model.IAdminModel;
 import exchange.model.StockOption;
+import exchange.ejb.StockOptionEjb;
 
 /**
  * Implementation of the admin model
@@ -25,7 +26,7 @@ import exchange.model.StockOption;
 public class MockAdminModel extends AdminModel implements IAdminModel {
 
     public MockAdminModel() {
-        super();
+        super(new StockOptionEjb());
         this.createNewStockOption(new StockOption("titre", "company", 15));
         this.createNewStockOption(new StockOption("titre2", "company2", 30));
     }

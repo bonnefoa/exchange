@@ -24,9 +24,8 @@ import exchange.gui.controller.impl.AdminController;
 import exchange.gui.controller.impl.ClientController;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.model.IClientModel;
-import exchange.gui.model.impl.AdminModel;
-import exchange.gui.model.impl.MockClientModel;
 import exchange.gui.model.impl.MockAdminModel;
+import exchange.gui.model.impl.MockClientModel;
 import exchange.gui.view.IAdminView;
 import exchange.gui.view.IClientView;
 import exchange.gui.view.IGlobalFrame;
@@ -37,14 +36,21 @@ import exchange.gui.view.impl.GlobalFrame;
 /**
  * Module  Guice for testing
  */
-public class ModuleTest extends AbstractModule {
-    protected void configure() {
+public class ModuleTest extends AbstractModule
+{
+
+    protected void configure()
+    {
+
+
+        bind(IClientController.class).to(ClientController.class).asEagerSingleton();
+        bind(IAdminController.class).to(AdminController.class).asEagerSingleton();
         bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);
         bind(IClientModel.class).to(MockClientModel.class).in(Scopes.SINGLETON);
-        bind(IClientController.class).to(ClientController.class).in(Scopes.SINGLETON);
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
         bind(IAdminModel.class).to(MockAdminModel.class).in(Scopes.SINGLETON);
-        bind(IAdminController.class).to(AdminController.class).in(Scopes.SINGLETON);
-        bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);        
+
+        bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
     }
+
 }

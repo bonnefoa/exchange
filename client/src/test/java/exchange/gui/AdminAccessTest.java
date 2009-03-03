@@ -16,7 +16,6 @@
 
 package exchange.gui;
 
-import com.google.inject.Inject;
 import com.google.inject.Module;
 import exchange.BaseClass;
 import exchange.gui.controller.IClientController;
@@ -42,6 +41,7 @@ public class AdminAccessTest extends BaseClass
     public void setUp()
     {
         super.setUp();
+        clientView = injector.getInstance(IClientView.class);
         window = new FrameFixture((Frame) clientView);
         window.show();
     }
@@ -78,10 +78,4 @@ public class AdminAccessTest extends BaseClass
     {
         window.cleanUp();
     }
-
-    @Inject
-    public void setView(IClientView clientView)
-    {
-        this.clientView = clientView;
     }
-}

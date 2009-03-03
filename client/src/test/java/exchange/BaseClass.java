@@ -19,20 +19,19 @@ package exchange;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-import org.junit.Test;
 
 /**
  * Junit class
  */
-public abstract class BaseClass {
+public abstract class BaseClass
+{
+    protected Injector injector;
 
     @Before
-    public void setUp() {
-        Injector injector = Guice.createInjector(getModule());
-        injector.injectMembers(this);
+    public void setUp()
+    {
+        injector = Guice.createInjector(getModule());
     }
 
     public abstract Module getModule();

@@ -33,7 +33,11 @@
         <clientVersion>1.0.0</clientVersion>
         <serverVersion>1.0.0</serverVersion>
         <commonVersion>1.0.0</commonVersion>
+        <glassfish.home>/home/common/programme/glassfish/glassfish</glassfish.home>
+        <domain.username>admin</domain.username>
+        <domain.password>adminadmin</domain.password>
     </properties>
+    
     <dependencies>
         <dependency>
             <groupId>com.google.code.guice</groupId>
@@ -69,6 +73,7 @@
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
+     
         </plugins>
     </build>
     <repositories>
@@ -105,7 +110,7 @@
             <url>https://maven.atlassian.com/repository/public/</url>
         </repository>
         <repository>
-            <id>mvnRepo</id> 
+            <id>mvnRepo</id>
             <url>mvnrepository.com/</url>
         </repository>
         <repository>
@@ -153,4 +158,5 @@
             <url>http://download.java.net/maven/2</url>
         </pluginRepository>
     </pluginRepositories>
+
 </project>

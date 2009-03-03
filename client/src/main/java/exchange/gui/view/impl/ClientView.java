@@ -218,9 +218,9 @@ public class ClientView extends AbstractView implements IClientView
         buttonConnectAdmin.setEnabled(accessibility);
     }
 
-    public String getPassword()
+    public char[] getPassword()
     {
-        return String.valueOf(adminField.getPassword());
+        return adminField.getPassword();
     }
 
     public void setTextButtonConnect(String text)

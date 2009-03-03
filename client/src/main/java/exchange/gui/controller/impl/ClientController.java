@@ -20,19 +20,17 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
-import exchange.gui.view.impl.SwitchView;
-import exchange.gui.view.impl.GlobalFrame;
 import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * Presenter linking the view and the controller
  */
-public class ClientController extends AbstractController implements IClientController {
+public class ClientController extends AbstractController implements IClientController
+{
     /**
      * Client model
      */
@@ -43,93 +41,115 @@ public class ClientController extends AbstractController implements IClientContr
     private IClientView clientView;
 
     @Inject
-    public ClientController(IClientModel clientModel, IClientView clientView) {
+    public ClientController(IClientModel clientModel, IClientView clientView)
+    {
         this.clientModel = clientModel;
         this.clientView = clientView;
         initListener();
     }
 
-    private void subscribeHandler() {
+    private void subscribeHandler()
+    {
         clientModel.subscribe(clientView.getSelectedStocksOptions());
         //TODO Modifier la vue (mettre en gras?)
     }
 
-    private void connectHandler() {
-        if (clientModel.isConnected()) {
+    private void connectHandler()
+    {
+        if (clientModel.isConnected())
+        {
             clientModel.disconnect();
             clientView.setAdminAccesEnable(true);
             clientView.displayStockOptions(new ArrayList<StockOption>());
             clientView.setLoginFieldEditable(true);
             clientView.setButtonsSubscribeEnable(false);
             clientView.setTextButtonConnect("Connect");
-        } else {
+        } else
+        {
             String name = clientView.getLoginName();
             clientModel.connect(name);
             clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
             clientView.setLoginFieldEditable(false);
             clientView.setButtonsSubscribeEnable(true);
-            clientView.setAdminAccesEnable(false);            
+            clientView.setAdminAccesEnable(false);
             clientView.setTextButtonConnect("Disconnect");
         }
     }
 
-    private void unsubscribeHandler() {
+    private void unsubscribeHandler()
+    {
         clientModel.unsubscribe(clientView.getSelectedStocksOptions());
         //TODO Modifier la vue (mettre en maigre?)
     }
 
-    private void initListener() {
+    private void initListener()
+    {
         clientView.initListeners(
-                new MouseAdapter() {
+                new MouseAdapter()
+                {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e)
+                    {
                         connectHandler();
                     }
                 }
                 ,
-                new MouseAdapter() {
+                new MouseAdapter()
+                {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e)
+                    {
                         subscribeHandler();
                     }
                 },
-                new MouseAdapter() {
+                new MouseAdapter()
+                {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e)
+                    {
                         unsubscribeHandler();
                     }
                 },
-                new MouseAdapter() {
+                new MouseAdapter()
+                {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e)
+                    {
                         adminAccesHandler();
                     }
                 });
     }
 
-    private void adminAccesHandler() {
-        if (clientView.getPassword().equals(IClientController.PASSWORD)) {
+    private void adminAccesHandler()
+    {
+        if (clientView.getPassword().equals(IClientController.PASSWORD))
+        {
             parent.switchToAdmin();
-        } else {
+        } else
+        {
             clientView.displayError(IClientController.INCORRECT_PASSWORD);
         }
     }
 
-    public void warnSubscribed(StockOption stockOption) {
+    public void warnSubscribed(StockOption stockOption)
+    {
         clientView.displayMessageQuote(stockOption.toString() + ':' + stockOption.getQuote());
     }
 
-    public void deleteStockOptions(StockOption stockOption) {
+    public void deleteStockOptions(StockOption stockOption)
+    {
         clientModel.getStockOptionDisplayed().remove(stockOption);
         clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
     }
 
-    public void addStockOption(StockOption stockOption) {
+    public void addStockOption(StockOption stockOption)
+    {
         clientModel.getStockOptionDisplayed().add(stockOption);
         clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
     }
 
-    public void setVisibility(boolean show) {
+    public void setVisibility(boolean show)
+    {
         clientView.setVisible(show);
     }
 }
