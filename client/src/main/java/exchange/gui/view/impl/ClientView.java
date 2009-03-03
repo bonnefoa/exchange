@@ -25,7 +25,8 @@ import java.awt.event.MouseListener;
 /**
  * Implementation of the view
  */
-public class ClientView extends AbstractView implements IClientView {
+public class ClientView extends AbstractView implements IClientView
+{
 
     /**
      * Subscribe button
@@ -67,7 +68,8 @@ public class ClientView extends AbstractView implements IClientView {
     /**
      * Create the GUI and show it.
      */
-    public ClientView() {
+    public ClientView()
+    {
         //Create and set up the window.
         super("Exchange");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,14 +82,16 @@ public class ClientView extends AbstractView implements IClientView {
         this.setVisible(true);
     }
 
-    public void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener, MouseListener adminAccessListener) {
+    public void initListeners(MouseListener connectListener, MouseListener subscribeListener, MouseListener unsubscribeListener, MouseListener adminAccessListener)
+    {
         buttonConnect.addMouseListener(connectListener);
         buttonSubscribe.addMouseListener(subscribeListener);
         buttonUnsubscribe.addMouseListener(unsubscribeListener);
         buttonConnectAdmin.addMouseListener(adminAccessListener);
     }
 
-    private void addComponentsToPane(Container pane) {
+    private void addComponentsToPane(Container pane)
+    {
         pane.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
@@ -192,33 +196,40 @@ public class ClientView extends AbstractView implements IClientView {
         pane.add(buttonConnectAdmin, c);
     }
 
-    public void displayMessageQuote(String message) {
+    public void displayMessageQuote(String message)
+    {
         textArea.append(message + newline);
     }
 
-    public void setLoginFieldEditable(boolean editable) {
+    public void setLoginFieldEditable(boolean editable)
+    {
         loginField.setEditable(editable);
     }
 
-    public void setButtonsSubscribeEnable(boolean enable) {
+    public void setButtonsSubscribeEnable(boolean enable)
+    {
         buttonSubscribe.setEnabled(enable);
         buttonUnsubscribe.setEnabled(enable);
     }
 
-    public void setAdminAccesEnable(boolean accessibility) {
+    public void setAdminAccesEnable(boolean accessibility)
+    {
         adminField.setEditable(accessibility);
         buttonConnectAdmin.setEnabled(accessibility);
     }
 
-    public String getPassword() {
-        return adminField.getText();
+    public String getPassword()
+    {
+        return String.valueOf(adminField.getPassword());
     }
 
-    public void setTextButtonConnect(String text) {
+    public void setTextButtonConnect(String text)
+    {
         buttonConnect.setText(text);
     }
 
-    public String getLoginName() {
+    public String getLoginName()
+    {
         return loginField.getText();
     }
 }

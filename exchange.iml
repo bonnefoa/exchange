@@ -10,6 +10,29 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Maven: com.google.code.guice:guice:1.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: javaee:javaee-api:5" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.easyb:maven-easyb-plugin:0.9" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-plugin-api:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-artifact:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.codehaus.plexus:plexus-utils:1.4.6" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-project:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-settings:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-model:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.5" level="project" />
+    <orderEntry type="library" exported="" name="Maven: classworlds:classworlds:1.1-alpha-2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-profile:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-artifact-manager:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-repository-metadata:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven.wagon:wagon-provider-api:1.0-beta-2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-plugin-registry:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.codehaus.groovy:groovy-all:1.5.4" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.ant:ant:1.7.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.ant:ant-launcher:1.7.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: jline:jline:0.9.93" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.easyb:easyb:0.9" level="project" />
+    <orderEntry type="library" exported="" name="Maven: commons-cli:commons-cli:1.1" level="project" />
   </component>
 </module>
 

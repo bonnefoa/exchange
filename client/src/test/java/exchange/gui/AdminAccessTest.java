@@ -20,9 +20,7 @@ import com.google.inject.Inject;
 import com.google.inject.Module;
 import exchange.BaseClass;
 import exchange.gui.controller.IClientController;
-import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
-import exchange.gui.view.IGlobalFrame;
 import exchange.guiceBinding.ModuleTest;
 import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
@@ -34,69 +32,56 @@ import java.awt.*;
 /**
  * Unit testing on the admin access
  */
-public class AdminAccessTest extends BaseClass {
+public class AdminAccessTest extends BaseClass
+{
     private FrameFixture window;
 
     private IClientView clientView;
 
-    private IClientModel clientModel;
-
-    private IClientController clientController;
-
-    private IGlobalFrame globalFrame;
-
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         super.setUp();
         window = new FrameFixture((Frame) clientView);
         window.show();
     }
 
-    public Module getModule() {
+    public Module getModule()
+    {
         return new ModuleTest();
     }
 
     @Test
-    public void testIncorrectPassword() {
+    public void testIncorrectPassword()
+    {
         window.textBox(IClientView.ADMIN_FIED).enterText("gwrg");
         window.button(IClientView.BUTTON_CONNECT_ADMIN).click();
         window.optionPane().requireErrorMessage().requireMessage(IClientController.INCORRECT_PASSWORD);
     }
 
     @Test
-    public void testNullPassword() {
+    public void testNullPassword()
+    {
         window.button(IClientView.BUTTON_CONNECT_ADMIN).click();
         window.optionPane().requireErrorMessage().requireMessage(IClientController.INCORRECT_PASSWORD);
     }
 
     @Test
-    public void testSwitchToAdmin() {
+    public void testSwitchToAdmin()
+    {
         window.textBox(IClientView.ADMIN_FIED).enterText(IClientController.PASSWORD);
         window.button(IClientView.BUTTON_CONNECT_ADMIN).click();
     }
 
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
         window.cleanUp();
     }
 
     @Inject
-    public void setView(IClientView clientView) {
+    public void setView(IClientView clientView)
+    {
         this.clientView = clientView;
-    }
-
-    @Inject
-    public void setModel(IClientModel clientModel) {
-        this.clientModel = clientModel;
-    }
-
-    @Inject
-    public void setController(IClientController clientController) {
-        this.clientController = clientController;
-    }
-
-    @Inject
-    public void setGlobalFrame(IGlobalFrame globalFrame) {
-        this.globalFrame = globalFrame;
     }
 }

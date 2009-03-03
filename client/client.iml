@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="ejb" name="MessageConsumer">
-      <configuration>
-        <ejbRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-          <root url="file://$MODULE_DIR$/src/test/java" />
-        </ejbRoots>
-        <building>
-          <setting name="EXPLODED_URL" value="file://" />
-          <setting name="EXPLODED_ENABLED" value="false" />
-          <setting name="JAR_URL" value="file://$MODULE_DIR$/../out/clientEJB.jar" />
-          <setting name="JAR_ENABLED" value="true" />
-          <setting name="EXCLUDE_EXPLODED_DIRECTORY" value="true" />
-          <setting name="RUN_EJB_VALIDATION" value="true" />
-        </building>
-      </configuration>
+    <facet type="Groovy" name="Groovy">
+      <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
@@ -28,17 +14,33 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
+    <orderEntry type="library" name="groovy-1.6.0" level="application" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$APPLICATION_HOME_DIR$/lib/javaee.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" exported="" name="Maven: com.google.code.guice:guice:1.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: javaee:javaee-api:5" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.easyb:maven-easyb-plugin:0.9" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-plugin-api:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-artifact:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.codehaus.plexus:plexus-utils:1.4.6" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-project:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-settings:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-model:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.5" level="project" />
+    <orderEntry type="library" exported="" name="Maven: classworlds:classworlds:1.1-alpha-2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-profile:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-artifact-manager:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-repository-metadata:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven.wagon:wagon-provider-api:1.0-beta-2" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.maven:maven-plugin-registry:2.0.8" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.codehaus.groovy:groovy-all:1.5.4" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.ant:ant:1.7.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.apache.ant:ant-launcher:1.7.0" level="project" />
+    <orderEntry type="library" exported="" name="Maven: jline:jline:0.9.93" level="project" />
+    <orderEntry type="library" exported="" name="Maven: org.easyb:easyb:0.9" level="project" />
+    <orderEntry type="library" exported="" name="Maven: commons-cli:commons-cli:1.1" level="project" />
+    <orderEntry type="library" exported="" name="Maven: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="module" module-name="common" exported="" />
     <orderEntry type="library" name="Maven: fest:fest-swing:1.0" level="project" />
     <orderEntry type="library" name="Maven: mrj:MRJToolkitStubs:1.0" level="project" />
@@ -47,8 +49,6 @@
     <orderEntry type="library" name="Maven: fest:fest-reflect:1.0" level="project" />
     <orderEntry type="library" name="Maven: net.jcip:jcip-annotations:1.0" level="project" />
     <orderEntry type="library" name="Maven: swinghelper:debug:1.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: com.google.code.guice:guice:1.0" level="project" />
-    <orderEntry type="library" name="Maven: junit:junit:4.5" level="project" />
   </component>
 </module>
 

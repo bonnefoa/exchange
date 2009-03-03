@@ -64,7 +64,7 @@ public class AdminUITest extends BaseClass {
     @After
     public void tearDown() {
         window.cleanUp();
-        adminView = null;
+        adminView = null;    
         adminModel = null;
     }
 
@@ -107,7 +107,7 @@ public class AdminUITest extends BaseClass {
 
     @Test
     public void testAddOption() {
-        StockOption stockTest = new StockOption("test", "test", 55);
+        StockOption stockTest = new StockOption("test", "test", 55+"");
         completeAreaText(stockTest.getTitle(), stockTest.getCompany(), stockTest.getQuote());
         window.button(IAdminView.BUTTON_CREATE).click();
 
@@ -119,7 +119,7 @@ public class AdminUITest extends BaseClass {
 
     @Test
     public void testAddOptionWithExistingName() {
-        completeAreaText(option1.getTitle(), option1.getCompany(), 55);
+        completeAreaText(option1.getTitle(), option1.getCompany(), 55+"");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage();
     }
@@ -138,28 +138,28 @@ public class AdminUITest extends BaseClass {
 
     @Test
     public void testAddOptionWithoutName() {
-        completeAreaText("", "company", 55);
+        completeAreaText("", "company", 55+"");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.TITLE_NAME_EMPTY);
     }
 
     @Test
     public void testAddOptionWithoutCompanyName() {
-        completeAreaText("title", "", 55);
+        completeAreaText("title", "", 55+"");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.COMPANY_NAME_EMPTY);
     }
 
     @Test
     public void testAddOptionWithZeroQuote() {
-        completeAreaText("title", "company", 0);
+        completeAreaText("title", "company", 0+"");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
     }
 
     @Test
     public void testAddOptionWithInvalidNegativeQuote() {
-        completeAreaText("title", "company", -99);
+        completeAreaText("title", "company", -99+"");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
     }
