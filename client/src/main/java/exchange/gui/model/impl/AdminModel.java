@@ -16,7 +16,7 @@
 
 package exchange.gui.model.impl;
 
-import exchange.ejb.IStockOptionEjb;
+import exchange.ejb.StockOptionEjbLocal;
 import exchange.gui.model.IAdminModel;
 import exchange.model.StockOption;
 
@@ -28,12 +28,12 @@ import java.util.List;
 public class AdminModel implements IAdminModel
 {
 
-    private IStockOptionEjb stockOptionEjb;
+    private StockOptionEjbLocal stockOptionEjb;
 
 
     public static final String ALREADY_EXISTE = "Title already exists";
 
-    public AdminModel(IStockOptionEjb stockOptionEjb)
+    public AdminModel(StockOptionEjbLocal stockOptionEjb)
     {
         this.stockOptionEjb = stockOptionEjb;
     }

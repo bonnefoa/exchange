@@ -16,7 +16,6 @@
 
 package exchange.gui;
 
-import com.google.inject.Inject;
 import com.google.inject.Module;
 import exchange.BaseClass;
 import exchange.gui.controller.IClientController;
@@ -37,48 +36,54 @@ import java.awt.*;
 /**
  * Unit testing on the user interface
  */
-public class ClientUITest extends BaseClass {
+public class ClientUITest extends BaseClass
+{
     private FrameFixture window;
 
     private IClientView clientView;
 
     private IClientModel clientModel;
 
-    private IClientController clientController;
-
     private StockOption option1;
     private StockOption option2;
     private StockOption option3;
-    private StockOption option4;
+    private IClientController clientController;
 
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         super.setUp();
+        clientView = injector.getInstance(IClientView.class);
+        clientModel = injector.getInstance(IClientModel.class);
+        clientController = injector.getInstance(IClientController.class);
         window = new FrameFixture((Frame) clientView);
         window.show();
         option1 = new StockOption("titre", "company", 15);
         option2 = new StockOption("titre2", "company2", 30);
         option3 = new StockOption("titre3", "company2", 40);
-        option4 = new StockOption("titre4", "company4", 4);
     }
 
-    public Module getModule() {
+    public Module getModule()
+    {
         return new ModuleTest();
     }
 
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
         window.cleanUp();
         clientView = null;
     }
 
-    private void connect() {
+    private void connect()
+    {
         window.textBox(IClientView.LOGIN_FIED).enterText("testLogin");
         window.button(IClientView.BUTTON_CONNECT).click();
     }
 
     @Test
-    public void testConnect() throws InterruptedException {
+    public void testConnect() throws InterruptedException
+    {
         assertFalse(clientModel.isConnected());
         window.button(IClientView.BUTTON_SUBSCRIBE).requireDisabled();
         window.button(IClientView.BUTTON_UNSUBSCRIBE).requireDisabled();
@@ -99,7 +104,8 @@ public class ClientUITest extends BaseClass {
     }
 
     @Test
-    public void testDisconnect() throws InterruptedException {
+    public void testDisconnect() throws InterruptedException
+    {
         connect();
         window.button(IClientView.BUTTON_CONNECT).click();
 
@@ -115,7 +121,8 @@ public class ClientUITest extends BaseClass {
     }
 
     @Test
-    public void testSubscribeFirst() {
+    public void testSubscribeFirst()
+    {
         connect();
         window.list(IClientView.STOCK_LIST).selectItem(0);
         window.button(IClientView.BUTTON_SUBSCRIBE).click();
@@ -125,7 +132,8 @@ public class ClientUITest extends BaseClass {
     }
 
     @Test
-    public void testSubscribeSecond() {
+    public void testSubscribeSecond()
+    {
         connect();
         window.list(IClientView.STOCK_LIST).selectItem(1);
         window.button(IClientView.BUTTON_SUBSCRIBE).click();
@@ -135,7 +143,8 @@ public class ClientUITest extends BaseClass {
     }
 
     @Test
-    public void testSubscribeBoth() {
+    public void testSubscribeBoth()
+    {
         connect();
         window.list(IClientView.STOCK_LIST).selectItems(0, 1);
         window.button(IClientView.BUTTON_SUBSCRIBE).click();
@@ -146,7 +155,8 @@ public class ClientUITest extends BaseClass {
     }
 
     @Test
-    public void testSubscribeAndUnsubscribe() {
+    public void testSubscribeAndUnsubscribe()
+    {
         connect();
         window.list(IClientView.STOCK_LIST).selectItems(0, 1);
         window.button(IClientView.BUTTON_SUBSCRIBE).click();
@@ -164,7 +174,8 @@ public class ClientUITest extends BaseClass {
     }
 
     @Test
-    public void testAddStockOption() {
+    public void testAddStockOption()
+    {
         connect();
         clientController.addStockOption(option3);
         assertEquals(3, window.list(IClientView.STOCK_LIST).contents().length);
@@ -175,26 +186,12 @@ public class ClientUITest extends BaseClass {
     }
 
     @Test
-    public void testRemoveStockOption() {
+    public void testRemoveStockOption()
+    {
         connect();
         clientController.deleteStockOptions(option1);
         assertEquals(1, window.list(IClientView.STOCK_LIST).contents().length);
         assertEquals(1, clientModel.getStockOptionDisplayed().size());
         assertEquals(option2, clientModel.getStockOptionDisplayed().get(0));
-    }
-
-    @Inject
-    public void setView(IClientView clientView) {
-        this.clientView = clientView;
-    }
-
-    @Inject
-    public void setModel(IClientModel clientModel) {
-        this.clientModel = clientModel;
-    }
-
-    @Inject
-    public void setController(IClientController clientController) {
-        this.clientController = clientController;
     }
 }

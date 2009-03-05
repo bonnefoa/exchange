@@ -16,8 +16,9 @@
 
 package exchange.gui.model.impl;
 
-import exchange.model.StockOption;
+import exchange.ejb.StockOptionEjbLocal;
 import exchange.gui.model.IClientModel;
+import exchange.model.StockOption;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,64 +26,72 @@ import java.util.List;
 /**
  * Implementation of model
  */
-public class ClientModel implements IClientModel {
+public class ClientModel implements IClientModel
+{
 
     private String name;
 
     private List<StockOption> subscribed;
 
-    private List<StockOption> stockOptionDisplayed;
+    private StockOptionEjbLocal stockOptionEjb;
 
     private boolean connected;
 
-    public ClientModel() {
+    public ClientModel(StockOptionEjbLocal stockOptionEjb)
+    {
+        this.stockOptionEjb = stockOptionEjb;
         subscribed = new ArrayList<StockOption>();
-        stockOptionDisplayed = new ArrayList<StockOption>();
     }
 
-    public void subscribe(List<StockOption> list) {
+    public void subscribe(List<StockOption> list)
+    {
         subscribed.addAll(list);
         // TODO Subscribe to serveur
     }
 
-    public void unsubscribe(List<StockOption> list) {
+    public void unsubscribe(List<StockOption> list)
+    {
         subscribed.removeAll(list);
         // TODO Unsubscribe to serveur
     }
 
-    public String connect(String name) {
+    public String connect(String name)
+    {
         // TODO Connect to the server
         this.name = name;
         connected = true;
-        stockOptionDisplayed = getStockOptionsFromServer();
         return name;
     }
 
-    public void disconnect() {
+    public void disconnect()
+    {
         connected = false;
         subscribed.clear();
-        stockOptionDisplayed.clear();
         // TODO Disconnect of the server
     }
 
-    public boolean isConnected() {
+    public boolean isConnected()
+    {
         return connected;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public List<StockOption> getStockOptionsFromServer() {
-        // TODO Get stocks from serveur
+    public List<StockOption> getStockOptionsFromServer()
+    {
         return new ArrayList<StockOption>();
     }
 
-    public List<StockOption> getStockOptionDisplayed() {
-        return stockOptionDisplayed;
+    public List<StockOption> getStockOptionDisplayed()
+    {
+        return stockOptionEjb.getStockOptionList();
     }
 
-    public List<StockOption> getSubscribed() {
+    public List<StockOption> getSubscribed()
+    {
         return subscribed;
     }
 }

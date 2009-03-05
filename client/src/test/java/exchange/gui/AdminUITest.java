@@ -16,10 +16,8 @@
 
 package exchange.gui;
 
-import com.google.inject.Inject;
 import com.google.inject.Module;
 import exchange.BaseClass;
-import exchange.gui.controller.IAdminController;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
 import exchange.guiceBinding.ModuleTest;
@@ -35,7 +33,8 @@ import java.awt.*;
 /**
  * Junit class
  */
-public class AdminUITest extends BaseClass {
+public class AdminUITest extends BaseClass
+{
 
     private FrameFixture window;
 
@@ -43,18 +42,20 @@ public class AdminUITest extends BaseClass {
 
     private IAdminModel adminModel;
 
-    private IAdminController adminController;
-
     private StockOption option1;
     private StockOption option2;
 
-    public Module getModule() {
+    public Module getModule()
+    {
         return new ModuleTest();
     }
 
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         super.setUp();
+        adminView = injector.getInstance(IAdminView.class);
+        adminModel = injector.getInstance(IAdminModel.class);
         window = new FrameFixture((Frame) adminView);
         adminView.setVisible(true);
         window.show();
@@ -63,14 +64,16 @@ public class AdminUITest extends BaseClass {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown()
+    {
         window.cleanUp();
-        adminView = null;    
+        adminView = null;
         adminModel = null;
     }
 
     @Test
-    public void testInitialOptions() {
+    public void testInitialOptions()
+    {
         assertEquals(2, window.list(IAdminView.STOCK_LIST).contents().length);
         assertEquals(option1, adminModel.getStockOptionList().get(0));
         assertEquals(option2, adminModel.getStockOptionList().get(1));
@@ -80,7 +83,8 @@ public class AdminUITest extends BaseClass {
     }
 
     @Test
-    public void testDeleteFirstOption() {
+    public void testDeleteFirstOption()
+    {
         window.list(IAdminView.STOCK_LIST).selectItem(0);
         window.button(IAdminView.BUTTON_DELETE).click();
         assertEquals(1, adminModel.getStockOptionList().size());
@@ -89,7 +93,8 @@ public class AdminUITest extends BaseClass {
     }
 
     @Test
-    public void testDeleteSecondOption() {
+    public void testDeleteSecondOption()
+    {
         window.list(IAdminView.STOCK_LIST).selectItem(1);
         window.button(IAdminView.BUTTON_DELETE).click();
 
@@ -99,7 +104,8 @@ public class AdminUITest extends BaseClass {
     }
 
     @Test
-    public void testDeleteBothOptions() {
+    public void testDeleteBothOptions()
+    {
         window.list(IAdminView.STOCK_LIST).selectItems(0, 1);
         window.button(IAdminView.BUTTON_DELETE).click();
         assertEquals(0, adminModel.getStockOptionList().size());
@@ -107,8 +113,9 @@ public class AdminUITest extends BaseClass {
     }
 
     @Test
-    public void testAddOption() {
-        StockOption stockTest = new StockOption("test", "test", 55+"");
+    public void testAddOption()
+    {
+        StockOption stockTest = new StockOption("test", "test", 55 + "");
         completeAreaText(stockTest.getTitle(), stockTest.getCompany(), stockTest.getQuote());
         window.button(IAdminView.BUTTON_CREATE).click();
 
@@ -119,68 +126,79 @@ public class AdminUITest extends BaseClass {
     }
 
     @Test
-    public void testAddOptionWithExistingName() {
-        completeAreaText(option1.getTitle(), option1.getCompany(), 55+"");
+    public void testAddOptionWithExistingName()
+    {
+        completeAreaText(option1.getTitle(), option1.getCompany(), 55 + "");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage();
     }
 
-    private void completeAreaText(String title, String company, float quote) {
+    private void completeAreaText(String title, String company, float quote)
+    {
         completeAreaText(title, company, quote + "");
     }
 
-    private void completeAreaText(String title, String company, String quote) {
+    private void completeAreaText(String title, String company, String quote)
+    {
         window.textBox(IAdminView.TEXT_AREA_COMPANY_NAME).enterText(company);
         window.textBox(IAdminView.TEXT_AREA_TITLE_NAME).enterText(title);
-        if (quote != null) {
+        if (quote != null)
+        {
             window.textBox(IAdminView.TEXT_AREA_QUOTE).enterText(quote);
         }
     }
 
     @Test
-    public void testAddOptionWithoutName() {
-        completeAreaText("", "company", 55+"");
+    public void testAddOptionWithoutName()
+    {
+        completeAreaText("", "company", 55 + "");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.TITLE_NAME_EMPTY);
     }
 
     @Test
-    public void testAddOptionWithoutCompanyName() {
-        completeAreaText("title", "", 55+"");
+    public void testAddOptionWithoutCompanyName()
+    {
+        completeAreaText("title", "", 55 + "");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.COMPANY_NAME_EMPTY);
     }
 
     @Test
-    public void testAddOptionWithZeroQuote() {
-        completeAreaText("title", "company", 0+"");
+    public void testAddOptionWithZeroQuote()
+    {
+        completeAreaText("title", "company", 0 + "");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
     }
 
     @Test
-    public void testAddOptionWithInvalidNegativeQuote() {
-        completeAreaText("title", "company", -99+"");
+    public void testAddOptionWithInvalidNegativeQuote()
+    {
+        completeAreaText("title", "company", -99 + "");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
     }
 
     @Test
-    public void testAddOptionWithInvalidStringQuote() {
+    public void testAddOptionWithInvalidStringQuote()
+    {
         completeAreaText("title", "company", "tes");
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
     }
 
     @Test
-    public void testAddOptionWithNullQuote() {
+    public void testAddOptionWithNullQuote()
+    {
         completeAreaText("title", "company", null);
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.QUOTE_INVALID);
     }
 
     @Test
-    public void testAddOptionWithTwoErrors() {
+    public void testAddOptionWithTwoErrors()
+    {
         completeAreaText("title", null, null);
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.COMPANY_NAME_EMPTY +
@@ -188,26 +206,12 @@ public class AdminUITest extends BaseClass {
     }
 
     @Test
-    public void testAddOptionWithThreeErrors() {
+    public void testAddOptionWithThreeErrors()
+    {
         completeAreaText(null, null, null);
         window.button(IAdminView.BUTTON_CREATE).click();
         window.optionPane().requireErrorMessage().requireMessage(StockOption.TITLE_NAME_EMPTY +
                 StockOption.COMPANY_NAME_EMPTY +
                 StockOption.QUOTE_INVALID);
-    }
-
-    @Inject
-    public void setAdminView(IAdminView adminView) {
-        this.adminView = adminView;
-    }
-
-    @Inject
-    public void setAdminModel(IAdminModel adminModel) {
-        this.adminModel = adminModel;
-    }
-
-    @Inject
-    public void setAdminController(IAdminController adminController) {
-        this.adminController = adminController;
     }
 }

@@ -29,16 +29,17 @@ import java.util.Properties;
 /**
  * Test for ejb
  */
-public class StockOptionEjbTest {
+public class StockOptionEjbTest
+{
     StockOptionEjbLocal stockOptionEjb;
     private InitialContext initialContext;
 
     @Before
     public void setUp() throws NamingException
     {
-       Properties properties = new Properties();
-       properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
-       initialContext = new InitialContext(properties);
+        Properties properties = new Properties();
+        properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+        initialContext = new InitialContext(properties);
         stockOptionEjb = (StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal");
         StockOption option1 = new StockOption("titre", "company", 15);
         StockOption option2 = new StockOption("titre2", "company2", 30);
@@ -48,11 +49,14 @@ public class StockOptionEjbTest {
 
 
     @Test
-    public void testChangesQuotesDontChange() {
-        for (int i = 0; i < 1000; i++) {
+    public void testChangesQuotesDontChange()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
             float oldQuote = stockOptionEjb.getStockOptionList().get(0).getQuote();
             stockOptionEjb.changesQuotes();
-            if (oldQuote == stockOptionEjb.getStockOptionList().get(0).getQuote()) {
+            if (oldQuote == stockOptionEjb.getStockOptionList().get(0).getQuote())
+            {
                 return;
             }
         }
@@ -60,11 +64,14 @@ public class StockOptionEjbTest {
     }
 
     @Test
-    public void testChangesQuotesGoUp() {
-        for (int i = 0; i < 1000; i++) {
+    public void testChangesQuotesGoUp()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
             float oldQuote = stockOptionEjb.getStockOptionList().get(0).getQuote();
             stockOptionEjb.changesQuotes();
-            if (oldQuote > stockOptionEjb.getStockOptionList().get(0).getQuote()) {
+            if (oldQuote > stockOptionEjb.getStockOptionList().get(0).getQuote())
+            {
                 return;
             }
         }
@@ -72,11 +79,14 @@ public class StockOptionEjbTest {
     }
 
     @Test
-    public void testChangesQuotesGoDown() {
-        for (int i = 0; i < 1000; i++) {
+    public void testChangesQuotesGoDown()
+    {
+        for (int i = 0; i < 1000; i++)
+        {
             float oldQuote = stockOptionEjb.getStockOptionList().get(0).getQuote();
             stockOptionEjb.changesQuotes();
-            if (oldQuote < stockOptionEjb.getStockOptionList().get(0).getQuote()) {
+            if (oldQuote < stockOptionEjb.getStockOptionList().get(0).getQuote())
+            {
                 return;
             }
         }

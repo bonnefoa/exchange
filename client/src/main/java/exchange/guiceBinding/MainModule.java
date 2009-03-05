@@ -18,7 +18,7 @@ package exchange.guiceBinding;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
-import exchange.ejb.IStockOptionEjb;
+import exchange.ejb.StockOptionEjbLocal;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.controller.impl.AdminController;
@@ -34,8 +34,10 @@ import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
 import exchange.gui.view.impl.GlobalFrame;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.Properties;
 
 /**
  * Main module for injection
@@ -44,13 +46,15 @@ public class MainModule extends AbstractModule
 {
 
     private InitialContext initialContext;
-    
+
 
     protected void configure()
     {
         try
         {
-            initialContext = new InitialContext();
+            Properties properties = new Properties();
+            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+            initialContext = new InitialContext(properties);
         } catch (NamingException e)
         {
             e.printStackTrace();
@@ -60,7 +64,7 @@ public class MainModule extends AbstractModule
         bind(IClientController.class).to(ClientController.class).in(Scopes.SINGLETON);
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
 //        bind(IAdminModel.class).to(AdminModel.class).in(Scopes.SINGLETON);
-        bind(IAdminModel.class).toInstance(getAdminModelInstance());        
+        bind(IAdminModel.class).toInstance(getAdminModelInstance());
         bind(IAdminController.class).to(AdminController.class).in(Scopes.SINGLETON);
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
     }
@@ -69,7 +73,7 @@ public class MainModule extends AbstractModule
     {
         try
         {
-            return new AdminModel((IStockOptionEjb) initialContext.lookup("exchange.ejb.IStockOptionEjb"));
+            return new AdminModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
         } catch (NamingException e)
         {
             e.printStackTrace();

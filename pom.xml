@@ -33,21 +33,18 @@
         <clientVersion>1.0.0</clientVersion>
         <serverVersion>1.0.0</serverVersion>
         <commonVersion>1.0.0</commonVersion>
-        <glassfish.home>/home/common/programme/glassfish/glassfish</glassfish.home>
-        <domain.username>admin</domain.username>
-        <domain.password>adminadmin</domain.password>
     </properties>
-    
+
     <dependencies>
         <dependency>
+            <!--<dependency>-->
+            <!--<groupid>org.picontainer</groupid>-->
+            <!--<artifactid>picocontainer</artifactid>-->
+            <!--<version>2.8</version>-->
+            <!--</dependency>-->
             <groupId>com.google.code.guice</groupId>
             <artifactId>guice</artifactId>
             <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javaee</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>5</version>
         </dependency>
         <dependency>
             <groupId>org.easyb</groupId>
@@ -58,6 +55,18 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>5.0-1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.openejb</groupId>
+            <artifactId>openejb-core</artifactId>
+            <version>3.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -73,10 +82,15 @@
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
-     
+
         </plugins>
     </build>
     <repositories>
+        <repository>
+            <id>apache-m2-snapshot</id>
+            <name>Apache Snapshot Repository</name>
+            <url>http://people.apache.org/repo/m2-snapshot-repository/</url>
+        </repository>
         <repository>
             <id>maven2-repository.dev.java.net</id>
             <name>Java.net Repository for Maven</name>
