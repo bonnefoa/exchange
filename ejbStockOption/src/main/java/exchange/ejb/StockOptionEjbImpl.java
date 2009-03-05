@@ -22,7 +22,6 @@ import exchange.model.Variation;
 import javax.annotation.Resource;
 import javax.ejb.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,10 +33,10 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
 
-    @EJB
+    @Resource
     private SessionContext sessionCtx;
 
-    @EJB
+    //    @EJB
     private SONotifier notifier;
 
     private Timer timer;
@@ -46,9 +45,9 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     public StockOptionEjbImpl()
     {
         stockOptionList = new ArrayList<StockOption>();
-        TimerService timerService = sessionCtx.getTimerService();
-        long duration = 10 * 1000; // 10s
-        timer = timerService.createTimer(new Date().getTime(), duration, null);
+//        TimerService timerService = sessionCtx.getTimerService();
+//        long duration = 10 * 1000; // 10s
+//        timer = timerService.createTimer(new Date().getTime(), duration, null);
     }
 
     @Lock(LockType.WRITE)
@@ -87,17 +86,15 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
             {
                 stockOption.setQuote(quote - variation);
                 stockOption.setVariation(Variation.DOWN);
-            }
-            else if (rand == 1)
+            } else if (rand == 1)
             {
                 stockOption.setVariation(Variation.STALLED);
-            }
-            else if (rand == 2)
+            } else if (rand == 2)
             {
                 stockOption.setQuote(quote + variation);
                 stockOption.setVariation(Variation.UP);
             } else
-            notifier.update(stockOption);
+                notifier.update(stockOption);
         }
     }
 }

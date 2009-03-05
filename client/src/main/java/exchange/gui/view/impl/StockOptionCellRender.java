@@ -16,8 +16,6 @@
 
 package exchange.gui.view.impl;
 
-import com.google.inject.Inject;
-import exchange.gui.model.IClientModel;
 import exchange.model.StockOption;
 
 import javax.swing.*;
@@ -28,15 +26,12 @@ import java.awt.*;
  */
 public class StockOptionCellRender extends DefaultListCellRenderer
 {
-    private IClientModel clientModel;
     private ImageIcon up;
     private ImageIcon down;
     private ImageIcon right;
 
-    @Inject
-    public StockOptionCellRender(IClientModel clientModel)
+    public StockOptionCellRender()
     {
-        this.clientModel = clientModel;
         up = new ImageIcon(getClass().getResource("up.png"));
         down = new ImageIcon(getClass().getResource("down.png"));
         right = new ImageIcon(getClass().getResource("right.png"));
@@ -49,13 +44,7 @@ public class StockOptionCellRender extends DefaultListCellRenderer
         if (value instanceof StockOption)
         {
             StockOption stock = (StockOption) value;
-            if (clientModel.getStockOptionDisplayed().contains(stock))
-            {
-                this.setIcon(dispatchIcon(stock));
-            } else
-            {
-                this.setIcon(null);
-            }
+            this.setIcon(dispatchIcon(stock));
         }
         return label;
     }
