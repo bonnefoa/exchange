@@ -21,15 +21,25 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import java.util.Properties;
+
 /**
  * Test for ejb
  */
 public class StockOptionEjbTest {
-    IStockOptionEjb stockOptionEjb;
+    StockOptionEjbLocal stockOptionEjb;
+    private InitialContext initialContext;
 
     @Before
-    public void setUp() {
-        stockOptionEjb = new StockOptionEjb();
+    public void setUp() throws NamingException
+    {
+       Properties properties = new Properties();
+       properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+       initialContext = new InitialContext(properties);
+        stockOptionEjb = (StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal");
         StockOption option1 = new StockOption("titre", "company", 15);
         StockOption option2 = new StockOption("titre2", "company2", 30);
         stockOptionEjb.createNewStockOption(option1);

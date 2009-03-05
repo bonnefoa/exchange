@@ -26,10 +26,10 @@ import java.util.List;
  * Implementation of the stock option ejb
  */
 @Stateful
-public class StockOptionEjb implements IStockOptionEjb {
+public class StockOptionEjbImpl implements StockOptionEjbLocal {
     private List<StockOption> stockOptionList;
 
-    public StockOptionEjb() {
+    public StockOptionEjbImpl() {
         stockOptionList = new ArrayList<StockOption>();
     }
 

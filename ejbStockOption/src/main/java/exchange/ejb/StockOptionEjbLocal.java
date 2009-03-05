@@ -18,14 +18,14 @@ package exchange.ejb;
 
 import exchange.model.StockOption;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 import java.util.List;
 
 /**
  * Interface of the ejb server
  */
-@Remote
-public interface IStockOptionEjb {
+@Local
+public interface StockOptionEjbLocal {
     /**
      * Create the new given stock option
      *
