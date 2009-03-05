@@ -16,6 +16,7 @@
 
 package exchange.gui.view.impl;
 
+import com.google.inject.Inject;
 import exchange.gui.view.IClientView;
 
 import javax.swing.*;
@@ -65,6 +66,8 @@ public class ClientView extends AbstractView implements IClientView
      */
     private JLabel labelAdmin;
 
+    private StockOptionCellRender stockOptionCellRender;
+
     /**
      * Create the GUI and show it.
      */
@@ -103,6 +106,7 @@ public class ClientView extends AbstractView implements IClientView
         stockList = new JList();
         stockList.setName(STOCK_LIST);
         stockList.setDragEnabled(true);
+        stockList.setCellRenderer(stockOptionCellRender);
         c.gridx = 0;
         c.gridy = 0;
         c.weightx = 0.5;
@@ -231,5 +235,11 @@ public class ClientView extends AbstractView implements IClientView
     public String getLoginName()
     {
         return loginField.getText();
+    }
+
+    @Inject
+    public void setStockOptionCellRender(StockOptionCellRender stockOptionCellRender)
+    {
+        this.stockOptionCellRender = stockOptionCellRender;
     }
 }

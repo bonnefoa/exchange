@@ -26,6 +26,7 @@ public class StockOption implements Serializable
     private String title;
     private String company;
     private float quote;
+    private Variation variation;
     public static final String TITLE_NAME_EMPTY = "Title name empty.\n";
     public static final String COMPANY_NAME_EMPTY = "Company name empty.\n";
     public static final String QUOTE_INVALID = "Invalid quote.\n";
@@ -48,6 +49,7 @@ public class StockOption implements Serializable
         this.title = title;
         this.company = company;
         this.quote = quote;
+        variation = Variation.STALLED;
     }
 
     public StockOption(String titleName, String companyName, String stringQuote)
@@ -81,6 +83,16 @@ public class StockOption implements Serializable
     public void setQuote(float value)
     {
         quote = value;
+    }
+
+    public Variation getVariation()
+    {
+        return variation;
+    }
+
+    public void setVariation(Variation variation)
+    {
+        this.variation = variation;
     }
 
     @Override

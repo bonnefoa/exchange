@@ -18,7 +18,10 @@ package exchange.ejb;
 
 import exchange.model.StockOption;
 
+import javax.ejb.Lock;
+import javax.ejb.LockType;
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +29,8 @@ import java.util.List;
  * Implementation of the stock option ejb
  */
 @Singleton
+@Lock(LockType.READ)
+@Startup
 public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
@@ -35,11 +40,13 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         stockOptionList = new ArrayList<StockOption>();
     }
 
+    @Lock(LockType.WRITE)
     public void createNewStockOption(StockOption stockOption)
     {
         stockOptionList.add(stockOption);
     }
 
+    @Lock(LockType.WRITE)
     public void deleteStockOption(List<StockOption> stockOption)
     {
         stockOptionList.removeAll(stockOption);
@@ -50,6 +57,7 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         return stockOptionList;
     }
 
+    @Lock(LockType.WRITE)
     public void changesQuotes()
     {
         for (StockOption stockOption : stockOptionList)
@@ -57,7 +65,6 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
             int rand = (int) ((Math.random() * 3) % 3);
             float variation = (float) (Math.random() * 10);
             float quote = stockOption.getQuote();
-            System.out.println(rand);
             if (rand == 0)
             {
                 stockOption.setQuote(quote - variation);
