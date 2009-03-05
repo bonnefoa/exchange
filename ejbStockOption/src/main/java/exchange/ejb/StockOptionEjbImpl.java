@@ -18,21 +18,18 @@ package exchange.ejb;
 
 import exchange.model.StockOption;
 import exchange.model.Variation;
-import exchange.ejb.SONotifier;
 
-import javax.ejb.*;
 import javax.annotation.Resource;
-import javax.ejb.Startup;
+import javax.ejb.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Implementation of the stock option ejb
  */
 @Singleton
 @Lock(LockType.READ)
-@Startup
 public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
