@@ -16,7 +16,7 @@
 
 package exchange.notifier.impl;
 
-import exchange.notifier.SONotifier;
+import exchange.ejb.SONotifier;
 import exchange.model.StockOption;
 
 import javax.ejb.Stateless;

@@ -17,13 +17,12 @@
 package exchange.ejb;
 
 import exchange.model.StockOption;
-import exchange.notifier.SONotifier;
+import exchange.ejb.SONotifier;
 
 import javax.ejb.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -48,7 +47,7 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         stockOptionList = new ArrayList<StockOption>();
         TimerService timerService = sessionCtx.getTimerService();
 
-	long duration = 10 * 1000; // 10ms
+	long duration = 10 * 1000; // 10s
 	timer = timerService.createTimer(new Date().getTime(), duration, null);
 
         

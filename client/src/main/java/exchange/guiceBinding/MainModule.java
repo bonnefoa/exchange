@@ -59,32 +59,21 @@ public class MainModule extends AbstractModule
         {
             e.printStackTrace();
         }
+        bind(IClientController.class).to(ClientController.class).asEagerSingleton();
+        bind(IAdminController.class).to(AdminController.class).asEagerSingleton();
         bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);
-        bind(IClientModel.class).toInstance(getClientModelInstance());
-        bind(IClientController.class).to(ClientController.class).in(Scopes.SINGLETON);
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
-//        bind(IAdminModel.class).to(AdminModel.class).in(Scopes.SINGLETON);
+        bind(IClientModel.class).toInstance(getClientModelInstance());
         bind(IAdminModel.class).toInstance(getAdminModelInstance());
-        bind(IAdminController.class).to(AdminController.class).in(Scopes.SINGLETON);
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
+
     }
 
-    private IAdminModel getAdminModelInstance()
-    {
-        try
-        {
-            return new AdminModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImpl"));
-        } catch (NamingException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
     private IClientModel getClientModelInstance()
     {
         try
         {
-            IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImpl"));
+            IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
             return clientModel;
         } catch (NamingException e)
         {
@@ -94,4 +83,16 @@ public class MainModule extends AbstractModule
     }
 
 
+    private IAdminModel getAdminModelInstance()
+    {
+        try
+        {
+            IAdminModel adminModel = new AdminModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
+            return adminModel;
+        } catch (NamingException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

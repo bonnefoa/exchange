@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package exchange.notifier;
+package exchange.notifier.impl;
 
-import exchange.model.StockOption;
-
-import javax.ejb.Local;
+import org.junit.Test;
 
 /**
  * Created by IntelliJ IDEA.
  * User: dev
  * Date: 5 mars 2009
- * Time: 16:59:20
+ * Time: 20:33:11
  * To change this template use File | Settings | File Templates.
  */
-@Local
-public interface SONotifier {
-    void update(StockOption stockOption);
+public class SONotifierImplTest {
+    @Test
+    public void testUpdate() {
+        // Add your code here
+    }
 }
