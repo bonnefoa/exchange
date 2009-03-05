@@ -14,24 +14,37 @@
  * limitations under the License.
  */
 
-package exchange.gui.model.impl;
+package exchange.ejb;
 
-import exchange.gui.model.impl.ClientModel;
 import exchange.model.StockOption;
 
 import java.util.List;
-import java.util.ArrayList;
 
 /**
- * Presenter linking the view and the controller
+ * User: sora
+ * Date: 4 mars 2009
+ * Time: 13:56:36
  */
-public class MockClientModel extends ClientModel {
+public interface IClientMessageSender
+{
+    /**
+     * Create the new given stock option
+     *
+     * @param stockOption Stock Option to create
+     */
+    void createNewStockOption(StockOption stockOption);
 
-    @Override
-    public List<StockOption> getStockOptionsFromServer() {
-        ArrayList<StockOption> res = new ArrayList<StockOption>();
-        res.add(new StockOption("titre", "company", 15));
-        res.add(new StockOption("titre2", "company2", 30));
-        return res;
-    }
+    /**
+     * Delete the given stock option
+     *
+     * @param stockOption Stock option to delete
+     */
+    void deleteStockOption(List<StockOption> stockOption);
+
+    /**
+     * Get the stock option list of the server
+     *
+     * @return Stock option list
+     */
+    List<StockOption> requestStockOptionList();
 }

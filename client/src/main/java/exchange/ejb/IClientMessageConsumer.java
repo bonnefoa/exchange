@@ -16,11 +16,13 @@
 
 package exchange.ejb;
 
-/**
- * Message consumer for queue message of the stock option
- */
-public class ClientMessageConsumer {
-    public void onMessage() {
+import javax.jms.MessageListener;
 
-    }
+/**
+ * User: sora
+ * Date: 4 mars 2009
+ * Time: 13:58:27
+ */
+public interface IClientMessageConsumer extends MessageListener
+{
 }

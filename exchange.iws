@@ -1,34 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project relativePaths="false" version="4">
   <component name="ChangeListManager">
-    <list default="true" name="Default" comment="&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;">
+    <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjbImpl.java" afterPath="$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjbImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exchange.ipr" afterPath="$PROJECT_DIR$/exchange.ipr" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/client/src/main/java/exchange/ejb/ClientMessageConsumer.java" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/ejb/IClientMessageConsumer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/client.iml" afterPath="$PROJECT_DIR$/client/client.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/main/java/exchange/gui/controller/impl/ClientController.java" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/gui/controller/impl/ClientController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/test/java/exchange/guiceBinding/ModuleTest.java" afterPath="$PROJECT_DIR$/client/src/test/java/exchange/guiceBinding/ModuleTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ejbStockOption/ejbStockOption.iml" afterPath="$PROJECT_DIR$/ejbStockOption/ejbStockOption.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ejbStockOption/pom.xml" afterPath="$PROJECT_DIR$/ejbStockOption/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/main/java/exchange/gui/view/impl/ClientView.java" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/gui/view/impl/ClientView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/client/src/test/java/exchange/gui/model/impl/MockClientModel.java" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/ejb/IClientMessageSender.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminUITest.java" afterPath="$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminUITest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/main/java/exchange/gui/model/impl/AdminModel.java" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/gui/model/impl/AdminModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/main/java/exchange/gui/view/IClientView.java" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/gui/view/IClientView.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessTest.java" afterPath="$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/main/java/exchange/ejb/IServerEjb.java" afterPath="$PROJECT_DIR$/server/src/main/java/exchange/ejb/IServerEjb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/src/main/java/exchange/ejb/ServerEjb.java" afterPath="$PROJECT_DIR$/server/src/main/java/exchange/ejb/ServerEjb.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessStory.groovy" afterPath="$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessStory.groovy" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/pom.xml" afterPath="$PROJECT_DIR$/server/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/test/java/exchange/gui/ClientUITest.java" afterPath="$PROJECT_DIR$/client/src/test/java/exchange/gui/ClientUITest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.iml" afterPath="$PROJECT_DIR$/server/server.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Xvfb.sh" afterPath="$PROJECT_DIR$/Xvfb.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/ejb/impl/ClientMessageConsumer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exchange.iml" afterPath="$PROJECT_DIR$/exchange.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/exchange.iws" afterPath="$PROJECT_DIR$/exchange.iws" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/test/java/exchange/BaseClass.java" afterPath="$PROJECT_DIR$/client/src/test/java/exchange/BaseClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/test/java/exchange/gui/model/impl/MockAdminModel.java" afterPath="$PROJECT_DIR$/client/src/test/java/exchange/gui/model/impl/MockAdminModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/main/java/exchange/guiceBinding/MainModule.java" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/guiceBinding/MainModule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/pom.xml" afterPath="$PROJECT_DIR$/client/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/src/main/java/exchange/ejb/impl/ClientMessageSender.java" />
     </list>
     <list name="Ignored" comment="" />
-    <ignored mask="*.iml" />
-    <ignored mask="*.iws" />
     <ignored path="exchange.iws" />
+    <ignored mask="*.iml" />
     <ignored path=".idea/workspace.xml" />
+    <ignored mask="*.iws" />
     <ignored mask="*.ipr" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
@@ -85,55 +80,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="StockOptionEjb.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjb.java">
+      <file leaf-file-name="BaseClass.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/BaseClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="13" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IServerEjb.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/exchange/ejb/IServerEjb.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="1264" selection-end="1625" vertical-scroll-proportion="0.2259887">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="10" selection-start="4779" selection-end="4779" vertical-scroll-proportion="-50.8">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerEjb.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/exchange/ejb/ServerEjb.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="726" selection-end="726" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AdminModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/model/impl/AdminModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="0" selection-start="1541" selection-end="1581" vertical-scroll-proportion="0.0">
+            <state line="58" column="85" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,19 +91,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IStockOptionEjb.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/IStockOptionEjb.java">
+      <file leaf-file-name="ModuleTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/guiceBinding/ModuleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="17" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0">
+            <state line="73" column="55" selection-start="2714" selection-end="2786" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainModule.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/guiceBinding/MainModule.java">
+      <file leaf-file-name="AdminAccessTest.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="70" selection-start="2254" selection-end="2254" vertical-scroll-proportion="0.0">
+            <state line="78" column="25" selection-start="2235" selection-end="2235" vertical-scroll-proportion="0.79816514">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AdminUITest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminUITest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="68" column="0" selection-start="1836" selection-end="1861" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientUITest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/ClientUITest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="30" selection-start="2217" selection-end="2217" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -189,28 +159,6 @@
           <option name="myItemId" value="exchange" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
         </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="server" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="server" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ejb" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
       </PATH>
       <PATH>
         <PATH_ELEMENT>
@@ -228,30 +176,6 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="ejbStockOption" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ejb" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
           <option name="myItemId" value="client" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
         </PATH_ELEMENT>
@@ -267,24 +191,6 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="client" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="launcher" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -321,28 +227,6 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="gui" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="client" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="exchange" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="gui" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="view" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -408,11 +292,29 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="gui" />
+          <option name="myItemId" value="ejb" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="exchange" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="client" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="exchange" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="controller" />
+          <option name="myItemId" value="ejb" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="impl" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -449,14 +351,14 @@
     </navigator>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="org.jetbrains.idea.maven.indices.MavenIndicesConfigurable" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="project.structure.side.proportion" value="0.38709676" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -467,139 +369,32 @@
     <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RestoreUpdateTree">
-    <UpdateInfo date="03/03/09 21:01" ActionInfo="_Update">
-      <UpdatedFiles>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated from server" />
-          <option name="myStatusName" value="Changed on server" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CHANGED_ON_SERVER" />
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Updated" />
-            <option name="myStatusName" value="Changed" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="UPDATED" />
-            <PATH>$PROJECT_DIR$/client/src/main/java/exchange/gui/controller/impl/ClientController.java</PATH>
-            <PATH>$PROJECT_DIR$/client/src/main/java/exchange/gui/model/impl/AdminModel.java</PATH>
-            <PATH>$PROJECT_DIR$/client/src/main/java/exchange/gui/view/IClientView.java</PATH>
-            <PATH>$PROJECT_DIR$/client/src/main/java/exchange/gui/view/impl/ClientView.java</PATH>
-            <PATH>$PROJECT_DIR$/client/src/test/java/exchange/BaseClass.java</PATH>
-            <PATH>$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessStory.groovy</PATH>
-            <PATH>$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessTest.java</PATH>
-            <PATH>$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminUITest.java</PATH>
-            <PATH>$PROJECT_DIR$/client/src/test/java/exchange/guiceBinding/ModuleTest.java</PATH>
-            <PATH>$PROJECT_DIR$/common/pom.xml</PATH>
-            <PATH>$PROJECT_DIR$/exchange.ipr</PATH>
-            <PATH>$PROJECT_DIR$/exchange.iws</PATH>
-            <PATH>$PROJECT_DIR$/pom.xml</PATH>
-            <PATH>$PROJECT_DIR$/server/pom.xml</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Created" />
-            <option name="myStatusName" value="Created" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="CREATED" />
-            <PATH>$PROJECT_DIR$/client/src/main/java/exchange/ejb/ClientMessageConsumer.java</PATH>
-            <PATH>$PROJECT_DIR$/ejbStockOption/ejbStockOption.iml</PATH>
-            <PATH>$PROJECT_DIR$/ejbStockOption/pom.xml</PATH>
-            <PATH>$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/IStockOptionEjb.java</PATH>
-            <PATH>$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjb.java</PATH>
-            <PATH>$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjbTest.java</PATH>
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Deleted" />
-            <option name="myStatusName" value="Deleted" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="true" />
-            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          </FILE-GROUP>
-          <FILE-GROUP>
-            <option name="myUpdateName" value="Restored" />
-            <option name="myStatusName" value="Will be restored" />
-            <option name="mySupportsDeletion" value="false" />
-            <option name="myCanBeAbsent" value="false" />
-            <option name="myId" value="RESTORED" />
-          </FILE-GROUP>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Modified" />
-          <option name="myStatusName" value="Modified" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MODIFIED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Skipped" />
-          <option name="myStatusName" value="Skipped" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SKIPPED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged with conflicts" />
-          <option name="myStatusName" value="Will be merged with conflicts" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED_WITH_CONFLICTS" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Merged" />
-          <option name="myStatusName" value="Will be merged" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="MERGED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Not in repository" />
-          <option name="myStatusName" value="Not in repository" />
-          <option name="mySupportsDeletion" value="true" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UNKNOWN" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally added" />
-          <option name="myStatusName" value="Locally added" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_ADDED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Locally removed" />
-          <option name="myStatusName" value="Locally removed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="LOCALLY_REMOVED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Switched" />
-          <option name="myStatusName" value="Switched" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="SWITCHED" />
-        </FILE-GROUP>
-      </UpdatedFiles>
-    </UpdateInfo>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="exchange.ejb" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="exchange.ejb.impl" />
+      <recent name="exchange" />
+      <recent name="exchange.ejb" />
+    </key>
   </component>
-  <component name="RunManager" selected="Glassfish Server.GlassfishEjbStockOption">
-    <tempConfiguration default="false" name="AdminAccessTest" type="JUnit" factoryName="JUnit" enabled="false" merge="false" sample_coverage="true" runner="emma">
+  <component name="RunManager" selected="JUnit.exchange in client">
+    <tempConfiguration default="false" name="AdminUITest" type="JUnit" factoryName="JUnit" enabled="false" merge="false" runner="emma">
       <pattern>
         <option name="PATTERN" value="exchange.gui.*" />
         <option name="ENABLED" value="true" />
       </pattern>
       <module name="client" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="exchange.gui" />
-      <option name="MAIN_CLASS_NAME" value="exchange.gui.AdminAccessTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="exchange.gui.AdminUITest" />
+      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="ADDITIONAL_CLASS_PATH" />
@@ -607,9 +402,6 @@
         <value defaultName="moduleWithDependencies" />
       </option>
       <envs />
-      <RunnerSettings RunnerId="Profile ">
-        <option name="myExternalizedOptions" value="&#10;additional-options=&#10;snapshots-dir=&#10;" />
-      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
@@ -667,6 +459,23 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="GlassfishConfiguration" factoryName="Local">
+      <JAVAEE_FACET FACET_ID="ejbStockOption/ejb/EJB" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="server/ejb/EJB" DEPLOYMENT_SOURCE_NAME="exploded">
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <server-settings>
+        <option name="DOMAIN" value="" />
+        <option name="USERNAME" value="admin" />
+        <option name="PASSWORD" value="adminadmin" />
+      </server-settings>
+      <option name="DOMAIN" value="" />
+      <option name="USERNAME" value="admin" />
+      <option name="PASSWORD" value="adminadmin" />
+      <predefined_log_file id="Glassfish" enabled="true" />
     </configuration>
     <configuration default="true" type="GlassfishConfiguration" factoryName="Remote">
       <option name="LOCAL" value="false" />
@@ -776,16 +585,16 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="false" name="GlassfishEjbStockOption" type="GlassfishConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="Glassfish 3.0-Prelude">
+    <configuration default="false" name="Unnamed" type="GlassfishConfiguration" factoryName="Remote" APPLICATION_SERVER_NAME="Glassfish v2.1">
       <option name="LOCAL" value="false" />
       <option name="OPEN_IN_BROWSER" value="false" />
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
       <option name="BROWSER_ID" value="system" />
       <JAVAEE_FACET FACET_ID="ejbStockOption/ejb/EJB" DEPLOYMENT_SOURCE_NAME="jar">
-        <option name="DEPLOY" value="false" />
-      </JAVAEE_FACET>
-      <JAVAEE_FACET FACET_ID="server/ejb/EJB" DEPLOYMENT_SOURCE_NAME="jar">
         <option name="DEPLOY" value="true" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="server/ejb/EJB">
+        <option name="DEPLOY" value="false" />
       </JAVAEE_FACET>
       <server-settings>
         <option name="ADMIN_PORT" value="4848" />
@@ -797,7 +606,7 @@
       <option name="PASSWORD" value="adminadmin" />
       <predefined_log_file id="Glassfish" enabled="true" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="38478" />
+        <option name="DEBUG_PORT" value="49600" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="false" />
       </RunnerSettings>
@@ -812,11 +621,137 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <list size="3">
+    <configuration default="false" name="Locak" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="Glassfish v2.1">
+      <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
+      <option name="BROWSER_ID" value="system" />
+      <JAVAEE_FACET FACET_ID="ejbStockOption/ejb/EJB" DEPLOYMENT_SOURCE_NAME="jar">
+        <option name="DEPLOY" value="true" />
+      </JAVAEE_FACET>
+      <JAVAEE_FACET FACET_ID="server/ejb/EJB">
+        <option name="DEPLOY" value="false" />
+      </JAVAEE_FACET>
+      <server-settings>
+        <option name="DOMAIN" value="exchange" />
+        <option name="USERNAME" value="admin" />
+        <option name="PASSWORD" value="adminadmin" />
+      </server-settings>
+      <option name="DOMAIN" value="exchange" />
+      <option name="USERNAME" value="admin" />
+      <option name="PASSWORD" value="adminadmin" />
+      <predefined_log_file id="Glassfish" enabled="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="9009" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Profile ">
+        <option name="myExternalizedOptions" value="&#10;additional-options=&#10;snapshots-dir=&#10;" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="/bin/asadmin" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value=" start-domain --debug" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="/bin/asadmin" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value=" stop-domain" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile ">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="/bin/asadmin" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value=" start-domain" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="/bin/asadmin" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value=" stop-domain" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="/bin/asadmin" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value=" start-domain" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="/bin/asadmin" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value=" stop-domain" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="Run Ant target" value="false" />
+        <option name="Run Maven goal" value="false" />
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <configuration default="false" name="exchange in client" type="JUnit" factoryName="JUnit" enabled="false" merge="false" sample_coverage="true" runner="emma">
+      <module name="client" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="exchange" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs>
+        <env name="DISPLAY" value=":1" />
+      </envs>
+      <RunnerSettings RunnerId="Profile ">
+        <option name="myExternalizedOptions" value="&#10;additional-options=&#10;snapshots-dir=&#10;" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
+    </configuration>
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Easyb Specification.Unnamed" />
-      <item index="1" class="java.lang.String" itemvalue="Glassfish Server.GlassfishEjbStockOption" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.AdminAccessTest" />
+      <item index="1" class="java.lang.String" itemvalue="Glassfish Server.Unnamed" />
+      <item index="2" class="java.lang.String" itemvalue="Glassfish Server.Locak" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.exchange in client" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.AdminUITest" />
     </list>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -861,29 +796,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="1" width="1729" height="999" extended-state="0" />
+    <frame x="0" y="0" width="1918" height="1178" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925683" sideWeight="0.5" order="1" side_tool="false" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283161" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39981186" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925683" sideWeight="0.0" order="7" side_tool="false" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.280543" sideWeight="0.5" order="7" side_tool="false" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27751645" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23713128" sideWeight="0.6798642" order="3" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19433199" sideWeight="0.6798642" order="0" side_tool="false" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23676556" sideWeight="0.68" order="3" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17101148" sideWeight="0.5380997" order="0" side_tool="false" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Web Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3122172" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45531514" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
@@ -891,7 +826,7 @@
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="PERFORM_UPDATE_IN_BACKGROUND" value="false" />
     <option name="PERFORM_COMMIT_IN_BACKGROUND" value="false" />
@@ -899,7 +834,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Architecture of gui&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Utilisation d'ejb dans les tests&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -913,6 +848,9 @@
     <confirmMoveToFailedCommit value="1" />
     <MESSAGE value="Creation de la classe de test et changement de la vue&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
     <MESSAGE value="Architecture of gui&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <MESSAGE value="Traitement du cas de l'erreur de parse&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <MESSAGE value="Traitement de l'erreur lors du parse de String &#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
+    <MESSAGE value="Utilisation d'ejb dans les tests&#10;# Brief commit desciption here&#10;&#10;# Full commit description here (comment lines starting with '#' will not be included)&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -926,73 +864,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/controller/IClientController.java">
+    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessStory.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="17" selection-start="857" selection-end="857" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/controller/impl/ClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="5" selection-start="3790" selection-end="3790" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjbTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="13" selection-start="811" selection-end="811" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/guiceBinding/ModuleTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="0" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/jndi.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="748" selection-end="873" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminUITest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="18" selection-start="1369" selection-end="1369" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/model/impl/MockAdminModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="8" selection-start="968" selection-end="968" vertical-scroll-proportion="0.33136967">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/guiceBinding/MainModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="70" selection-start="2254" selection-end="2254" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/com/google/code/guice/guice/1.0/guice-1.0-sources.jar!/com/google/inject/AbstractModule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -1001,51 +880,101 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/model/impl/AdminModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="0" selection-start="1541" selection-end="1581" vertical-scroll-proportion="0.0">
+        <state line="30" column="0" selection-start="899" selection-end="946" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/model/impl/ClientModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="50" selection-start="2173" selection-end="2173" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/IStockOptionEjb.java">
+    <entry file="file://$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjbLocal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="17" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0">
+        <state line="33" column="9" selection-start="944" selection-end="944" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjb.java">
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/gui/controller/impl/ClientController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="13" selection-start="841" selection-end="841" vertical-scroll-proportion="0.0">
+        <state line="44" column="0" selection-start="1345" selection-end="1345" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/exchange/ejb/ServerEjb.java">
+    <entry file="jar:///opt/jdk/src.zip!/javax/naming/InitialContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="726" selection-end="726" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/exchange/ejb/IServerEjb.java">
+    <entry file="file://$PROJECT_DIR$/ejbStockOption/src/main/java/exchange/ejb/StockOptionEjbImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0">
+        <state line="28" column="13" selection-start="843" selection-end="843" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ejbStockOption/src/test/java/exchange/ejb/StockOptionEjbTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="96" selection-start="1437" selection-end="1437" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/pom.xml">
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/exchange/guiceBinding/MainModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="10" selection-start="4779" selection-end="4779" vertical-scroll-proportion="-50.8">
+        <state line="19" column="32" selection-start="735" selection-end="735" vertical-scroll-proportion="0.11029412">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/guiceBinding/ModuleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1264" selection-end="1625" vertical-scroll-proportion="0.2259887">
+        <state line="73" column="55" selection-start="2714" selection-end="2786" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/BaseClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="85" selection-start="1866" selection-end="1866" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminUITest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="0" selection-start="1836" selection-end="1861" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/ClientUITest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="30" selection-start="2217" selection-end="2217" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/test/java/exchange/gui/AdminAccessTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="25" selection-start="2235" selection-end="2235" vertical-scroll-proportion="0.79816514">
           <folding />
         </state>
       </provider>
