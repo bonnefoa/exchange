@@ -1,68 +1,8 @@
-\subsection{Base de données}
-Une base de données hsql a été utilisée pour ce TP pour plusieurs raisons. D'une part pour sa facilité d'utilisation en cours de développement et d'autre part, pour le déploiement rapide de l'application. La connexion se fait par l'interface Connector.
+\subsection{L'EJB stockOption}
+Un Ejb EjbStockOption est utilise pour cette etude. Cet Ejb a pour charge de fournir la liste des stockOptions et de permettre leurs creations et suppression. Il possede egalement une methode changesQuotes() qui fait varier les actions en cours. 
 
-Une application de conversion a été réalisée pour récupérer les données du fichier xls.
-\subsection{Application de conversion, le XlsParser}
-Ce parseur se charge de lire le fichier xls et de remplir la base hsql. Ce parseur prend 2 paramètres, un fichier sql et le fichier xls.
-\subsubsection{Le script sql}
-Le script sql va être exécuté avant l'analyse et le parse du fichier xls. Ce script se charge d'initialiser la table correspondante au xls. Les tables créées doivent correspondre aux noms des feuilles. Les champs de ces colonnes doivent correspondre aux entêtes des colonnes.
-\subsubsection{Le fichier xls}
-Une fois la base initialisée avec le script sql, le fichier xls sera parsé. A chaque ligne, les cellules sont parsées et une requête d'insertion en base est écrite et exécutée.
+Cet Ejb est un singleton (grace a l'annotation @Singleton), tout les clients qui recupereront l'Ejb accederont a la meme instance. On est assure d'avoir un referentiel commun pour tout les clients.
+\subsection{OpenEjb}
+Il est necessaire d'avoir un conteneur d'ejb pour utiliser des ejb. Pour cela, nous avons choisis OpenEjb. Ce conteneur presente l'avantage d'etre relativement leger (quelques Mo), simple a utiliser et encapsulable dans une application. De plus, il charge automatiquement les ejb qui sont presents dans son classpath. Il est ainsi facile de lancer le serveur pour des tests unitaires et, a terme, pour une application stand-alone. 
 
-Au final, une base de données hsql est créée avec toute les données du xls ajoutées dedans. Cette base de données est créée dans le répertoire db et peut être utilisée comme base de données pour l'application.
-\subsubsection{Inconvénients}
-Il y a actuellement plusieurs inconvénients à cette méthode. La première est l'absence de clé étrangère. Les insertions se faisant dans un ordre quelconque, il n'est pas évident d'avoir les tuples étrangers au moment de l'insertion. Cela pourrait se résoudre en ignorant les clés étrangères le temps du parse du fichier xls.
 
-Le deuxième inconvénient est le fait de devoir supprimer les tables concernées avant d'effectuer les insertions, les problèmes de clés primaires étant délicat a résoudre. De plus, c'est la manière la plus simple pour être sûr d'être synchronisé par rapport au xls.
-\subsection{Représentation des tables}
-Le serveur inspecte la base de données et récupère des informations sur les tables présentes. Trois modèles sont utilisés pour représenter la base de données :
-\subsubsection{Table}
-Représente une table et contient le nom, le schéma et le type de la table.
-\subsubsection{TableColumn}
-Représente une colonne d'une table. Elle contient le nom, la table, le type de valeur et si la colonne est une clé primaire.
-\subsubsection{TableRow}
-Représente une ligne d'une table. Pour plus de facilité, les valeurs des champs sont considérées comme étant des String. Ce modèle lie donc à chaque colonne de la table un String pour une ligne.
-\subsection{Interaction avec les tables}
-L'interface AirlineDAO est un Data Access Object (DAO) permettant de récupérer toutes ces informations et d'exécuter des requêtes. 
-\subsubsection{Consultation des tables}
-On a ainsi les méthodes 
-
-\texttt{[Map<String, Table> getTables()]} Récupère l'ensemble des tables.
-
-\texttt{[List<TableColumn> getTablesColumns(Table table)]} Récupère l'ensemble des colonnes d'une table données.
-
-\texttt{[List<TableRow> getTablesRows(Table table)]} Récupère l'ensemble des lignes d'une table.
-
-Ces trois méthodes suffisent pour consulter l'intégralité des tables.
-\subsubsection{Exécution des requêtes}
-Les requêtes sont exécutées par deux méthodes 
-
-\texttt{[Set<TableRow> executeRequest(SelectRequest selectRequest) throws SQLException]}
-Cette méthode exécute une requête select et retourne le résultat.
-
-\texttt{[void executeRequest(IRequest request) throws SQLException]}
-Cette méthode se contente d'exécuter la requête.
-
-Dans les deux cas, une exception est renvoyée en cas d'erreur.
-
-Les requêtes sont crées à partir de modèles Request. Nous allons voir comment sont élaborées ces Request.
-\subsection{La création des requêtes sql}
-La majeur partie du travail sur l'accès et la manipulation des données est de traiter les requêtes sql. Il était intéressant de développer une API permettant de générer des requêtes dynamiquement et présentant une couche d'abstraction au langage sql.
-
-Pour cela, nous nous sommes inspirées de l'API Criteria de Hibernate. Une API similaire sera introduite dans la prochaine version de JPA. Cette API présente deux composant principaux, les Requests et les Restrictions.
-\subsubsection{Les Requests}
-Les Request représentent les requêtes a exécuter. Elles implémentent l'interface Request qui possède la méthode buildQuery(). Il suffit donc d'exécuter le résultat de cette méthode par le SGBD.
-
-Le résultat de buildQuery est construit à partir du type de la Request et de ses informations. Par exemple, \texttt{DropTableRequest} contient simplement la table à supprimer. Elle créera donc une requête de type \texttt{DROP TABLE table}. Les autres requêtes traitent des cas plus complexes comme le choix des colonnes ou la modification des champs. 
-Les clauses \texttt{WHERE} des requêtes sont gérés par des Restrictions.
-\subsubsection{Les Restrictions}
-Les Restrictions sont des contraintes qui symbolisent les clauses \texttt{WHERE}. On peut ainsi écrire différentes contraintes:
-\begin{itemize}
- \item Les contraintes simples. Il s'agit soit de la simple comparaison entre une colonne et une valeur ou entre deux colonnes pour les jointures.
- \item Les contraintes conditionnelles. Une Restriction peut lier deux autre Restrictions avec les conditions OR ou AND.
-\end{itemize}
-On obtient au final une Restriction qui regroupe une arborescence de Restriction. Il suffit d'ajouter restriction.toString() à la fin de la request pour rajouter les clauses WHERE. 
-
-Ce système de restriction est utilisé pour les requêtes de sélection, de suppression et de mise à jour.
-\subsection{L'enregistrement des transactions}
-Les transactions sont enregistrées dans la table Transaction. Elles sont enregistrées grâce au AirlineManager. Les Jsp et servlet utilisent le manager pour communiquer avec le serveur et ce manager appelle le DAO pour répondre aux requêtes. C'est au moment de l'exécution de requêtes que la transaction est enregistrée par le manager.
