@@ -33,7 +33,6 @@ import exchange.gui.view.IGlobalFrame;
 import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
 import exchange.gui.view.impl.GlobalFrame;
-import exchange.model.StockOption;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -62,35 +61,16 @@ public class ModuleTest extends AbstractModule
         bind(IAdminController.class).to(AdminController.class).asEagerSingleton();
         bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
-//        bind(IAdminModel.class).to(MockAdminModel.class).in(Scopes.SINGLETON);
-//        bind(IClientModel.class).to(MockClientModel.class).in(Scopes.SINGLETON);
         bind(IClientModel.class).toInstance(getClientModelInstance());
         bind(IAdminModel.class).toInstance(getAdminModelInstance());
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
-        initEjb();
-    }
 
-    private void initEjb()
-    {
-        StockOptionEjbLocal ejb;
-        try
-        {
-            ejb = (StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal");
-            ejb.createNewStockOption(new StockOption("titre", "company", 15));
-            ejb.createNewStockOption(new StockOption("titre2", "company2", 30));
-        } catch (NamingException e)
-        {
-            e.printStackTrace();
-        }
     }
 
     private IClientModel getClientModelInstance()
     {
         try
         {
-            StockOptionEjbLocal ejb = (StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal");
-            ejb.createNewStockOption(new StockOption("titre", "company", 15));
-            ejb.createNewStockOption(new StockOption("titre2", "company2", 30));
             IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
             return clientModel;
         } catch (NamingException e)

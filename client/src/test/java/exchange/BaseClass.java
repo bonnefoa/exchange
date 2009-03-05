@@ -19,7 +19,15 @@ package exchange;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import exchange.ejb.StockOptionEjbLocal;
+import exchange.model.StockOption;
+import org.junit.After;
 import org.junit.Before;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import java.util.Properties;
 
 /**
  * Junit class
@@ -27,11 +35,35 @@ import org.junit.Before;
 public abstract class BaseClass
 {
     protected Injector injector;
+    private StockOptionEjbLocal ejbStockOption;
+
+
+    protected BaseClass()
+    {
+        try
+        {
+            Properties properties = new Properties();
+            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+            InitialContext initialContext = new InitialContext(properties);
+            ejbStockOption = (StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal");
+        } catch (NamingException e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     @Before
     public void setUp()
     {
+        ejbStockOption.createNewStockOption(new StockOption("titre", "company", 15));
+        ejbStockOption.createNewStockOption(new StockOption("titre2", "company2", 30));
         injector = Guice.createInjector(getModule());
+    }
+
+    @After
+    public void tearDown()
+    {
+        ejbStockOption.deleteStockOption(ejbStockOption.getStockOptionList());
     }
 
     public abstract Module getModule();

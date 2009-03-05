@@ -66,6 +66,7 @@ public class AdminUITest extends BaseClass
     @After
     public void tearDown()
     {
+        super.tearDown();
         window.cleanUp();
         adminView = null;
         adminModel = null;

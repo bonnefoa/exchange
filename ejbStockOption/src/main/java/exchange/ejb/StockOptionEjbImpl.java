@@ -18,42 +18,51 @@ package exchange.ejb;
 
 import exchange.model.StockOption;
 
-import javax.ejb.Stateful;
+import javax.ejb.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Implementation of the stock option ejb
  */
-@Stateful
-public class StockOptionEjbImpl implements StockOptionEjbLocal {
+@Singleton
+public class StockOptionEjbImpl implements StockOptionEjbLocal
+{
     private List<StockOption> stockOptionList;
 
-    public StockOptionEjbImpl() {
+    public StockOptionEjbImpl()
+    {
         stockOptionList = new ArrayList<StockOption>();
     }
 
-    public void createNewStockOption(StockOption stockOption) {
+    public void createNewStockOption(StockOption stockOption)
+    {
         stockOptionList.add(stockOption);
     }
 
-    public void deleteStockOption(List<StockOption> stockOption) {
+    public void deleteStockOption(List<StockOption> stockOption)
+    {
         stockOptionList.removeAll(stockOption);
     }
 
-    public List<StockOption> getStockOptionList() {
+    public List<StockOption> getStockOptionList()
+    {
         return stockOptionList;
     }
 
-    public void changesQuotes() {
-        for (StockOption stockOption : stockOptionList) {
+    public void changesQuotes()
+    {
+        for (StockOption stockOption : stockOptionList)
+        {
             int rand = (int) ((Math.random() * 3) % 3);
             float variation = (float) (Math.random() * 10);
             float quote = stockOption.getQuote();
             System.out.println(rand);
-            if (rand == 0) {
+            if (rand == 0)
+            {
                 stockOption.setQuote(quote - variation);
-            } else if (rand == 2) {
+            } else if (rand == 2)
+            {
                 stockOption.setQuote(quote + variation);
             }
         }

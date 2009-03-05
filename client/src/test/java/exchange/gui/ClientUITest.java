@@ -71,6 +71,7 @@ public class ClientUITest extends BaseClass
     @After
     public void tearDown()
     {
+        super.tearDown();
         window.cleanUp();
         clientView = null;
     }
