@@ -126,6 +126,7 @@ public class ClientUITest extends BaseClass
     {
         connect();
         window.list(IClientView.STOCK_LIST).selectItem(0);
+        System.out.println(window.list(IClientView.STOCK_LIST).contents());
         window.button(IClientView.BUTTON_SUBSCRIBE).click();
 
         assertEquals(1, clientModel.getSubscribed().size());

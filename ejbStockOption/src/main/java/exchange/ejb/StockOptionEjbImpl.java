@@ -17,6 +17,7 @@
 package exchange.ejb;
 
 import exchange.model.StockOption;
+import exchange.model.Variation;
 
 import javax.annotation.Resource;
 import javax.ejb.*;
@@ -46,11 +47,8 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     {
         stockOptionList = new ArrayList<StockOption>();
         TimerService timerService = sessionCtx.getTimerService();
-
         long duration = 10 * 1000; // 10s
         timer = timerService.createTimer(new Date().getTime(), duration, null);
-
-
     }
 
     @Lock(LockType.WRITE)
@@ -82,15 +80,16 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
             if (rand == 0)
             {
                 stockOption.setQuote(quote - variation);
+                stockOption.setVariation(Variation.DOWN);
             } else if (rand == 2)
             {
                 stockOption.setQuote(quote + variation);
-            }
-
-            if (rand != 1)
+                stockOption.setVariation(Variation.UP);
+            } else
             {
-                notifier.update(stockOption);
+                stockOption.setVariation(Variation.STALLED);
             }
+            notifier.update(stockOption);
         }
     }
 }

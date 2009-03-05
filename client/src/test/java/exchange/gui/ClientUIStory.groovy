@@ -4,11 +4,13 @@ import exchange.guiceBinding.ModuleTestGuice
 import java.awt.Frame
 import org.fest.swing.fixture.FrameFixture
 
+FrameFixture window
+
 def setUp()
 {
   def injector = Guice.createInjector(new ModuleTestGuice())
   def clientView = injector.getInstance(IClientView.class)
-  return window = new FrameFixture((Frame) clientView);
+  return new FrameFixture((Frame) clientView);
 }
 
 scenario "A stockOption go up", {
@@ -21,11 +23,10 @@ scenario "A stockOption go up", {
     window.button(IClientView.BUTTON_SUBSCRIBE).click();
   }
 
-  when "You wait enough for a quote to goes up", {
-
+  when "The user is subscribed", {
   }
 
-  then "Then_statement", {
-    
+  then "The stockOptions should be stalled", {
+//    window.list.
   }
 }

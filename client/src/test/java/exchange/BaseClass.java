@@ -45,7 +45,7 @@ public abstract class BaseClass
             Properties properties = new Properties();
             properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
             InitialContext initialContext = new InitialContext(properties);
-            ejbStockOption = (StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal");
+            ejbStockOption = (StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB);
         } catch (NamingException e)
         {
             e.printStackTrace();
