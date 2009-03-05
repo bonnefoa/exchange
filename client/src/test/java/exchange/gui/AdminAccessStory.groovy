@@ -2,7 +2,7 @@ package exchange.gui
 
 import com.google.inject.Guice
 import exchange.gui.view.IClientView
-import exchange.guiceBinding.ModuleTest
+import exchange.guiceBinding.ModuleTestGuice
 import java.awt.Frame
 import org.fest.swing.fixture.FrameFixture
 
@@ -12,7 +12,7 @@ scenario "User try to connect to the administrator part with wrong password", {
 
 
   given "Client UI shown", {
-    def injector = Guice.createInjector(new ModuleTest())
+    def injector = Guice.createInjector(new ModuleTestGuice())
     def clientView = injector.getInstance(IClientView.class)
     window = new FrameFixture((Frame) clientView);
     window.show();

@@ -60,7 +60,7 @@ public class MainModule extends AbstractModule
             e.printStackTrace();
         }
         bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);
-        bind(IClientModel.class).to(ClientModel.class).in(Scopes.SINGLETON);
+        bind(IClientModel.class).toInstance(getClientModelInstance());
         bind(IClientController.class).to(ClientController.class).in(Scopes.SINGLETON);
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
 //        bind(IAdminModel.class).to(AdminModel.class).in(Scopes.SINGLETON);
@@ -73,11 +73,25 @@ public class MainModule extends AbstractModule
     {
         try
         {
-            return new AdminModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
+            return new AdminModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImpl"));
         } catch (NamingException e)
         {
             e.printStackTrace();
         }
         return null;
     }
+    private IClientModel getClientModelInstance()
+    {
+        try
+        {
+            IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImpl"));
+            return clientModel;
+        } catch (NamingException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

@@ -20,7 +20,7 @@ import com.google.inject.Module;
 import exchange.BaseClass;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
-import exchange.guiceBinding.ModuleTest;
+import exchange.guiceBinding.ModuleTestGuice;
 import exchange.model.StockOption;
 import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
@@ -47,7 +47,7 @@ public class AdminUITest extends BaseClass
 
     public Module getModule()
     {
-        return new ModuleTest();
+        return new ModuleTestGuice();
     }
 
     @Before

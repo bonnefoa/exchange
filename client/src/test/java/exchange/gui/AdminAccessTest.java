@@ -20,7 +20,7 @@ import com.google.inject.Module;
 import exchange.BaseClass;
 import exchange.gui.controller.IClientController;
 import exchange.gui.view.IClientView;
-import exchange.guiceBinding.ModuleTest;
+import exchange.guiceBinding.ModuleTestGuice;
 import org.fest.swing.fixture.FrameFixture;
 import org.junit.After;
 import org.junit.Before;
@@ -48,7 +48,7 @@ public class AdminAccessTest extends BaseClass
 
     public Module getModule()
     {
-        return new ModuleTest();
+        return new ModuleTestGuice();
     }
 
     @Test
@@ -77,6 +77,7 @@ public class AdminAccessTest extends BaseClass
     public void tearDown()
     {
         super.tearDown();
+        
         window.cleanUp();
     }
 }

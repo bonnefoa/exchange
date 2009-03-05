@@ -42,7 +42,7 @@ import java.util.Properties;
 /**
  * Module  Guice for testing
  */
-public class ModuleTest extends AbstractModule
+public class ModuleTestGuice extends AbstractModule
 {
     private InitialContext initialContext;
 
