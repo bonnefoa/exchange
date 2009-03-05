@@ -1,0 +1,8 @@
+\subsection{L'EJB stockOption}
+Un Ejb EjbStockOption est utilise pour cette etude. Cet Ejb a pour charge de fournir la liste des stockOptions et de permettre leurs creations et suppression. Il possede egalement une methode changesQuotes() qui fait varier les actions en cours. 
+
+Cet Ejb est un singleton (grace a l'annotation @Singleton), tout les clients qui recupereront l'Ejb accederont a la meme instance. On est assure d'avoir un referentiel commun pour tout les clients.
+\subsection{OpenEjb}
+Il est necessaire d'avoir un conteneur d'ejb pour utiliser des ejb. Pour cela, nous avons choisis OpenEjb. Ce conteneur presente l'avantage d'etre relativement leger (quelques Mo), simple a utiliser et encapsulable dans une application. De plus, il charge automatiquement les ejb qui sont presents dans son classpath. Il est ainsi facile de lancer le serveur pour des tests unitaires et, a terme, pour une application stand-alone. 
+
+

@@ -65,7 +65,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.openejb</groupId>
-            <artifactId> ejb31-api-experimental</artifactId>
+            <artifactId>ejb31-api-experimental</artifactId>
             <version>3.1</version>
         </dependency>
         <dependency>

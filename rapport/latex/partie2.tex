@@ -1,0 +1,18 @@
+\subsection{Architecture}
+L'interface est une interface Swing. Elle doit permettre a l'utilisateur d'interagir avec le systeme. Lors de l'elaboration de cette interface, nous avons hesite sur le pattern a choisir. Dans l'optique de faciliter les tests, le pattern PassiveView (http://martinfowler.com/eaaDev/PassiveScreen.html) a ete utilise. Nous allons etudier ce pattern.
+\subsubsection{Passive View}
+Ce pattern est un derive du pattern MVC avec quelques nuances. La premiere difference est le fait que la Vue et le Model ne se connaisse pas. Ils sont totalement decouples l'un de l'autre. Le controlleur se charge de faire la liaison avec les deux. La vue est donc basique. Les changements de la vue sont faites par le controlleur.
+
+L'avantage de ce pattern est le fait que la vue est tellement basique qu'il n'y a pas besoin de la tester. Les tests peuvent se limiter aux interactions modele/controlleur.
+
+Le desavantage est la surcharge de travail au niveau du controlleur. Cela peut surcharger la classe et la rendre moins lisible. Cependant, pour les petites applications comme celle-la, cela suffit amplement.
+\subsection{Partie cliente}
+L'interface permet a l'utilisateur de se connecter au server ou de se connecter a la partie administrateur.
+\subsubsection{Inscription aux stockOptions}
+La partie cliente possede la liste des stockOptions sur la partie gauche. Elle permet de s'inscrire et se desinscrire a la surveillance des stockOptions. Pour cela, il faut simplement selectionner les stockOptions voulues et cliquer sur Subscribe ou Unsubscribe.
+\subsubsection{Variations des quotes}
+La partie droite afficher les messages de variations de quotes des stockOptions pour lesquelles l'utilisateur s'est inscrits.
+\subsection{Partie administrateur}
+\subsubsection{Creation de stockOptions}
+\subsubsection{Suppression de stockOptions}
+\subsection{Tests}
