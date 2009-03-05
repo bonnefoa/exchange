@@ -17,21 +17,18 @@
 package exchange.ejb;
 
 import exchange.model.StockOption;
-import exchange.ejb.SONotifier;
 
-import javax.ejb.*;
 import javax.annotation.Resource;
-import javax.ejb.Startup;
+import javax.ejb.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Implementation of the stock option ejb
  */
 @Singleton
 @Lock(LockType.READ)
-@Startup
 public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
@@ -39,7 +36,7 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     @Resource
     private SessionContext sessionCtx;
 
-    @Resource
+    @EJB
     private SONotifier notifier;
 
     private Timer timer;
@@ -50,10 +47,10 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         stockOptionList = new ArrayList<StockOption>();
         TimerService timerService = sessionCtx.getTimerService();
 
-	long duration = 10 * 1000; // 10s
-	timer = timerService.createTimer(new Date().getTime(), duration, null);
+        long duration = 10 * 1000; // 10s
+        timer = timerService.createTimer(new Date().getTime(), duration, null);
 
-        
+
     }
 
     @Lock(LockType.WRITE)
@@ -90,7 +87,8 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
                 stockOption.setQuote(quote + variation);
             }
 
-            if(rand != 1) {
+            if (rand != 1)
+            {
                 notifier.update(stockOption);
             }
         }
