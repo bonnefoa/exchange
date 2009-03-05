@@ -4,6 +4,7 @@ import exchange.model.StockOption
 import javax.jms.*
 import javax.naming.*
 import com.google.inject.*
+import exchange.model.Variation
 
 /**
  * Created by IntelliJ IDEA.
@@ -37,15 +38,19 @@ scenario "User get a new StockOption everytime it's updated", {
     connection.start();
   }
   when "a stockoption is updated", {
-    def stockOption = new StockOption()
-    stockOption.setQuote(123.456)
+    def stockOption = new StockOption("company's title", "company's name", 123.456)
+    stockOption.setVariation(Variation.DOWN) 
     notifier.update(stockOption);
   }
   then "the stockoption is sent on the topic", {
     message = consumer.receive(1);
     message.shouldBeAn ObjectMessage
   }
-  and "the quote is the boog one", {
+  and "the quote is the good one", {
     message.getQuote().shouldBe 123.456
+    message.getVaration().shouldBe Variation.DOWN
+    message.getTitle().shouldBe "company's title"
+    message.getCompany().shouldBe "company's name"
+
   }
 }

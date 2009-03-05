@@ -34,7 +34,7 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
 
-    @Resource
+    @EJB
     private SessionContext sessionCtx;
 
     @EJB
@@ -68,9 +68,15 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         return stockOptionList;
     }
 
-    @Timeout
     @Lock(LockType.WRITE)
     public void changesQuotes()
+    {
+        changesQuotes(null);
+    }
+
+    @Timeout
+    @Lock(LockType.WRITE)
+    private void changesQuotes(Timer timer)
     {
         for (StockOption stockOption : stockOptionList)
         {
@@ -81,14 +87,16 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
             {
                 stockOption.setQuote(quote - variation);
                 stockOption.setVariation(Variation.DOWN);
-            } else if (rand == 2)
+            }
+            else if (rand == 1)
+            {
+                stockOption.setVariation(Variation.STALLED);
+            }
+            else if (rand == 2)
             {
                 stockOption.setQuote(quote + variation);
                 stockOption.setVariation(Variation.UP);
             } else
-            {
-                stockOption.setVariation(Variation.STALLED);
-            }
             notifier.update(stockOption);
         }
     }
