@@ -1,21 +1,23 @@
 package exchange.gui
 
 import com.google.inject.Guice
+import exchange.gui.controller.IClientController
 import exchange.gui.view.IClientView
-import exchange.guiceBinding.ModuleTest
+import exchange.guiceBinding.ModuleTestGuice
 import java.awt.Frame
 import org.fest.swing.fixture.FrameFixture
 
-before "", {}
+def setUp()
+{
+  def injector = Guice.createInjector(new ModuleTestGuice())
+  def clientView = injector.getInstance(IClientView.class)
+  return window = new FrameFixture((Frame) clientView);
+}
 
 scenario "User try to connect to the administrator part with wrong password", {
-
-
   given "Client UI shown", {
-    def injector = Guice.createInjector(new ModuleTest())
-    def clientView = injector.getInstance(IClientView.class)
-    window = new FrameFixture((Frame) clientView);
-    window.show();
+    window = setUp()
+    window.show()
   }
   when "user enter the password 'gwrg'", {
     window.textBox(IClientView.ADMIN_FIED).enterText("gwrg");
@@ -30,21 +32,3 @@ scenario "User try to connect to the administrator part with wrong password", {
     window.cleanUp()
   }
 }
-
-//scenario "User try to connect to the administrator part", {
-//  given "Client UI shown", {
-//    window.show();
-//  }
-//
-//  when "When_statement", {
-//    System.out.println("When");
-//  }
-//
-//  then "Then_statement", {
-//    System.out.println("Then");
-//  }
-//
-//  and "the UI shutdowns itself", {
-//    window.cleanUp()
-//  }
-//}

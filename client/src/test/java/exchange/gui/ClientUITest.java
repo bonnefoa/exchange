@@ -21,7 +21,7 @@ import exchange.BaseClass;
 import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
-import exchange.guiceBinding.ModuleTest;
+import exchange.guiceBinding.ModuleTestGuice;
 import exchange.model.StockOption;
 import static junit.framework.Assert.assertFalse;
 import org.fest.swing.fixture.FrameFixture;
@@ -65,7 +65,7 @@ public class ClientUITest extends BaseClass
 
     public Module getModule()
     {
-        return new ModuleTest();
+        return new ModuleTestGuice();
     }
 
     @After

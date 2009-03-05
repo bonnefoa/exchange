@@ -19,9 +19,7 @@ package exchange.ejb;
 import javax.jms.MessageListener;
 
 /**
- * User: sora
- * Date: 4 mars 2009
- * Time: 13:58:27
+ * Listener of messages
  */
 public interface IClientMessageConsumer extends MessageListener
 {
