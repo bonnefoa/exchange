@@ -21,7 +21,8 @@ import java.io.Serializable;
 /**
  * Model  for stockOptions
  */
-public class StockOption implements Serializable {
+public class StockOption implements Serializable
+{
     private String title;
     private String company;
     private float quote;
@@ -29,8 +30,15 @@ public class StockOption implements Serializable {
     public static final String COMPANY_NAME_EMPTY = "Company name empty.\n";
     public static final String QUOTE_INVALID = "Invalid quote.\n";
 
-    public StockOption(String title, String company, float quote) {
-        if (title.length() == 0 || company.length() == 0 || quote <= 0) {
+    public StockOption(String title, String company, float quote)
+    {
+        assignFields(title, company, quote);
+    }
+
+    private void assignFields(String title, String company, float quote)
+    {
+        if (title.length() == 0 || company.length() == 0 || quote <= 0)
+        {
             StringBuilder sb = new StringBuilder();
             if (title.length() == 0) sb.append(TITLE_NAME_EMPTY);
             if (company.length() == 0) sb.append(COMPANY_NAME_EMPTY);
@@ -42,28 +50,42 @@ public class StockOption implements Serializable {
         this.quote = quote;
     }
 
-    public StockOption(String titleName, String companyName, String quote) {
-        this(titleName, companyName, Float.parseFloat(quote));
+    public StockOption(String titleName, String companyName, String stringQuote)
+    {
+        float quote;
+        try
+        {
+            quote = Float.parseFloat(stringQuote);
+        } catch (NumberFormatException e)
+        {
+            quote = 0;
+        }
+        assignFields(titleName, companyName, quote);
     }
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
-    public String getCompany() {
+    public String getCompany()
+    {
         return company;
     }
 
-    public float getQuote() {
+    public float getQuote()
+    {
         return quote;
     }
 
-    public void setQuote(float value) {
+    public void setQuote(float value)
+    {
         quote = value;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         final StringBuilder sb = new StringBuilder();
         sb.append(title).append(' ');
         sb.append(company);
@@ -71,18 +93,17 @@ public class StockOption implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         StockOption that = (StockOption) o;
-
         return company.equals(that.company) && title.equals(that.title);
-
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         int result = title.hashCode();
         result = 31 * result + company.hashCode();
         return result;
