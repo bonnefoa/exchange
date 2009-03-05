@@ -71,7 +71,7 @@ public class ModuleTestGuice extends AbstractModule
     {
         try
         {
-            IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
+            IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
             return clientModel;
         } catch (NamingException e)
         {
@@ -85,7 +85,7 @@ public class ModuleTestGuice extends AbstractModule
     {
         try
         {
-            IAdminModel adminModel = new AdminModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
+            IAdminModel adminModel = new AdminModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
             return adminModel;
         } catch (NamingException e)
         {

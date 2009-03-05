@@ -14,13 +14,20 @@
  * limitations under the License.
  */
 
-package exchange.ejb;
+package exchange.notifier.impl;
 
-import javax.ejb.Local;
+import org.junit.Test;
 
 /**
- * Interface of the ejb server
+ * Created by IntelliJ IDEA.
+ * User: dev
+ * Date: 5 mars 2009
+ * Time: 20:33:11
+ * To change this template use File | Settings | File Templates.
  */
-@Local
-public interface IServerEjb {
+public class SONotifierImplTest {
+    @Test
+    public void testUpdate() {
+        // Add your code here
+    }
 }

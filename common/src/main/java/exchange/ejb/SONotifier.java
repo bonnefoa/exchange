@@ -16,11 +16,18 @@
 
 package exchange.ejb;
 
-import javax.ejb.Stateless;
+import exchange.model.StockOption;
+
+import javax.ejb.Local;
 
 /**
- * Implementation of the ejb server
+ * Created by IntelliJ IDEA.
+ * User: dev
+ * Date: 5 mars 2009
+ * Time: 16:59:20
+ * To change this template use File | Settings | File Templates.
  */
-@Stateless
-public class ServerEjb implements IServerEjb {
+@Local
+public interface SONotifier {
+    void update(StockOption stockOption);
 }

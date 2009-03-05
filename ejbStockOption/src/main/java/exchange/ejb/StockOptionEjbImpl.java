@@ -17,12 +17,12 @@
 package exchange.ejb;
 
 import exchange.model.StockOption;
+import exchange.model.Variation;
 
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
+import javax.annotation.Resource;
+import javax.ejb.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,14 +30,25 @@ import java.util.List;
  */
 @Singleton
 @Lock(LockType.READ)
-@Startup
 public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
 
+    @EJB
+    private SessionContext sessionCtx;
+
+    @EJB
+    private SONotifier notifier;
+
+    private Timer timer;
+
+
     public StockOptionEjbImpl()
     {
         stockOptionList = new ArrayList<StockOption>();
+        TimerService timerService = sessionCtx.getTimerService();
+        long duration = 10 * 1000; // 10s
+        timer = timerService.createTimer(new Date().getTime(), duration, null);
     }
 
     @Lock(LockType.WRITE)
@@ -60,6 +71,13 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     @Lock(LockType.WRITE)
     public void changesQuotes()
     {
+        changesQuotes(null);
+    }
+
+    @Timeout
+    @Lock(LockType.WRITE)
+    private void changesQuotes(Timer timer)
+    {
         for (StockOption stockOption : stockOptionList)
         {
             int rand = (int) ((Math.random() * 3) % 3);
@@ -68,10 +86,18 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
             if (rand == 0)
             {
                 stockOption.setQuote(quote - variation);
-            } else if (rand == 2)
+                stockOption.setVariation(Variation.DOWN);
+            }
+            else if (rand == 1)
+            {
+                stockOption.setVariation(Variation.STALLED);
+            }
+            else if (rand == 2)
             {
                 stockOption.setQuote(quote + variation);
-            }
+                stockOption.setVariation(Variation.UP);
+            } else
+            notifier.update(stockOption);
         }
     }
 }

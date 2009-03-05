@@ -14,15 +14,11 @@
  * limitations under the License.
  */
 
-package exchange;
+package exchange.guiceBinding;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import exchange.ejb.StockOptionEjbLocal;
-import exchange.model.StockOption;
-import org.junit.After;
-import org.junit.Before;
+import com.google.inject.AbstractModule;
+import exchange.ejb.SONotifier;
+import exchange.notifier.impl.SONotifierImpl;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -30,42 +26,26 @@ import javax.naming.NamingException;
 import java.util.Properties;
 
 /**
- * Junit class
+ * Created by IntelliJ IDEA.
+ * User: dev
+ * Date: 5 mars 2009
+ * Time: 20:54:58
+ * To change this template use File | Settings | File Templates.
  */
-public abstract class BaseClass
-{
-    protected Injector injector;
-    private StockOptionEjbLocal ejbStockOption;
+public class ServerBinding extends AbstractModule {
 
+    private InitialContext initialContext;
 
-    protected BaseClass()
-    {
+    protected void configure() {
         try
         {
             Properties properties = new Properties();
             properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
-            InitialContext initialContext = new InitialContext(properties);
-            ejbStockOption = (StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB);
+            initialContext = new InitialContext(properties);
         } catch (NamingException e)
         {
             e.printStackTrace();
         }
+        bind(SONotifier.class).to(SONotifierImpl.class);
     }
-
-    @Before
-    public void setUp()
-    {
-        ejbStockOption.createNewStockOption(new StockOption("titre", "company", 15));
-        ejbStockOption.createNewStockOption(new StockOption("titre2", "company2", 30));
-        injector = Guice.createInjector(getModule());
-    }
-
-    @After
-    public void tearDown()
-    {
-        ejbStockOption.deleteStockOption(ejbStockOption.getStockOptionList());
-    }
-
-    public abstract Module getModule();
-
 }

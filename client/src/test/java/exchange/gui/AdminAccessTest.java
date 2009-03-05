@@ -77,6 +77,7 @@ public class AdminAccessTest extends BaseClass
     public void tearDown()
     {
         super.tearDown();
+        
         window.cleanUp();
     }
 }

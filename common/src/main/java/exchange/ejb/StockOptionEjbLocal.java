@@ -25,7 +25,10 @@ import java.util.List;
  * Interface of the ejb server
  */
 @Local
-public interface StockOptionEjbLocal {
+public interface StockOptionEjbLocal
+{
+    String STOCK_OPTION_EJB = "StockOptionEjbImpl";
+
     /**
      * Create the new given stock option
      *
