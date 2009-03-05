@@ -71,9 +71,15 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         return stockOptionList;
     }
 
-    @Timeout
     @Lock(LockType.WRITE)
     public void changesQuotes()
+    {
+        changesQuotes(null);
+    }
+
+    @Timeout
+    @Lock(LockType.WRITE)
+    private void changesQuotes(Timer timer)
     {
         for (StockOption stockOption : stockOptionList)
         {
