@@ -65,6 +65,7 @@ public class ClientView extends AbstractView implements IClientView
      */
     private JLabel labelAdmin;
 
+
     /**
      * Create the GUI and show it.
      */
@@ -103,7 +104,6 @@ public class ClientView extends AbstractView implements IClientView
         stockList = new JList();
         stockList.setName(STOCK_LIST);
         stockList.setDragEnabled(true);
-        stockList.setCellRenderer(new StockOptionCellRender());
         c.gridx = 0;
         c.gridy = 0;
         c.weightx = 0.5;
@@ -233,6 +233,5 @@ public class ClientView extends AbstractView implements IClientView
     {
         return loginField.getText();
     }
-
 
 }
