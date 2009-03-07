@@ -1,1 +1,8 @@
 \subsection{Les problèmes}
+\subsection{Choix du serveur}
+L'un des principaux problemes a ete de trouver un serveur applicatif servant de conteneur d'EJBs et de broker de messages. Nous avons essaye dans un premier temps Glassfish. Cependant, la version glassfish prelude V3 est principalement un conteneur Web. La version V2 est un serveur applicatif integral, il possede donc toutes les fonctionnalites necessaires mais sa taille imposante (~150Mo) et le fait de devoir le configurer sur la machine d'utilisation l'a exclu de notre selection.
+
+Nous cherchions un simple conteneur d'EJB qui puisse etre facilement configurable. Nous avons choisis OpenEjb. Ce conteneur permet de faire fonctionner des Ejb 3.1. De plus, il est embedable, c'est a dire qu'il est executable directement executable dans un proramme Java. C'etait une solution tout a fait appropriee pour creer une application stand-alone pouvant se lancer de independante.
+\subsection{}
+
+

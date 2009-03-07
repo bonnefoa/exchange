@@ -3,7 +3,7 @@ img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
 kileversion=2.0
-lastDocument=partie2.tex
+lastDocument=partie3.tex
 masterDocument=
 name=rapportExchange
 pkg_extIsRegExp=false
@@ -65,18 +65,18 @@ archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
-line=57
+line=24
 open=true
 order=0
 
 [item:partie3.tex]
 archive=true
-column=33
+column=12
 encoding=UTF-8
 highlight=LaTeX
-line=16
-open=false
-order=0
+line=5
+open=true
+order=1
 
 [item:rapport.kilepr]
 archive=true
