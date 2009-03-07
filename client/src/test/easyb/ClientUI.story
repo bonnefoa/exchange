@@ -1,4 +1,4 @@
-package exchange.gui
+package easyb
 
 import exchange.guiceBinding.ModuleTestGuice
 import java.awt.Frame

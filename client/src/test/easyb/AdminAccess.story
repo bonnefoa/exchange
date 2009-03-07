@@ -1,4 +1,4 @@
-package exchange.gui
+package easyb
 
 import com.google.inject.Guice
 import exchange.gui.controller.IClientController

@@ -22,6 +22,7 @@ import exchange.model.Variation;
 import javax.annotation.Resource;
 import javax.ejb.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     @Resource
     private SessionContext sessionCtx;
 
-    //    @EJB
+    @EJB
     private SONotifier notifier;
 
     private Timer timer;
@@ -45,9 +46,9 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     public StockOptionEjbImpl()
     {
         stockOptionList = new ArrayList<StockOption>();
-//        TimerService timerService = sessionCtx.getTimerService();
-//        long duration = 10 * 1000; // 10s
-//        timer = timerService.createTimer(new Date().getTime(), duration, null);
+        TimerService timerService = sessionCtx.getTimerService();
+        long duration = 10 * 1000; // 10s
+        timer = timerService.createTimer(new Date().getTime(), duration, null);
     }
 
     @Lock(LockType.WRITE)
