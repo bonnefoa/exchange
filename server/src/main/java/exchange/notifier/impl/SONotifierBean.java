@@ -16,12 +16,12 @@
 
 package exchange.notifier.impl;
 
-import exchange.ejb.SONotifier;
+import exchange.ejb.SONotifierLocal;
 import exchange.model.StockOption;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.jms.*;
-import javax.annotation.Resource;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,17 +31,19 @@ import javax.annotation.Resource;
  * To change this template use File | Settings | File Templates.
  */
 @Stateless
-public class SONotifierImpl implements SONotifier {
+public class SONotifierBean implements SONotifierLocal
+{
 
-    @Resource(mappedName = "jms/StockOptionConnectionFactory")
+    @Resource
     private ConnectionFactory connectionFactory;
 
-    @Resource(mappedName = "jms/StockOptionTopic")
+    @Resource(name = "GraouTopic")
     private Topic topic;
 
-
-    public void update(StockOption stockOption) {
-        try {
+    public void update(StockOption stockOption)
+    {
+        try
+        {
             Connection connection = connectionFactory.createConnection();
             // false -> pas de transaction
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -49,8 +51,15 @@ public class SONotifierImpl implements SONotifier {
             producer.send(session.createObjectMessage(stockOption));
             session.close();
             connection.close();
-        } catch (JMSException e) {
+        }
+        catch (JMSException e)
+        {
             e.printStackTrace();
         }
+    }
+
+    public Topic getTopic()
+    {
+        return topic;
     }
 }

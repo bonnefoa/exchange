@@ -1,10 +1,11 @@
 import exchange.guiceBinding.ServerBinding
-import exchange.ejb.SONotifier
+import exchange.ejb.SONotifierLocal
 import exchange.model.StockOption
 import javax.jms.*
 import javax.naming.*
 import com.google.inject.*
 import exchange.model.Variation
+import exchange.ejb.SONotifierLocal
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,7 +16,7 @@ import exchange.model.Variation
  */
 def setUp() {
   def injector = Guice.createInjector(new ServerBinding())
-  return injector.getInstance(SONotifier.class)
+  return injector.getInstance(SONotifierLocal.class)
 }
 
 def message

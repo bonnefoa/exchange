@@ -34,11 +34,11 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
 
-    @EJB
+    @Resource
     private SessionContext sessionCtx;
 
     @EJB
-    private SONotifier notifier;
+    private SONotifierLocal notifier;
 
     private Timer timer;
 

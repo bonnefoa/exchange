@@ -17,8 +17,8 @@
 package exchange.guiceBinding;
 
 import com.google.inject.AbstractModule;
-import exchange.ejb.SONotifier;
-import exchange.notifier.impl.SONotifierImpl;
+import exchange.ejb.SONotifierLocal;
+import exchange.notifier.impl.SONotifierBean;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -46,6 +46,6 @@ public class ServerBinding extends AbstractModule {
         {
             e.printStackTrace();
         }
-        bind(SONotifier.class).to(SONotifierImpl.class);
+        bind(SONotifierLocal.class).to(SONotifierBean.class);
     }
 }

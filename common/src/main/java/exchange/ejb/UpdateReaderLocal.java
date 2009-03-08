@@ -19,15 +19,19 @@ package exchange.ejb;
 import exchange.model.StockOption;
 
 import javax.ejb.Local;
+import javax.jms.JMSException;
 
 /**
  * Created by IntelliJ IDEA.
- * User: dev
- * Date: 5 mars 2009
- * Time: 16:59:20
+ * User: tetradavid
+ * Date: Mar 8, 2009
+ * Time: 5:32:05 PM
  * To change this template use File | Settings | File Templates.
  */
 @Local
-public interface SONotifier {
-    void update(StockOption stockOption);
+public interface UpdateReaderLocal
+{
+    void start() throws JMSException;
+    void stop() throws JMSException;
+    StockOption read() throws JMSException;
 }
