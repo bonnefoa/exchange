@@ -19,10 +19,10 @@ package exchange.ejb;
 import exchange.model.StockOption;
 import exchange.model.Variation;
 
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.ejb.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,21 +35,62 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     private List<StockOption> stockOptionList;
 
     @Resource
-    private SessionContext sessionCtx;
+    TimerService timerService;
 
     @EJB
     private SONotifierLocal notifier;
 
-    private Timer timer;
+    //private Timer timer;
+    private Thread updateThread;
+    private StockOptionEjbImpl self;
 
 
     public StockOptionEjbImpl()
     {
+        self = this;
         stockOptionList = new ArrayList<StockOption>();
-        TimerService timerService = sessionCtx.getTimerService();
-        long duration = 10 * 1000; // 10s
-        timer = timerService.createTimer(new Date().getTime(), duration, null);
+
+        updateThread = new Thread()
+        {
+            @Override
+            public void run()
+            {
+                while (true)
+                {
+                    try
+                    {
+                        Thread.sleep(1000 * 10);
+                        self.changesQuotes();
+                    }
+                    catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        updateThread.start();
     }
+
+    @PreDestroy
+    public void die() {
+        updateThread.stop();
+    }
+
+    /*
+    @PostActivate
+    public void setup()
+    {
+        //TimerService timerService = sessionCtx.getTimerService();
+        long duration = 1 * 1000; // 10s
+        timer = timerService.createTimer(new Date(), duration, null);
+
+
+        Calendar now = Calendar.getInstance();
+        timer = timerService.createTimer(now.getTimeInMillis() + (1 * 1000), null);
+
+    }
+    */
 
     @Lock(LockType.WRITE)
     public void createNewStockOption(StockOption stockOption)
@@ -71,13 +112,7 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     @Lock(LockType.WRITE)
     public void changesQuotes()
     {
-        changesQuotes(null);
-    }
-
-    @Timeout
-    @Lock(LockType.WRITE)
-    private void changesQuotes(Timer timer)
-    {
+        System.out.println("TIMEOUT");
         for (StockOption stockOption : stockOptionList)
         {
             int rand = (int) ((Math.random() * 3) % 3);
@@ -87,15 +122,18 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
             {
                 stockOption.setQuote(quote - variation);
                 stockOption.setVariation(Variation.DOWN);
-            } else if (rand == 1)
+            }
+            else if (rand == 1)
             {
                 stockOption.setVariation(Variation.STALLED);
-            } else if (rand == 2)
+            }
+            else if (rand == 2)
             {
                 stockOption.setQuote(quote + variation);
                 stockOption.setVariation(Variation.UP);
-            } else
-                notifier.update(stockOption);
+            }
+
+            notifier.update(stockOption);
         }
     }
 }

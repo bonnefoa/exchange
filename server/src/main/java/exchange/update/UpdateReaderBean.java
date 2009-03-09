@@ -38,27 +38,41 @@ public class UpdateReaderBean implements UpdateReaderLocal
     @Resource
     private ConnectionFactory connectionFactory;
 
-    @Resource(name = "GraouTopic")
+    @Resource(name = "StockOptionTopic")
     private Topic topic;
     private MessageConsumer messageConsumer;
     private Connection connection;
     private Session session;
 
     @PostConstruct
-    public void start() throws JMSException
+    public void start()
     {
-        connection = connectionFactory.createConnection();
-        session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        messageConsumer = session.createConsumer(topic);
-        connection.start();
+        try
+        {
+            connection = connectionFactory.createConnection();
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            messageConsumer = session.createConsumer(topic);
+            connection.start();
+        }
+        catch (JMSException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     @PreDestroy
-    public void stop() throws JMSException
+    public void stop()
     {
-        messageConsumer = null;
-        session.close();
-        connection.close();
+        try
+        {
+            messageConsumer = null;
+            session.close();
+            connection.close();
+        }
+        catch (JMSException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public StockOption read() throws JMSException

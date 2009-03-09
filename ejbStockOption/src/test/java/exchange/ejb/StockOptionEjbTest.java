@@ -92,5 +92,4 @@ public class StockOptionEjbTest
         }
         fail("Should not passe here");
     }
-
 }

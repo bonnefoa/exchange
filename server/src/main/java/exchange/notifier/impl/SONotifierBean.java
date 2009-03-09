@@ -37,7 +37,7 @@ public class SONotifierBean implements SONotifierLocal
     @Resource
     private ConnectionFactory connectionFactory;
 
-    @Resource(name = "GraouTopic")
+    @Resource(name = "StockOptionTopic")
     private Topic topic;
 
     public void update(StockOption stockOption)

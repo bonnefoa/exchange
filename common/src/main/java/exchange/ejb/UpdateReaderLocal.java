@@ -31,7 +31,9 @@ import javax.jms.JMSException;
 @Local
 public interface UpdateReaderLocal
 {
-    void start() throws JMSException;
-    void stop() throws JMSException;
+    /*
+    void start();
+    void stop();
+    */
     StockOption read() throws JMSException;
 }
