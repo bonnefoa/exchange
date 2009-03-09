@@ -18,6 +18,10 @@ package exchange.notifier.impl;
 
 import exchange.ejb.SONotifierLocal;
 import exchange.model.StockOption;
+import exchange.message.StockOptionMessage;
+import exchange.message.impl.UpdateMessage;
+import exchange.message.impl.DeleteMessage;
+import exchange.message.impl.AddMessage;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -40,15 +44,14 @@ public class SONotifierBean implements SONotifierLocal
     @Resource(name = "StockOptionTopic")
     private Topic topic;
 
-    public void update(StockOption stockOption)
+    private void send(StockOptionMessage message)
     {
         try
         {
             Connection connection = connectionFactory.createConnection();
-            // false -> pas de transaction
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer producer = session.createProducer(topic);
-            producer.send(session.createObjectMessage(stockOption));
+            producer.send(session.createObjectMessage(message));
             session.close();
             connection.close();
         }
@@ -56,6 +59,27 @@ public class SONotifierBean implements SONotifierLocal
         {
             e.printStackTrace();
         }
+    }
+
+    public void update(StockOption stockOption)
+    {
+        StockOptionMessage message = new UpdateMessage();
+        message.setStockOption(stockOption);
+        send(message);
+    }
+
+    public void delete(StockOption stockOption)
+    {
+        StockOptionMessage message = new DeleteMessage();
+        message.setStockOption(stockOption);
+        send(message);
+    }
+
+    public void add(StockOption stockOption)
+    {
+        StockOptionMessage message = new AddMessage();
+        message.setStockOption(stockOption);
+        send(message);
     }
 
     public Topic getTopic()

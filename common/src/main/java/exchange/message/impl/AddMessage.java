@@ -14,13 +14,29 @@
  * limitations under the License.
  */
 
-package exchange.ejb;
+package exchange.message.impl;
 
-import javax.jms.MessageListener;
+import exchange.message.StockOptionMessage;
+import exchange.model.StockOption;
 
 /**
- * Listener of messages
+ * Created by IntelliJ IDEA.
+ * User: dev
+ * Date: 9 mars 2009
+ * Time: 18:29:57
+ * To change this template use File | Settings | File Templates.
  */
-public interface IClientMessageConsumer extends MessageListener
+public class AddMessage implements StockOptionMessage
 {
+    private StockOption stockOption;
+
+    public StockOption getStockOption()
+    {
+        return stockOption;
+    }
+
+    public void setStockOption(StockOption stockOption)
+    {
+        this.stockOption = stockOption;
+    }
 }

@@ -17,7 +17,9 @@
 package exchange.gui.controller;
 
 import exchange.gui.view.impl.GlobalFrame;
+import exchange.message.StockOptionMessage;
 
+import javax.jms.Message;
 import java.util.Observer;
 
 /**

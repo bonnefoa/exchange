@@ -14,33 +14,31 @@
  * limitations under the License.
  */
 
-package exchange.gui.controller;
+package exchange.ejb;
 
-import exchange.gui.view.IGlobalFrame;
+import exchange.model.StockOption;
 import exchange.message.StockOptionMessage;
+import exchange.gui.controller.IAbstractController;
+
+import javax.ejb.Local;
+import javax.ejb.MessageDriven;
+import javax.jms.JMSException;
+import javax.jms.MessageListener;
 
 /**
- * Interface common to both controllers
+ * Created by IntelliJ IDEA.
+ * User: tetradavid
+ * Date: Mar 8, 2009
+ * Time: 5:32:05 PM
+ * To change this template use File | Settings | File Templates.
  */
-public interface IAbstractController {
-    /**
-     * Set the parent controller
-     *
-     * @param parent Parent of both frame
-     */
-    void setParent(IGlobalFrame parent);
+@Local
+public interface StockOptionTopicReaderLocal
+{
+    static String JNDI_NAME = "StockOptionTopicReaderBeanLocal";
 
-    /**
-     * Active or desactivate the admin GUI
-     *
-     * @param show Show the GUI if true
-     */
-    void setVisibility(boolean show);
-
-    /**
-     * Called when a message is received from the server
-     * 
-     * @param stockOptionMessage The message received
-     */
     void messageReceived(StockOptionMessage stockOptionMessage);
+
+    void addListener(IAbstractController listener);
+    void removeListener(IAbstractController listener);
 }

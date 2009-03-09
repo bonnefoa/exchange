@@ -16,40 +16,44 @@
 
 package exchange.ejb.impl;
 
-import exchange.ejb.IClientMessageConsumer;
+import exchange.ejb.StockOptionTopicReaderLocal;
+import exchange.gui.controller.IAbstractController;
+import exchange.message.StockOptionMessage;
 
 import javax.annotation.Resource;
+import javax.annotation.PostConstruct;
 import javax.ejb.MessageDriven;
 import javax.ejb.MessageDrivenContext;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.TextMessage;
-import java.util.logging.Level;
+import javax.ejb.EJB;
+import javax.jms.*;
 import java.util.logging.Logger;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Message consumer for queue message of the stock option
  */
-@MessageDriven(mappedName = "jms/TestQueue")
-public class ClientMessageConsumer implements IClientMessageConsumer
+@MessageDriven(name = "StockOptionTopic")
+public class ClientMessageConsumer implements MessageListener
 {
-    private static final Logger logger = Logger.getLogger(ClientMessageConsumer.class.getCanonicalName());
 
-    @Resource
-    private MessageDrivenContext context;
+    @EJB
+    StockOptionTopicReaderLocal stockOptionTopicReader;
+
+    private static final Logger logger = Logger.getLogger(ClientMessageConsumer.class.getCanonicalName());
 
     public void onMessage(Message message)
     {
-        if (message instanceof TextMessage)
+        if (message instanceof ObjectMessage)
         {
-            TextMessage textMessage = (TextMessage) message;
             try
             {
-                logger.log(Level.INFO, "jms/TestQueue: " + textMessage.getText());
-            } catch (JMSException e)
+                StockOptionMessage stockOptionMessage = (StockOptionMessage) ((ObjectMessage) message).getObject();
+                stockOptionTopicReader.messageReceived(stockOptionMessage);
+            }
+            catch (JMSException e)
             {
-                logger.log(Level.SEVERE, "Could not get the message body", e);
-                context.setRollbackOnly();
+                e.printStackTrace();
             }
         }
     }

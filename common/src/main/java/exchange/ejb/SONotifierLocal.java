@@ -20,6 +20,7 @@ import exchange.model.StockOption;
 
 import javax.ejb.Local;
 import javax.jms.Topic;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,7 +32,9 @@ import javax.jms.Topic;
 @Local
 public interface SONotifierLocal
 {
-    void update(StockOption stockOption);
+    static String JNDI_NAME = "SONotifierBeanLocal";
 
-    public Topic getTopic();
+    void update(StockOption stockOption);
+    void delete(StockOption stockOption);
+    void add(StockOption stockOption);
 }

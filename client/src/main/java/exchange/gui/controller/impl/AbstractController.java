@@ -19,8 +19,12 @@ package exchange.gui.controller.impl;
 import exchange.gui.view.impl.GlobalFrame;
 import exchange.gui.view.IGlobalFrame;
 import exchange.gui.controller.IAbstractController;
+import exchange.ejb.StockOptionTopicReaderLocal;
 
+import javax.naming.InitialContext;
 import java.util.Observable;
+
+import com.google.inject.Inject;
 
 /**
  * Abstract class for common logic of both controller

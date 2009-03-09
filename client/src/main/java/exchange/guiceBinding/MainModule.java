@@ -19,6 +19,7 @@ package exchange.guiceBinding;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import exchange.ejb.StockOptionEjbLocal;
+import exchange.ejb.StockOptionTopicReaderLocal;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.controller.impl.AdminController;
@@ -44,9 +45,7 @@ import java.util.Properties;
  */
 public class MainModule extends AbstractModule
 {
-
     private InitialContext initialContext;
-
 
     protected void configure()
     {
@@ -65,6 +64,7 @@ public class MainModule extends AbstractModule
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
         bind(IClientModel.class).toInstance(getClientModelInstance());
         bind(IAdminModel.class).toInstance(getAdminModelInstance());
+        bind(StockOptionTopicReaderLocal.class).toInstance(getTopicReaderInstance());
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
 
     }
@@ -73,7 +73,7 @@ public class MainModule extends AbstractModule
     {
         try
         {
-            IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
+            IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
             return clientModel;
         } catch (NamingException e)
         {
@@ -87,8 +87,21 @@ public class MainModule extends AbstractModule
     {
         try
         {
-            IAdminModel adminModel = new AdminModel((StockOptionEjbLocal) initialContext.lookup("StockOptionEjbImplLocal"));
+            IAdminModel adminModel = new AdminModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
             return adminModel;
+        } catch (NamingException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    private StockOptionTopicReaderLocal getTopicReaderInstance()
+    {
+        try
+        {
+            return (StockOptionTopicReaderLocal) initialContext.lookup(StockOptionTopicReaderLocal.JNDI_NAME);
         } catch (NamingException e)
         {
             e.printStackTrace();

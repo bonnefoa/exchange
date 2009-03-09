@@ -73,7 +73,8 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     }
 
     @PreDestroy
-    public void die() {
+    public void die()
+    {
         updateThread.stop();
     }
 
@@ -96,12 +97,17 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     public void createNewStockOption(StockOption stockOption)
     {
         stockOptionList.add(stockOption);
+        notifier.add(stockOption);
     }
 
     @Lock(LockType.WRITE)
-    public void deleteStockOption(List<StockOption> stockOption)
+    public void deleteStockOption(List<StockOption> stockOptions)
     {
-        stockOptionList.removeAll(stockOption);
+        stockOptionList.removeAll(stockOptions);
+        for (StockOption stockOption : stockOptions)
+        {
+            notifier.delete(stockOption);
+        }
     }
 
     public List<StockOption> getStockOptionList()

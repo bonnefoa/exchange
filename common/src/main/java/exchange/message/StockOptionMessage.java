@@ -14,26 +14,21 @@
  * limitations under the License.
  */
 
-package exchange.ejb;
+package exchange.message;
 
 import exchange.model.StockOption;
 
-import javax.ejb.Local;
-import javax.jms.JMSException;
+import java.io.Serializable;
 
 /**
  * Created by IntelliJ IDEA.
- * User: tetradavid
- * Date: Mar 8, 2009
- * Time: 5:32:05 PM
+ * User: dev
+ * Date: 9 mars 2009
+ * Time: 18:15:51
  * To change this template use File | Settings | File Templates.
  */
-@Local
-public interface UpdateReaderLocal
+public interface StockOptionMessage extends Serializable
 {
-    /*
-    void start();
-    void stop();
-    */
-    StockOption read() throws JMSException;
+    StockOption getStockOption();
+    void setStockOption(StockOption stockOption);
 }

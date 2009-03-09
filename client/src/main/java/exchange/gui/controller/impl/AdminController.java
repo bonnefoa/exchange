@@ -21,6 +21,8 @@ import exchange.gui.controller.IAdminController;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
 import exchange.model.StockOption;
+import exchange.message.StockOptionMessage;
+import exchange.ejb.StockOptionTopicReaderLocal;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,9 +41,10 @@ public class AdminController extends AbstractController implements IAdminControl
     private IAdminModel adminModel;
 
     @Inject
-    public AdminController(IAdminView adminView, IAdminModel adminModel) {
+    public AdminController(IAdminView adminView, IAdminModel adminModel, StockOptionTopicReaderLocal topicReader) {
         this.adminView = adminView;
         this.adminModel = adminModel;
+        topicReader.addListener(this);
         adminView.displayStockOptions(adminModel.getStockOptionList());
         adminView.initListeners(
                 new MouseAdapter() {
@@ -89,5 +92,10 @@ public class AdminController extends AbstractController implements IAdminControl
 
     public void setVisibility(boolean activate) {
         adminView.setVisible(activate);
+    }
+
+    public void messageReceived(StockOptionMessage stockOptionMessage)
+    {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

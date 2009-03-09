@@ -19,6 +19,7 @@ package exchange.guiceBinding;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import exchange.ejb.StockOptionEjbLocal;
+import exchange.ejb.StockOptionTopicReaderLocal;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.controller.impl.AdminController;
@@ -63,6 +64,7 @@ public class ModuleTestGuice extends AbstractModule
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
         bind(IClientModel.class).toInstance(getClientModelInstance());
         bind(IAdminModel.class).toInstance(getAdminModelInstance());
+        bind(StockOptionTopicReaderLocal.class).toInstance(getTopicReaderInstance());
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
 
     }
@@ -87,6 +89,19 @@ public class ModuleTestGuice extends AbstractModule
         {
             IAdminModel adminModel = new AdminModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
             return adminModel;
+        } catch (NamingException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    private StockOptionTopicReaderLocal getTopicReaderInstance()
+    {
+        try
+        {
+            return (StockOptionTopicReaderLocal) initialContext.lookup(StockOptionTopicReaderLocal.JNDI_NAME);
         } catch (NamingException e)
         {
             e.printStackTrace();

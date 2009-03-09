@@ -21,10 +21,17 @@ import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
 import exchange.model.StockOption;
+import exchange.message.StockOptionMessage;
+import exchange.ejb.SONotifierLocal;
+import exchange.ejb.StockOptionTopicReaderLocal;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Properties;
 
 /**
  * Presenter linking the view and the controller
@@ -41,10 +48,11 @@ public class ClientController extends AbstractController implements IClientContr
     private IClientView clientView;
 
     @Inject
-    public ClientController(IClientModel clientModel, IClientView clientView)
+    public ClientController(IClientModel clientModel, IClientView clientView, StockOptionTopicReaderLocal topicReader)
     {
         this.clientModel = clientModel;
         this.clientView = clientView;
+        topicReader.addListener(this);
         initListener();
     }
 
@@ -64,7 +72,8 @@ public class ClientController extends AbstractController implements IClientContr
             clientView.setLoginFieldEditable(true);
             clientView.setButtonsSubscribeEnable(false);
             clientView.setTextButtonConnect("Connect");
-        } else
+        }
+        else
         {
             String name = clientView.getLoginName();
             clientModel.connect(name);
@@ -125,7 +134,8 @@ public class ClientController extends AbstractController implements IClientContr
         if (clientView.getPassword().equals(IClientController.PASSWORD))
         {
             parent.switchToAdmin();
-        } else
+        }
+        else
         {
             clientView.displayError(IClientController.INCORRECT_PASSWORD);
         }
@@ -151,5 +161,10 @@ public class ClientController extends AbstractController implements IClientContr
     public void setVisibility(boolean show)
     {
         clientView.setVisible(show);
+    }
+
+    public void messageReceived(StockOptionMessage stockOptionMessage)
+    {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

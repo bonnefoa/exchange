@@ -14,33 +14,29 @@
  * limitations under the License.
  */
 
-package exchange.gui.controller;
+package exchange.message.impl;
 
-import exchange.gui.view.IGlobalFrame;
 import exchange.message.StockOptionMessage;
+import exchange.model.StockOption;
 
 /**
- * Interface common to both controllers
+ * Created by IntelliJ IDEA.
+ * User: dev
+ * Date: 9 mars 2009
+ * Time: 18:17:21
+ * To change this template use File | Settings | File Templates.
  */
-public interface IAbstractController {
-    /**
-     * Set the parent controller
-     *
-     * @param parent Parent of both frame
-     */
-    void setParent(IGlobalFrame parent);
+public class UpdateMessage implements StockOptionMessage
+{
+    private StockOption stockOption;
 
-    /**
-     * Active or desactivate the admin GUI
-     *
-     * @param show Show the GUI if true
-     */
-    void setVisibility(boolean show);
+    public StockOption getStockOption()
+    {
+        return stockOption;
+    }
 
-    /**
-     * Called when a message is received from the server
-     * 
-     * @param stockOptionMessage The message received
-     */
-    void messageReceived(StockOptionMessage stockOptionMessage);
+    public void setStockOption(StockOption stockOption)
+    {
+        this.stockOption = stockOption;
+    }
 }

@@ -50,7 +50,6 @@ public class AdminModel implements IAdminModel
     public void deleteStockOption(List<StockOption> stockOption)
     {
         stockOptionEjb.deleteStockOption(stockOption);
-        //TODO Notify to the subscribers
     }
 
     public List<StockOption> getStockOptionList()

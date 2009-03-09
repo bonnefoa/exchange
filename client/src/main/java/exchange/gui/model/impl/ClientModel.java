@@ -46,13 +46,11 @@ public class ClientModel implements IClientModel
     public void subscribe(List<StockOption> list)
     {
         subscribed.addAll(list);
-        // TODO Subscribe to serveur
     }
 
     public void unsubscribe(List<StockOption> list)
     {
         subscribed.removeAll(list);
-        // TODO Unsubscribe to serveur
     }
 
     public String connect(String name)
