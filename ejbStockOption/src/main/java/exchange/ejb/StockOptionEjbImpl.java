@@ -34,13 +34,9 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
 
-    @Resource
-    TimerService timerService;
-
     @EJB
     private SONotifierLocal notifier;
 
-    //private Timer timer;
     private Thread updateThread;
     private StockOptionEjbImpl self;
 
@@ -78,21 +74,6 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         updateThread.stop();
     }
 
-    /*
-    @PostActivate
-    public void setup()
-    {
-        //TimerService timerService = sessionCtx.getTimerService();
-        long duration = 1 * 1000; // 10s
-        timer = timerService.createTimer(new Date(), duration, null);
-
-
-        Calendar now = Calendar.getInstance();
-        timer = timerService.createTimer(now.getTimeInMillis() + (1 * 1000), null);
-
-    }
-    */
-
     @Lock(LockType.WRITE)
     public void createNewStockOption(StockOption stockOption)
     {
@@ -118,7 +99,7 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     @Lock(LockType.WRITE)
     public void changesQuotes()
     {
-        System.out.println("TIMEOUT");
+        System.out.println(">> " + stockOptionList.size() + " stock options updated");
         for (StockOption stockOption : stockOptionList)
         {
             int rand = (int) ((Math.random() * 3) % 3);

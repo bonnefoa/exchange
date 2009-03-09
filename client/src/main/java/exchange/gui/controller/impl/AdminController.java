@@ -20,12 +20,9 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
-import exchange.model.StockOption;
 import exchange.message.StockOptionMessage;
-import exchange.message.impl.AddMessage;
 import exchange.message.impl.DeleteMessage;
-import exchange.message.impl.UpdateMessage;
-import exchange.ejb.StockOptionTopicReaderLocal;
+import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

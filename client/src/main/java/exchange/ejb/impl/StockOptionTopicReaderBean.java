@@ -48,7 +48,7 @@ public class StockOptionTopicReaderBean implements StockOptionTopicReaderLocal
 
     public void messageReceived(StockOptionMessage stockOptionMessage)
     {
-        System.out.println(stockOptionMessage.getClass() + " received, " + listeners.size() + " listener(s) notified");
+        System.out.println("<< " + stockOptionMessage.getMessageType() + " for stock option \"" + stockOptionMessage.getStockOption() + "\" received, " + listeners.size() + " listener(s) notified");
         for(IAbstractController listener : listeners) {
             listener.messageReceived(stockOptionMessage);
         }

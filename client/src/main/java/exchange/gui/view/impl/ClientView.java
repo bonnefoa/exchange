@@ -112,7 +112,7 @@ public class ClientView extends AbstractView implements IClientView
 
         //Text area
         c.gridwidth = 3;
-        textArea = new JTextArea("Cours de la bourse");
+        textArea = new JTextArea("Cours de la bourse\n");
         textArea.setName(TEXT_AREA_MESSAGES);
         c.gridx = 2;
         pane.add(textArea, c);
@@ -233,5 +233,4 @@ public class ClientView extends AbstractView implements IClientView
     {
         return loginField.getText();
     }
-
 }

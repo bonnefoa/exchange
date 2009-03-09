@@ -17,15 +17,14 @@
 package exchange.gui.controller.impl;
 
 import com.google.inject.Inject;
-import exchange.ejb.StockOptionTopicReaderLocal;
 import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
 import exchange.message.StockOptionMessage;
 import exchange.message.impl.AddMessage;
-import exchange.model.StockOption;
 import exchange.message.impl.DeleteMessage;
 import exchange.message.impl.UpdateMessage;
+import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -70,7 +69,8 @@ public class ClientController extends AbstractController implements IClientContr
             clientView.setLoginFieldEditable(true);
             clientView.setButtonsSubscribeEnable(false);
             clientView.setTextButtonConnect("Connect");
-        } else
+        }
+        else
         {
             String name = clientView.getLoginName();
             clientModel.connect(name);
@@ -141,7 +141,8 @@ public class ClientController extends AbstractController implements IClientContr
         if (isPasswordCorrect(clientView.getPassword()))
         {
             parent.switchToAdmin();
-        } else
+        }
+        else
         {
             clientView.displayError(IClientController.INCORRECT_PASSWORD);
         }
@@ -174,29 +175,39 @@ public class ClientController extends AbstractController implements IClientContr
         switch (stockOptionMessage.getMessageType())
         {
             case ADD:
-                messageReceived((AddMessage)stockOptionMessage);
+                messageReceived((AddMessage) stockOptionMessage);
                 break;
             case DELETE:
-                messageReceived((DeleteMessage)stockOptionMessage);
+                messageReceived((DeleteMessage) stockOptionMessage);
                 break;
             case UPDATE:
-                messageReceived((UpdateMessage)stockOptionMessage);
+                messageReceived((UpdateMessage) stockOptionMessage);
                 break;
         }
     }
 
     private void messageReceived(AddMessage stockOptionMessage)
     {
-        addStockOption(stockOptionMessage.getStockOption());
+        if (clientModel.isConnected())
+        {
+            addStockOption(stockOptionMessage.getStockOption());
+        }
+
     }
 
     private void messageReceived(DeleteMessage stockOptionMessage)
     {
-        deleteStockOptions(stockOptionMessage.getStockOption());
+        if (clientModel.isConnected())
+        {
+            deleteStockOptions(stockOptionMessage.getStockOption());
+        }
     }
 
     private void messageReceived(UpdateMessage stockOptionMessage)
     {
-        warnSubscribed(stockOptionMessage.getStockOption());
+        if (clientModel.isConnected() && clientModel.getSubscribed().contains(stockOptionMessage.getStockOption()))
+        {
+            warnSubscribed(stockOptionMessage.getStockOption());
+        }
     }
 }
