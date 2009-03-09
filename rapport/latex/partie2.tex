@@ -1,9 +1,9 @@
 \subsection{Architecture}
-L'interface est une interface Swing. Elle doit permettre a l'utilisateur d'interagir avec le systeme. Lors de l'elaboration de cette interface, nous avons hesite sur le pattern a choisir. Dans l'optique de faciliter les tests, le pattern PassiveView (http://martinfowler.com/eaaDev/PassiveScreen.html) a ete utilise. Nous allons etudier ce pattern.
+L'interface est une interface Swing. Elle doit permettre a l'utilisateur d'interagir avec le systeme. Lors de l'elaboration de cette interface, nous avons hesite sur le design pattern a choisir. Dans l'optique de faciliter les tests, le pattern PassiveView (\url{http://martinfowler.com/eaaDev/PassiveScreen.html}) a ete utilise. Nous allons etudier ce pattern.
 \subsubsection{Passive View}
-Ce pattern est un derive du pattern MVC avec quelques nuances. La premiere difference est le fait que la Vue et le Model ne se connaisse pas. Ils sont totalement decouples l'un de l'autre. Le controlleur se charge de faire la liaison avec les deux. La vue est donc basique. Les changements de la vue sont faites par le controlleur.
+Ce pattern est un derive du pattern MVC avec quelques nuances. La premiere difference est le fait que la Vue et le Model ne se connaisse pas. Ils sont totalement decouples l'un de l'autre. Le controleur se charge de faire la liaison avec les deux. La vue est donc basique. Les changements de la vue sont faites par le controleur.
 
-L'avantage de ce pattern est le fait que la vue est tellement basique qu'il n'y a pas besoin de la tester. Les tests peuvent se limiter aux interactions modele/controlleur.
+L'avantage de ce pattern est le fait que la vue est tellement basique qu'il n'y a pas besoin de la tester. Les tests peuvent se limiter aux interactions modele/controleur.
 
 Le desavantage est la surcharge de travail au niveau du controlleur. Cela peut surcharger la classe et la rendre moins lisible. Cependant, pour les petites applications comme celle-la, cela suffit amplement.
 \subsection{Partie cliente}
@@ -13,7 +13,7 @@ La partie cliente possede la liste des stockOptions sur la partie gauche. Elle p
 \subsubsection{Variations des quotes}
 La partie droite afficher les messages de variations de quotes des stockOptions pour lesquelles l'utilisateur s'est inscrits.
 \subsection{Partie administrateur}
-La partie administrateur permet d'ajouter et de supprimer des stockOptions.
+La partie administrateur permet d'ajouter et de supprimer des stockOptions. Le mot de passe est ``adminadmin''.
 \subsubsection{Creation de stockOptions}
 Pour creer un stockOption, il faut rentrer le nom de la companie et le nom du titre ainsi que le montant de la quote.
 
