@@ -4,6 +4,26 @@
     <facet type="Groovy" name="Groovy">
       <configuration />
     </facet>
+    <facet type="ejb" name="EJB">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="ejb-jar.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/ejb-jar.xml" optional="false" version="3.0" />
+        </descriptors>
+        <ejbRoots>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/test/java" />
+        </ejbRoots>
+        <building>
+          <setting name="EXPLODED_URL" value="file://" />
+          <setting name="EXPLODED_ENABLED" value="false" />
+          <setting name="JAR_URL" value="file://" />
+          <setting name="JAR_ENABLED" value="false" />
+          <setting name="EXCLUDE_EXPLODED_DIRECTORY" value="true" />
+          <setting name="RUN_EJB_VALIDATION" value="true" />
+        </building>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -14,6 +34,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
+    <orderEntry type="library" name="groovy-1.6.0" level="application" />
     <orderEntry type="library" name="groovy-1.6.0" level="application" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -64,6 +85,15 @@
     <orderEntry type="module" module-name="common" exported="" />
     <orderEntry type="module" module-name="ejbStockOption" exported="" />
     <orderEntry type="module" module-name="server" exported="" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/javaee.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
 

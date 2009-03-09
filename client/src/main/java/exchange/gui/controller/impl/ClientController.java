@@ -17,24 +17,20 @@
 package exchange.gui.controller.impl;
 
 import com.google.inject.Inject;
+import exchange.ejb.StockOptionTopicReaderLocal;
 import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
-import exchange.model.StockOption;
 import exchange.message.StockOptionMessage;
 import exchange.message.impl.AddMessage;
+import exchange.model.StockOption;
 import exchange.message.impl.DeleteMessage;
 import exchange.message.impl.UpdateMessage;
-import exchange.ejb.SONotifierLocal;
-import exchange.ejb.StockOptionTopicReaderLocal;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Properties;
+import java.util.Arrays;
 
 /**
  * Presenter linking the view and the controller
@@ -74,8 +70,7 @@ public class ClientController extends AbstractController implements IClientContr
             clientView.setLoginFieldEditable(true);
             clientView.setButtonsSubscribeEnable(false);
             clientView.setTextButtonConnect("Connect");
-        }
-        else
+        } else
         {
             String name = clientView.getLoginName();
             clientModel.connect(name);
@@ -131,13 +126,22 @@ public class ClientController extends AbstractController implements IClientContr
                 });
     }
 
+    private boolean isPasswordCorrect(char[] input)
+    {
+        boolean isCorrect;
+        char[] correctPassword = IClientController.PASSWORD.toCharArray();
+        isCorrect = input.length == correctPassword.length && Arrays.equals(input, correctPassword);
+        //Zero out the password.
+        Arrays.fill(correctPassword, '0');
+        return isCorrect;
+    }
+
     private void adminAccesHandler()
     {
-        if (clientView.getPassword().equals(IClientController.PASSWORD))
+        if (isPasswordCorrect(clientView.getPassword()))
         {
             parent.switchToAdmin();
-        }
-        else
+        } else
         {
             clientView.displayError(IClientController.INCORRECT_PASSWORD);
         }
