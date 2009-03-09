@@ -22,10 +22,15 @@ import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
 import exchange.model.StockOption;
 import exchange.message.StockOptionMessage;
+import exchange.message.impl.AddMessage;
+import exchange.message.impl.DeleteMessage;
+import exchange.message.impl.UpdateMessage;
 import exchange.ejb.StockOptionTopicReaderLocal;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implementation of the admin controller
@@ -41,10 +46,9 @@ public class AdminController extends AbstractController implements IAdminControl
     private IAdminModel adminModel;
 
     @Inject
-    public AdminController(IAdminView adminView, IAdminModel adminModel, StockOptionTopicReaderLocal topicReader) {
+    public AdminController(IAdminView adminView, IAdminModel adminModel) {
         this.adminView = adminView;
         this.adminModel = adminModel;
-        topicReader.addListener(this);
         adminView.displayStockOptions(adminModel.getStockOptionList());
         adminView.initListeners(
                 new MouseAdapter() {
@@ -96,6 +100,19 @@ public class AdminController extends AbstractController implements IAdminControl
 
     public void messageReceived(StockOptionMessage stockOptionMessage)
     {
-        //To change body of implemented methods use File | Settings | File Templates.
+        switch (stockOptionMessage.getMessageType())
+        {
+            case DELETE:
+                messageReceived((DeleteMessage)stockOptionMessage);
+                break;
+        }
+    }
+
+    private void messageReceived(DeleteMessage stockOptionMessage)
+    {
+        List<StockOption> stockOptions = new ArrayList();
+        stockOptions.add(stockOptionMessage.getStockOption());
+        adminModel.deleteStockOption(stockOptions);
+        adminView.displayStockOptions(adminModel.getStockOptionList());
     }
 }

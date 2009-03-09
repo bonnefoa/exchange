@@ -20,6 +20,7 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.view.IGlobalFrame;
+import exchange.ejb.StockOptionTopicReaderLocal;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -40,11 +41,14 @@ public class GlobalFrame implements IGlobalFrame {
     private IAdminController adminController;
 
     @Inject
-    public GlobalFrame(IClientController clientController, IAdminController adminController) {
+    public GlobalFrame(IClientController clientController, IAdminController adminController, StockOptionTopicReaderLocal topicReader) {
         this.clientController = clientController;
         this.adminController = adminController;
         clientController.setParent(this);
         adminController.setParent(this);
+        topicReader.addListener(clientController);
+        topicReader.addListener(adminController);
+        
     }
 
     public void switchToAdmin() {

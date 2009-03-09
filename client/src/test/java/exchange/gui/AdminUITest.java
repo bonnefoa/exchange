@@ -18,8 +18,10 @@ package exchange.gui;
 
 import com.google.inject.Module;
 import exchange.BaseClass;
+import exchange.ejb.StockOptionTopicReaderLocal;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
+import exchange.gui.controller.IAdminController;
 import exchange.guiceBinding.ModuleTestGuice;
 import exchange.model.StockOption;
 import org.fest.swing.fixture.FrameFixture;

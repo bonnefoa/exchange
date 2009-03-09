@@ -22,6 +22,9 @@ import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
 import exchange.model.StockOption;
 import exchange.message.StockOptionMessage;
+import exchange.message.impl.AddMessage;
+import exchange.message.impl.DeleteMessage;
+import exchange.message.impl.UpdateMessage;
 import exchange.ejb.SONotifierLocal;
 import exchange.ejb.StockOptionTopicReaderLocal;
 
@@ -48,11 +51,10 @@ public class ClientController extends AbstractController implements IClientContr
     private IClientView clientView;
 
     @Inject
-    public ClientController(IClientModel clientModel, IClientView clientView, StockOptionTopicReaderLocal topicReader)
+    public ClientController(IClientModel clientModel, IClientView clientView)
     {
         this.clientModel = clientModel;
         this.clientView = clientView;
-        topicReader.addListener(this);
         initListener();
     }
 
@@ -165,6 +167,32 @@ public class ClientController extends AbstractController implements IClientContr
 
     public void messageReceived(StockOptionMessage stockOptionMessage)
     {
-        //To change body of implemented methods use File | Settings | File Templates.
+        switch (stockOptionMessage.getMessageType())
+        {
+            case ADD:
+                messageReceived((AddMessage)stockOptionMessage);
+                break;
+            case DELETE:
+                messageReceived((DeleteMessage)stockOptionMessage);
+                break;
+            case UPDATE:
+                messageReceived((UpdateMessage)stockOptionMessage);
+                break;
+        }
+    }
+
+    private void messageReceived(AddMessage stockOptionMessage)
+    {
+        addStockOption(stockOptionMessage.getStockOption());
+    }
+
+    private void messageReceived(DeleteMessage stockOptionMessage)
+    {
+        deleteStockOptions(stockOptionMessage.getStockOption());
+    }
+
+    private void messageReceived(UpdateMessage stockOptionMessage)
+    {
+        warnSubscribed(stockOptionMessage.getStockOption());
     }
 }

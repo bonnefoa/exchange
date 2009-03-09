@@ -26,6 +26,8 @@ import javax.jms.JMSException;
 import javax.jms.MessageListener;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  * Created by IntelliJ IDEA.
@@ -37,16 +39,16 @@ import java.util.ArrayList;
 @Singleton
 public class StockOptionTopicReaderBean implements StockOptionTopicReaderLocal
 {
-    List<IAbstractController> listeners;
+    Set<IAbstractController> listeners;
 
     public StockOptionTopicReaderBean()
     {
-        listeners = new ArrayList<IAbstractController>();
+        listeners = new HashSet<IAbstractController>();
     }
 
     public void messageReceived(StockOptionMessage stockOptionMessage)
     {
-        System.out.println("MESSAGE RECEIVED");
+        System.out.println(stockOptionMessage.getClass() + " received, " + listeners.size() + " listener(s) notified");
         for(IAbstractController listener : listeners) {
             listener.messageReceived(stockOptionMessage);
         }

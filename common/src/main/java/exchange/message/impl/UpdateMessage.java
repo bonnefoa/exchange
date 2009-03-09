@@ -17,6 +17,7 @@
 package exchange.message.impl;
 
 import exchange.message.StockOptionMessage;
+import exchange.message.MessageType;
 import exchange.model.StockOption;
 
 /**
@@ -38,5 +39,29 @@ public class UpdateMessage implements StockOptionMessage
     public void setStockOption(StockOption stockOption)
     {
         this.stockOption = stockOption;
+    }
+
+    public MessageType getMessageType()
+    {
+        return MessageType.UPDATE;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (!(o instanceof UpdateMessage)) return false;
+
+        UpdateMessage that = (UpdateMessage) o;
+
+        if (stockOption != null ? !stockOption.equals(that.stockOption) : that.stockOption != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return stockOption != null ? stockOption.hashCode() : 0;
     }
 }

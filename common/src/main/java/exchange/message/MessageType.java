@@ -16,20 +16,14 @@
 
 package exchange.message;
 
-import exchange.model.StockOption;
-
-import java.io.Serializable;
-
 /**
  * Created by IntelliJ IDEA.
  * User: dev
  * Date: 9 mars 2009
- * Time: 18:15:51
+ * Time: 23:01:13
  * To change this template use File | Settings | File Templates.
  */
-public interface StockOptionMessage extends Serializable
+public enum MessageType
 {
-    StockOption getStockOption();
-    void setStockOption(StockOption stockOption);
-    MessageType getMessageType();
+    ADD, UPDATE, DELETE
 }
