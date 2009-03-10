@@ -45,7 +45,10 @@ public class ServerBinding extends AbstractModule
             properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
             properties.setProperty("openejb.embedded.remotable", "true");
             properties.setProperty("openejb.remotable.businessLocals", "true");
+            properties.setProperty("Default JMS Resource Adapter.ServerUrl", "tcp://localhost:61616");
+            properties.setProperty("Default JMS Resource Adapter.BrokerXmlConfig", "broker:(tcp://localhost:61616)?useJmx=false");
             initialContext = new InitialContext(properties);
+//            ActiveMQConnection.makeConnection("tcp://localhost:61616");
         } catch (NamingException e)
         {
             e.printStackTrace();

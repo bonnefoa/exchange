@@ -45,7 +45,7 @@ public class StockOptionMessageConsumerImpl extends Observable implements StockO
         this.topic = topic;
         Properties p2 = new Properties();
         p2.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
-        p2.put("brokerURL", "vm://localhost");
+        p2.put("serverURL", "tcp://localhost:61616");
         try
         {
             initialContext = new InitialContext(p2);
