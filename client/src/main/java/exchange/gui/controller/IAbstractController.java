@@ -17,15 +17,11 @@
 package exchange.gui.controller;
 
 import exchange.gui.view.IGlobalFrame;
-import exchange.message.StockOptionMessage;
-
-import java.io.Serializable;
-import java.util.Observer;
 
 /**
  * Interface common to both controllers
  */
-public interface IAbstractController extends Observer
+public interface IAbstractController
 {
     /**
      * Set the parent controller
@@ -40,4 +36,5 @@ public interface IAbstractController extends Observer
      * @param show Show the GUI if true
      */
     void setVisibility(boolean show);
+
 }

@@ -20,12 +20,12 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.view.IGlobalFrame;
-import exchange.consumer.StockOptionMessageConsumer;
 
 /**
  * Global frame containing the client or the admin GUI
  */
-public class GlobalFrame implements IGlobalFrame {
+public class GlobalFrame implements IGlobalFrame
+{
 
     /**
      * Client GUI
@@ -38,22 +38,23 @@ public class GlobalFrame implements IGlobalFrame {
     private IAdminController adminController;
 
     @Inject
-    public GlobalFrame(IClientController clientController, IAdminController adminController, StockOptionMessageConsumer topicReader) {
+    public GlobalFrame(IClientController clientController, IAdminController adminController)
+    {
         this.clientController = clientController;
         this.adminController = adminController;
         clientController.setParent(this);
         adminController.setParent(this);
-        topicReader.addObserver(clientController);
-        topicReader.addObserver(adminController);
-        
+
     }
 
-    public void switchToAdmin() {
+    public void switchToAdmin()
+    {
         clientController.setVisibility(false);
         adminController.setVisibility(true);
     }
 
-    public void switchToClient() {
+    public void switchToClient()
+    {
         adminController.setVisibility(false);
         clientController.setVisibility(true);
     }

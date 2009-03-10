@@ -20,7 +20,6 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IClientController;
 import exchange.gui.model.IClientModel;
 import exchange.gui.view.IClientView;
-import exchange.message.StockOptionMessage;
 import exchange.message.impl.AddMessage;
 import exchange.message.impl.DeleteMessage;
 import exchange.message.impl.UpdateMessage;
@@ -30,7 +29,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Observable;
 
 /**
  * Presenter linking the view and the controller
@@ -54,12 +52,6 @@ public class ClientController extends AbstractController implements IClientContr
         initListener();
     }
 
-    private void subscribeHandler()
-    {
-        clientModel.subscribe(clientView.getSelectedStocksOptions());
-        //TODO Modifier la vue (mettre en gras?)
-    }
-
     private void connectHandler()
     {
         if (clientModel.isConnected())
@@ -70,8 +62,7 @@ public class ClientController extends AbstractController implements IClientContr
             clientView.setLoginFieldEditable(true);
             clientView.setButtonsSubscribeEnable(false);
             clientView.setTextButtonConnect("Connect");
-        }
-        else
+        } else
         {
             String name = clientView.getLoginName();
             clientModel.connect(name);
@@ -81,6 +72,12 @@ public class ClientController extends AbstractController implements IClientContr
             clientView.setAdminAccesEnable(false);
             clientView.setTextButtonConnect("Disconnect");
         }
+    }
+
+    private void subscribeHandler()
+    {
+        clientModel.subscribe(clientView.getSelectedStocksOptions());
+        //TODO Modifier la vue (mettre en gras?)
     }
 
     private void unsubscribeHandler()
@@ -142,8 +139,7 @@ public class ClientController extends AbstractController implements IClientContr
         if (isPasswordCorrect(clientView.getPassword()))
         {
             parent.switchToAdmin();
-        }
-        else
+        } else
         {
             clientView.displayError(IClientController.INCORRECT_PASSWORD);
         }
@@ -171,24 +167,7 @@ public class ClientController extends AbstractController implements IClientContr
         clientView.setVisible(show);
     }
 
-    public void update(Observable o, Object arg)
-    {
-        StockOptionMessage stockOptionMessage = (StockOptionMessage) arg;
-        switch (stockOptionMessage.getMessageType())
-        {
-            case ADD:
-                messageReceived((AddMessage) stockOptionMessage);
-                break;
-            case DELETE:
-                messageReceived((DeleteMessage) stockOptionMessage);
-                break;
-            case UPDATE:
-                messageReceived((UpdateMessage) stockOptionMessage);
-                break;
-        }
-    }
-
-    private void messageReceived(AddMessage stockOptionMessage)
+    public void messageReceived(AddMessage stockOptionMessage)
     {
         if (clientModel.isConnected())
         {
@@ -197,7 +176,7 @@ public class ClientController extends AbstractController implements IClientContr
 
     }
 
-    private void messageReceived(DeleteMessage stockOptionMessage)
+    public void messageReceived(DeleteMessage stockOptionMessage)
     {
         if (clientModel.isConnected())
         {
@@ -205,7 +184,7 @@ public class ClientController extends AbstractController implements IClientContr
         }
     }
 
-    private void messageReceived(UpdateMessage stockOptionMessage)
+    public void messageReceived(UpdateMessage stockOptionMessage)
     {
         if (clientModel.isConnected() && clientModel.getSubscribed().contains(stockOptionMessage.getStockOption()))
         {

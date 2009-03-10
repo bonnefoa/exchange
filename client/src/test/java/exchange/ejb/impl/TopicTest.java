@@ -16,35 +16,31 @@
 
 package exchange.ejb.impl;
 
-import exchange.ejb.SONotifierLocal;
-import exchange.ejb.StockOptionTopicReaderLocal;
-import exchange.gui.controller.IAbstractController;
-import exchange.gui.view.IGlobalFrame;
-import exchange.message.StockOptionMessage;
-import exchange.message.impl.UpdateMessage;
-import exchange.message.impl.DeleteMessage;
-import exchange.message.impl.AddMessage;
-import exchange.model.StockOption;
-import exchange.guiceBinding.MainModule;
-import exchange.guiceBinding.ModuleTestGuice;
-import exchange.consumer.StockOptionMessageConsumer;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.Ignore;
-
-import javax.jms.JMSException;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import java.util.*;
-import java.io.Serializable;
-
-import com.google.inject.Injector;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
+import com.google.inject.Injector;
+import exchange.consumer.StockOptionMessageConsumer;
+import exchange.ejb.SONotifierLocal;
+import exchange.gui.controller.IAbstractController;
+import exchange.gui.view.IGlobalFrame;
+import exchange.guiceBinding.ModuleTestGuice;
+import exchange.message.StockOptionMessage;
+import exchange.message.impl.AddMessage;
+import exchange.message.impl.DeleteMessage;
+import exchange.message.impl.UpdateMessage;
+import exchange.model.StockOption;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import javax.jms.JMSException;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -58,13 +54,11 @@ public class TopicTest
     private SONotifierLocal notifier;
     private InitialContext jndiContext;
 
-    @Inject
     private StockOptionMessageConsumer updateReader;
 
     @Before
     public void before() throws NamingException, JMSException
     {
-
         Injector injector = Guice.createInjector(new ModuleTestGuice());
         injector.injectMembers(this);
     }
@@ -75,7 +69,6 @@ public class TopicTest
         MockMessageObserver observer = new MockMessageObserver();
 
         updateReader.addObserver(observer);
-
 
         StockOption stockOption = new StockOption("title", "compagny", (float) 123.456);
         notifier.update(stockOption);
@@ -179,5 +172,17 @@ public class TopicTest
 
         assertEquals(stockOption, receivedMessages.get(0).getStockOption());
         assertEquals(stockOption.getQuote(), receivedMessages.get(0).getStockOption().getQuote(), 0.01);
+    }
+
+    @Inject
+    public void setNotifier(SONotifierLocal notifier)
+    {
+        this.notifier = notifier;
+    }
+
+    @Inject
+    public void setUpdateReader(StockOptionMessageConsumer updateReader)
+    {
+        this.updateReader = updateReader;
     }
 }

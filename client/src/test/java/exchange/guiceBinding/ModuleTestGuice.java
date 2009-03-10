@@ -18,8 +18,10 @@ package exchange.guiceBinding;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import exchange.consumer.StockOptionMessageConsumer;
+import exchange.consumer.impl.StockOptionMessageConsumerImpl;
+import exchange.ejb.SONotifierLocal;
 import exchange.ejb.StockOptionEjbLocal;
-import exchange.ejb.StockOptionTopicReaderLocal;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.controller.impl.AdminController;
@@ -34,13 +36,11 @@ import exchange.gui.view.IGlobalFrame;
 import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
 import exchange.gui.view.impl.GlobalFrame;
-import exchange.consumer.StockOptionMessageConsumer;
-import exchange.consumer.impl.StockOptionMessageConsumerImpl;
 
+import javax.jms.Topic;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.jms.Topic;
 import java.util.Properties;
 
 /**
@@ -55,7 +55,9 @@ public class ModuleTestGuice extends AbstractModule
         try
         {
             Properties properties = new Properties();
-            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.RemoteInitialContextFactory");
+            properties.setProperty("openejb.embedded.remotable", "true");
+            properties.setProperty("openejb.remotable.businessLocals", "true");
             initialContext = new InitialContext(properties);
         }
         catch (NamingException e)
@@ -71,7 +73,22 @@ public class ModuleTestGuice extends AbstractModule
         bind(Topic.class).toInstance(getTopicInstance());
         bind(StockOptionMessageConsumer.class).to(StockOptionMessageConsumerImpl.class).in(Scopes.SINGLETON);
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
+        bind(SONotifierLocal.class).toInstance(getNotifierInstance());
         bind(InitialContext.class).toInstance(initialContext);
+    }
+
+    private SONotifierLocal getNotifierInstance()
+    {
+        try
+        {
+            SONotifierLocal soNotifierLocal = ((SONotifierLocal) initialContext.lookup(SONotifierLocal.JNDI_NAME));
+            return soNotifierLocal;
+        }
+        catch (NamingException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private IClientModel getClientModelInstance()

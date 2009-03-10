@@ -16,27 +16,22 @@
 
 package exchange.consumer.impl;
 
+import com.google.inject.Inject;
 import exchange.consumer.StockOptionMessageConsumer;
 
 import javax.jms.*;
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import java.util.Observable;
-
-import com.google.inject.Inject;
+import java.util.Properties;
 
 /**
- * Created by IntelliJ IDEA.
- * User: dev
- * Date: 10 mars 2009
- * Time: 15:08:28
- * To change this template use File | Settings | File Templates.
+ * Consumer of messages
  */
 public class StockOptionMessageConsumerImpl extends Observable implements StockOptionMessageConsumer
 {
     private Topic topic;
-    private Thread thread;
-    private StockOptionMessageConsumerImpl self;
     private InitialContext initialContext;
     private Session session;
     private MessageConsumer messageConsumer;
@@ -46,62 +41,38 @@ public class StockOptionMessageConsumerImpl extends Observable implements StockO
     @Inject
     public StockOptionMessageConsumerImpl(Topic topic, InitialContext initialContext)
     {
-        self = this;
         this.topic = topic;
-        this.initialContext = initialContext;
-
-        connect();
-        startThread();
-        //connection.close();
-
-    }
-
-    private void startThread()
-    {
-        this.thread = new Thread()
-        {
-            @Override
-            public void run()
-            {
-                while (true)
-                {
-                    try
-                    {
-                        Object message = (ObjectMessage) messageConsumer.receive();
-                        setChanged();
-                        notifyObservers(message);
-                    }
-                    catch (JMSException e)
-                    {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-
-        thread.start();
-    }
-
-    private void connect()
-    {
-
+        Properties p2 = new Properties();
+        p2.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
+        p2.put("brokerURL", "vm://localhost");
         try
         {
+            initialContext = new InitialContext(p2);
             connectionFactory = (ConnectionFactory) initialContext.lookup("ConnectionFactory");
             connection = connectionFactory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             messageConsumer = session.createConsumer(topic);
             connection.start();
-        }
-        catch (JMSException e)
+            messageConsumer.setMessageListener(new MessageListener()
+            {
+                public void onMessage(Message message)
+                {
+                    setChanged();
+                    notifyObservers(message);
+                }
+            });
+        } catch (NamingException e)
+        {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (JMSException e)
         {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-        catch (NamingException e)
-        {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+//        initListener();
     }
 
+    private void initListener() throws JMSException, NamingException
+    {
 
+    }
 }

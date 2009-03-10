@@ -20,7 +20,7 @@ import com.google.inject.Inject;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
-import exchange.message.StockOptionMessage;
+import exchange.message.impl.AddMessage;
 import exchange.message.impl.DeleteMessage;
 import exchange.model.StockOption;
 
@@ -28,7 +28,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 /**
  * Implementation of the admin controller
@@ -111,20 +110,15 @@ public class AdminController extends AbstractController implements IAdminControl
         adminView.setVisible(activate);
     }
 
-    public void update(Observable o, Object arg)
+    public void messageReceived(AddMessage stockOptionMessage)
     {
-        StockOptionMessage stockOptionMessage = (StockOptionMessage) arg;
-        switch (stockOptionMessage.getMessageType())
-        {
-            case DELETE:
-                messageReceived((DeleteMessage) stockOptionMessage);
-                break;
-        }
+        adminModel.createNewStockOption(stockOptionMessage.getStockOption());
+        adminView.displayStockOptions(adminModel.getStockOptionList());
     }
 
-    private void messageReceived(DeleteMessage stockOptionMessage)
+    public void messageReceived(DeleteMessage stockOptionMessage)
     {
-        List<StockOption> stockOptions = new ArrayList();
+        List<StockOption> stockOptions = new ArrayList<StockOption>();
         stockOptions.add(stockOptionMessage.getStockOption());
         adminModel.deleteStockOption(stockOptions);
         adminView.displayStockOptions(adminModel.getStockOptionList());

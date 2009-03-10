@@ -16,14 +16,16 @@
 
 package exchange.gui.controller;
 
-import exchange.gui.view.impl.GlobalFrame;
-import exchange.message.StockOptionMessage;
-
-import javax.jms.Message;
-import java.util.Observer;
+import exchange.message.impl.AddMessage;
+import exchange.message.impl.DeleteMessage;
 
 /**
  * Interface for the administration controller
  */
-public interface IAdminController extends IAbstractController {
+public interface IAdminController extends IAbstractController
+{
+    void messageReceived(AddMessage stockOptionMessage);
+
+    void messageReceived(DeleteMessage stockOptionMessage);
+
 }

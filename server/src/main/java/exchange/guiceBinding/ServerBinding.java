@@ -32,15 +32,19 @@ import java.util.Properties;
  * Time: 20:54:58
  * To change this template use File | Settings | File Templates.
  */
-public class ServerBinding extends AbstractModule {
+public class ServerBinding extends AbstractModule
+{
 
     private InitialContext initialContext;
 
-    protected void configure() {
+    protected void configure()
+    {
         try
         {
             Properties properties = new Properties();
             properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+            properties.setProperty("openejb.embedded.remotable", "true");
+            properties.setProperty("openejb.remotable.businessLocals", "true");
             initialContext = new InitialContext(properties);
         } catch (NamingException e)
         {
