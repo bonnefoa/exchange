@@ -1,18 +1,18 @@
 \subsection{L'EJB stockOption}
-Un Ejb EjbStockOption est utilise pour cette etude. Cet Ejb a pour charge de fournir la liste des stockOptions et de permettre leurs creations et suppression. Il possede egalement une methode changesQuotes() qui fait varier les actions en cours. 
+Un Ejb EjbStockOption est utilisé pour cette étude. Cet Ejb a pour charge de fournir la liste des stockOptions et de permettre leurs créations et suppression. Il possède également une méthode changesQuotes() qui fait varier les actions en cours. 
 
-Cet Ejb est un singleton (grace a l'annotation @Singleton), tout les clients qui recupereront l'Ejb accederont a la meme instance. On est assure d'avoir un referentiel commun pour tout les clients.
+Cet Ejb est un singleton (grâce a l'annotation \verb|@Singleton|), tout les clients qui récupéreront l'Ejb accéderont à la même instance. On est assuré d'avoir un référentiel commun pour tout les clients.
 
 \subsection{L'EJB SONotifier}
-Cet ejb a pour charge d'envoyer sur un topic (nomme StockOptionTopic) les informations de mise a jour des StockOptions (ajout, modification, supression). Il est appele par l'ejb stockOption.
+Cet ejb a pour charge d'envoyer sur un topic (nommé \verb|StockOptionTopic|) les informations de mise à jour des StockOptions (ajout, modification, suppression). Il est appelé par l'ejb stockOption.
 
 \subsection{L'EJB ClientMessageConsumer}
-Cet ejb ecoute le topic StockOptionTopic (c'est un Message Driven Bean) : des qu'une information est poste sur le topic, il en informe l'ejb StockOptionTopicReader.
+Cet ejb écoute le topic \verb|StockOptionTopic| (c'est un Message Driven Bean) : des qu'une information est posté sur le topic, il en informe l'ejb StockOptionTopicReader.
 
 \subsection{L'EJB StockOptionTopicReader}
-Cet ejb fait le lien entre les classes java ``normales'' (java SE) du client et l'ejb ClientMessageConsumer (java EE). Des qu'il est informe d'un message, il transmet l'information aux instances des controleurs (cote client) qui se sont enregistres.
+Cet ejb fait le lien entre les classes java ``normales'' (java SE) du client et l'ejb ClientMessageConsumer (java EE). Des qu'il est informé d'un message, il transmet l'information aux instances des contrôleurs (coté client) qui se sont enregistrés.
 
 \subsection{OpenEjb}
-Il est necessaire d'avoir un conteneur d'ejb pour utiliser des ejb. Pour cela, nous avons choisis OpenEjb. Ce conteneur presente l'avantage d'etre relativement leger (quelques Mo), simple a utiliser et encapsulable dans une application. De plus, il charge automatiquement les ejb qui sont presents dans son classpath. Il est ainsi facile de lancer le serveur pour des tests unitaires et, a terme, pour une application stand-alone. 
+Il est nécessaire d'avoir un conteneur d'ejb pour utiliser des ejb. Pour cela, nous avons choisis OpenEjb. Ce conteneur présente l'avantage d'être relativement léger (quelques Mo), simple à utiliser et encapsulable dans une application. De plus, il charge automatiquement les ejb qui sont présents dans son classpath. Il est ainsi facile de lancer le serveur pour des tests unitaires et, à terme, pour une application stand-alone. 
 
 
