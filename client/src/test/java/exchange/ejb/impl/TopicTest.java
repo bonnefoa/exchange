@@ -25,6 +25,7 @@ import exchange.gui.controller.IAbstractController;
 import exchange.gui.view.IGlobalFrame;
 import exchange.guiceBinding.ModuleTestGuice;
 import exchange.message.StockOptionMessage;
+import exchange.message.MessageType;
 import exchange.message.impl.AddMessage;
 import exchange.message.impl.DeleteMessage;
 import exchange.message.impl.UpdateMessage;
@@ -51,9 +52,11 @@ import java.util.Observable;
  */
 public class TopicTest
 {
+    @Inject
     private SONotifierLocal notifier;
     private InitialContext jndiContext;
 
+    @Inject
     private StockOptionMessageConsumer updateReader;
 
     @Before
@@ -62,6 +65,8 @@ public class TopicTest
         Injector injector = Guice.createInjector(new ModuleTestGuice());
         injector.injectMembers(this);
     }
+
+
 
     @Test
     public void testUpdate() throws NamingException, JMSException, InterruptedException
@@ -75,114 +80,57 @@ public class TopicTest
 
         Thread.sleep(100);
 
-        assertEquals(1, observer.getReceivedMessages().size());
+        checkMessage(stockOption, observer.getReceivedMessages(), MessageType.UPDATE);
 
-
-        for (StockOptionMessage receivedMessage : observer.getReceivedMessages())
-        {
-
-            assertTrue(receivedMessage instanceof UpdateMessage);
-        }
-
-        assertEquals(stockOption, observer.getReceivedMessages().get(0).getStockOption());
-        assertEquals(stockOption.getQuote(), observer.getReceivedMessages().get(0).getStockOption().getQuote(), 0.01);
     }
-
     @Test
-    @Ignore
-    public void testDelete() throws NamingException, JMSException, InterruptedException
-    {
-        final List<StockOptionMessage> receivedMessages = new ArrayList<StockOptionMessage>();
-        IAbstractController listener = new IAbstractController()
-        {
-
-            public void setParent(IGlobalFrame parent)
-            {
-            }
-
-            public void setVisibility(boolean show)
-            {
-            }
-
-            public void update(Observable o, Object arg)
-            {
-                StockOptionMessage stockOptionMessage = (StockOptionMessage) o;
-                receivedMessages.add(stockOptionMessage);
-            }
-        };
-
-        updateReader.addObserver(listener);
-
-
-        StockOption stockOption = new StockOption("title", "compagny", (float) 123.456);
-        notifier.delete(stockOption);
-
-        Thread.sleep(100);
-
-        assertEquals(receivedMessages.size(), 1);
-
-
-        for (StockOptionMessage receivedMessage : receivedMessages)
-        {
-            assertTrue(receivedMessage instanceof DeleteMessage);
-        }
-
-        assertEquals(stockOption, receivedMessages.get(0).getStockOption());
-        assertEquals(stockOption.getQuote(), receivedMessages.get(0).getStockOption().getQuote(), 0.01);
-    }
-
-    @Test
-    @Ignore
     public void testAdd() throws NamingException, JMSException, InterruptedException
     {
-        final List<StockOptionMessage> receivedMessages = new ArrayList<StockOptionMessage>();
-        IAbstractController listener = new IAbstractController()
-        {
+        MockMessageObserver observer = new MockMessageObserver();
 
-            public void setParent(IGlobalFrame parent)
-            {
-            }
-
-            public void setVisibility(boolean show)
-            {
-            }
-
-            public void update(Observable o, Object arg)
-            {
-                StockOptionMessage stockOptionMessage = (StockOptionMessage) o;
-                receivedMessages.add(stockOptionMessage);
-            }
-        };
-
-        updateReader.addObserver(listener);
-
+        updateReader.addObserver(observer);
 
         StockOption stockOption = new StockOption("title", "compagny", (float) 123.456);
         notifier.add(stockOption);
 
         Thread.sleep(100);
 
-        assertEquals(receivedMessages.size(), 1);
+        checkMessage(stockOption, observer.getReceivedMessages(), MessageType.ADD);
+    }
+    @Test
+    public void testDelete() throws NamingException, JMSException, InterruptedException
+    {
+        MockMessageObserver observer = new MockMessageObserver();
 
+        updateReader.addObserver(observer);
 
-        for (StockOptionMessage receivedMessage : receivedMessages)
+        StockOption stockOption = new StockOption("title", "compagny", (float) 123.456);
+        notifier.delete(stockOption);
+
+        Thread.sleep(100);
+
+        checkMessage(stockOption, observer.getReceivedMessages(), MessageType.DELETE);
+    }
+
+    private void checkMessage(StockOption stockOption, List<StockOptionMessage> receivedMessages, MessageType updateMessageType)
+    {
+
+        assertEquals(1, receivedMessages.size());
+
+        switch (updateMessageType)
         {
-            assertTrue(receivedMessage instanceof AddMessage);
+            case ADD:
+                assertTrue(receivedMessages.get(0) instanceof AddMessage);
+                break;
+            case DELETE:
+                assertTrue(receivedMessages.get(0) instanceof DeleteMessage);
+                break;
+            case UPDATE:
+                assertTrue(receivedMessages.get(0) instanceof UpdateMessage);
+                break;
         }
 
         assertEquals(stockOption, receivedMessages.get(0).getStockOption());
         assertEquals(stockOption.getQuote(), receivedMessages.get(0).getStockOption().getQuote(), 0.01);
-    }
-
-    @Inject
-    public void setNotifier(SONotifierLocal notifier)
-    {
-        this.notifier = notifier;
-    }
-
-    @Inject
-    public void setUpdateReader(StockOptionMessageConsumer updateReader)
-    {
-        this.updateReader = updateReader;
     }
 }
