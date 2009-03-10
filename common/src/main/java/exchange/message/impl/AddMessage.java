@@ -21,11 +21,7 @@ import exchange.message.MessageType;
 import exchange.model.StockOption;
 
 /**
- * Created by IntelliJ IDEA.
- * User: dev
- * Date: 9 mars 2009
- * Time: 18:29:57
- * To change this template use File | Settings | File Templates.
+ * A message indicating a new stock option.
  */
 public class AddMessage implements StockOptionMessage
 {

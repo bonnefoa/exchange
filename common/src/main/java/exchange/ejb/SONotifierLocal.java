@@ -23,18 +23,28 @@ import javax.jms.Topic;
 import java.util.List;
 
 /**
- * Created by IntelliJ IDEA.
- * User: dev
- * Date: 5 mars 2009
- * Time: 16:59:20
- * To change this template use File | Settings | File Templates.
+ * A bean sending messages on a topic.
  */
 @Local
 public interface SONotifierLocal
 {
     static String JNDI_NAME = "SONotifierBeanLocal";
 
+    /**
+     * Send a message : a stockoption has been updated.
+     * @param stockOption The stockoption.
+     */
     void update(StockOption stockOption);
+
+    /**
+     * Send a message : a stockoption has been deleted.
+     * @param stockOption The stockoption.
+     */
     void delete(StockOption stockOption);
+
+    /**
+     * Send a message : a stockoption has been added.
+     * @param stockOption The stockoption.
+     */
     void add(StockOption stockOption);
 }

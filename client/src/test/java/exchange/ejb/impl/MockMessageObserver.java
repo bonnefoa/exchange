@@ -23,6 +23,7 @@ import exchange.message.StockOptionMessage;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 import java.io.Serializable;
 
 /**
@@ -32,7 +33,7 @@ import java.io.Serializable;
  * Time: 14:55:10
  * To change this template use File | Settings | File Templates.
  */
-public class MockMessageObserver implements IAbstractController, Serializable
+public class MockMessageObserver implements Observer
 {
 
     List<StockOptionMessage> receivedMessages;
@@ -52,7 +53,7 @@ public class MockMessageObserver implements IAbstractController, Serializable
 
     public void update(Observable o, Object arg)
     {
-        System.out.println("observer notified");
+        System.out.println("MockMessageObserver : observer notified");
         StockOptionMessage stockOptionMessage = (StockOptionMessage) arg;
         receivedMessages.add(stockOptionMessage);
     }

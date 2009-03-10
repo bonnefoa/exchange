@@ -18,6 +18,7 @@ package exchange.consumer.impl;
 
 import com.google.inject.Inject;
 import exchange.consumer.StockOptionMessageConsumer;
+import exchange.message.StockOptionMessage;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -29,7 +30,7 @@ import java.util.Properties;
 /**
  * Consumer of messages
  */
-public class StockOptionMessageConsumerImpl extends Observable implements StockOptionMessageConsumer
+public class StockOptionMessageConsumerImpl extends Observable implements StockOptionMessageConsumer, MessageListener
 {
     private Topic topic;
     private InitialContext initialContext;
@@ -53,26 +54,31 @@ public class StockOptionMessageConsumerImpl extends Observable implements StockO
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             messageConsumer = session.createConsumer(topic);
             connection.start();
-            messageConsumer.setMessageListener(new MessageListener()
-            {
-                public void onMessage(Message message)
-                {
-                    setChanged();
-                    notifyObservers(message);
-                }
-            });
-        } catch (NamingException e)
-        {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (JMSException e)
+            messageConsumer.setMessageListener(this);
+        }
+        catch (NamingException e)
         {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
-//        initListener();
+        catch (JMSException e)
+        {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 
-    private void initListener() throws JMSException, NamingException
+    public void onMessage(Message message)
     {
+        System.out.println("StockOptionMessageConsumer MESSAGE RECEIVED");
 
+        ObjectMessage objectMessage = (ObjectMessage) message;
+        setChanged();
+        try
+        {
+            notifyObservers((StockOptionMessage) objectMessage.getObject());
+        }
+        catch (JMSException e)
+        {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
     }
 }

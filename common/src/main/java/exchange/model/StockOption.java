@@ -19,7 +19,7 @@ package exchange.model;
 import java.io.Serializable;
 
 /**
- * Model  for stockOptions
+ * Model for stockOptions
  */
 public class StockOption implements Serializable
 {

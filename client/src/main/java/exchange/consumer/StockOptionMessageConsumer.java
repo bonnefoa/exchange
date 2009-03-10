@@ -16,6 +16,7 @@
 
 package exchange.consumer;
 
+import javax.jms.MessageListener;
 import java.util.Observer;
 
 /**

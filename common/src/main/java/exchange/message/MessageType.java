@@ -17,11 +17,7 @@
 package exchange.message;
 
 /**
- * Created by IntelliJ IDEA.
- * User: dev
- * Date: 9 mars 2009
- * Time: 23:01:13
- * To change this template use File | Settings | File Templates.
+ * A message type. Represents an action done on stock option.
  */
 public enum MessageType
 {
