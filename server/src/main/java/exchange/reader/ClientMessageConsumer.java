@@ -14,21 +14,15 @@
  * limitations under the License.
  */
 
-package exchange.ejb.impl;
+package exchange.reader;
 
 import exchange.ejb.StockOptionTopicReaderLocal;
-import exchange.gui.controller.IAbstractController;
 import exchange.message.StockOptionMessage;
 
-import javax.annotation.Resource;
-import javax.annotation.PostConstruct;
 import javax.ejb.MessageDriven;
-import javax.ejb.MessageDrivenContext;
 import javax.ejb.EJB;
 import javax.jms.*;
 import java.util.logging.Logger;
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Message consumer for queue message of the stock option
@@ -44,6 +38,7 @@ public class ClientMessageConsumer implements MessageListener
 
     public void onMessage(Message message)
     {
+        /*
         if (message instanceof ObjectMessage)
         {
             try
@@ -56,5 +51,6 @@ public class ClientMessageConsumer implements MessageListener
                 e.printStackTrace();
             }
         }
+        */
     }
 }

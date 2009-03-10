@@ -16,6 +16,8 @@
 
 package exchange.gui.view;
 
+import java.io.Serializable;
+
 /**
  * Interface for the globalFrame
  */

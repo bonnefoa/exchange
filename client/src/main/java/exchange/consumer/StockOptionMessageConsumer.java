@@ -14,30 +14,22 @@
  * limitations under the License.
  */
 
-package exchange.gui.controller;
+package exchange.consumer;
 
-import exchange.gui.view.IGlobalFrame;
-import exchange.message.StockOptionMessage;
-
-import java.io.Serializable;
 import java.util.Observer;
 
 /**
- * Interface common to both controllers
+ * Created by IntelliJ IDEA.
+ * User: dev
+ * Date: 10 mars 2009
+ * Time: 15:06:20
+ * To change this template use File | Settings | File Templates.
  */
-public interface IAbstractController extends Observer
+public interface StockOptionMessageConsumer
 {
-    /**
-     * Set the parent controller
-     *
-     * @param parent Parent of both frame
-     */
-    void setParent(IGlobalFrame parent);
+    final String JNDI_TOPIC_NAME = "StockOptionTopic";
 
-    /**
-     * Active or desactivate the admin GUI
-     *
-     * @param show Show the GUI if true
-     */
-    void setVisibility(boolean show);
+    void addObserver(Observer o);
+
+    void deleteObserver(Observer o);
 }

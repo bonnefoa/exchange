@@ -16,14 +16,10 @@
 
 package exchange.ejb;
 
-import exchange.model.StockOption;
 import exchange.message.StockOptionMessage;
-import exchange.gui.controller.IAbstractController;
 
-import javax.ejb.Local;
-import javax.ejb.MessageDriven;
-import javax.jms.JMSException;
-import javax.jms.MessageListener;
+import javax.ejb.Remote;
+import java.util.Observer;
 
 /**
  * Created by IntelliJ IDEA.
@@ -32,13 +28,14 @@ import javax.jms.MessageListener;
  * Time: 5:32:05 PM
  * To change this template use File | Settings | File Templates.
  */
-@Local
+@Remote
 public interface StockOptionTopicReaderLocal
 {
-    static String JNDI_NAME = "StockOptionTopicReaderBeanLocal";
+    static String JNDI_NAME = "StockOptionTopicReaderBeanRemote";
 
     void messageReceived(StockOptionMessage stockOptionMessage);
 
-    void addListener(IAbstractController listener);
-    void removeListener(IAbstractController listener);
+    void addObserver(Observer o);
+
+    void deleteObserver(Observer o);
 }

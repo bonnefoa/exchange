@@ -28,11 +28,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Implementation of the admin controller
  */
-public class AdminController extends AbstractController implements IAdminController {
+public class AdminController extends AbstractController implements IAdminController
+{
     /**
      * View of the admin GUI
      */
@@ -43,64 +45,79 @@ public class AdminController extends AbstractController implements IAdminControl
     private IAdminModel adminModel;
 
     @Inject
-    public AdminController(IAdminView adminView, IAdminModel adminModel) {
+    public AdminController(IAdminView adminView, IAdminModel adminModel)
+    {
         this.adminView = adminView;
         this.adminModel = adminModel;
         adminView.displayStockOptions(adminModel.getStockOptionList());
         adminView.initListeners(
-                new MouseAdapter() {
+                new MouseAdapter()
+                {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e)
+                    {
                         disconnectHandler();
                     }
                 }
                 ,
-                new MouseAdapter() {
+                new MouseAdapter()
+                {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e)
+                    {
                         createOptionHandler();
                     }
                 },
-                new MouseAdapter() {
+                new MouseAdapter()
+                {
                     @Override
-                    public void mouseClicked(MouseEvent e) {
+                    public void mouseClicked(MouseEvent e)
+                    {
                         deleteOptionHandler();
                     }
                 });
     }
 
-    private void deleteOptionHandler() {
+    private void deleteOptionHandler()
+    {
         adminModel.deleteStockOption(adminView.getSelectedStocksOptions());
         adminView.displayStockOptions(adminModel.getStockOptionList());
     }
 
-    private void createOptionHandler() {
-        try {
+    private void createOptionHandler()
+    {
+        try
+        {
             String companyName = adminView.getCompanyNameFromTextArea();
             String titleName = adminView.getTitleNameFromTextArea();
             String quote = adminView.getQuoteFromTextArea();
             StockOption stockOption = new StockOption(titleName, companyName, quote);
             adminModel.createNewStockOption(stockOption);
             adminView.displayStockOptions(adminModel.getStockOptionList());
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e)
+        {
             adminView.displayError(e.getMessage());
         }
     }
 
-    private void disconnectHandler() {
+    private void disconnectHandler()
+    {
         parent.switchToClient();
     }
 
-    public void setVisibility(boolean activate) {
+    public void setVisibility(boolean activate)
+    {
         adminView.setVisible(activate);
     }
 
-    public void messageReceived(StockOptionMessage stockOptionMessage)
+    public void update(Observable o, Object arg)
     {
+        StockOptionMessage stockOptionMessage = (StockOptionMessage) arg;
         switch (stockOptionMessage.getMessageType())
         {
             case DELETE:
-                messageReceived((DeleteMessage)stockOptionMessage);
+                messageReceived((DeleteMessage) stockOptionMessage);
                 break;
         }
     }

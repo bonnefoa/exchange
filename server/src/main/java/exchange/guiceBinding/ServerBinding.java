@@ -18,7 +18,7 @@ package exchange.guiceBinding;
 
 import com.google.inject.AbstractModule;
 import exchange.ejb.SONotifierLocal;
-import exchange.notifier.impl.SONotifierBean;
+import exchange.notifier.SONotifierBean;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

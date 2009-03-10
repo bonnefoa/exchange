@@ -19,7 +19,6 @@ package exchange.guiceBinding;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import exchange.ejb.StockOptionEjbLocal;
-import exchange.ejb.StockOptionTopicReaderLocal;
 import exchange.gui.controller.IAdminController;
 import exchange.gui.controller.IClientController;
 import exchange.gui.controller.impl.AdminController;
@@ -34,10 +33,13 @@ import exchange.gui.view.IGlobalFrame;
 import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
 import exchange.gui.view.impl.GlobalFrame;
+import exchange.consumer.impl.StockOptionMessageConsumerImpl;
+import exchange.consumer.StockOptionMessageConsumer;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.jms.Topic;
 import java.util.Properties;
 
 /**
@@ -52,7 +54,8 @@ public class MainModule extends AbstractModule
         try
         {
             Properties properties = new Properties();
-            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+            //properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
+            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.RemoteInitialContextFactory");
             initialContext = new InitialContext(properties);
         } catch (NamingException e)
         {
@@ -64,9 +67,10 @@ public class MainModule extends AbstractModule
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
         bind(IClientModel.class).toInstance(getClientModelInstance());
         bind(IAdminModel.class).toInstance(getAdminModelInstance());
-        bind(StockOptionTopicReaderLocal.class).toInstance(getTopicReaderInstance());
+        bind(Topic.class).toInstance(getTopicInstance());
+        bind(StockOptionMessageConsumer.class).to(StockOptionMessageConsumerImpl.class).in(Scopes.SINGLETON);
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
-
+        bind(InitialContext.class).toInstance(initialContext);
     }
 
     private IClientModel getClientModelInstance()
@@ -96,12 +100,11 @@ public class MainModule extends AbstractModule
         return null;
     }
 
-
-    private StockOptionTopicReaderLocal getTopicReaderInstance()
+    private Topic getTopicInstance()
     {
         try
         {
-            return (StockOptionTopicReaderLocal) initialContext.lookup(StockOptionTopicReaderLocal.JNDI_NAME);
+            return (Topic) initialContext.lookup(StockOptionMessageConsumer.JNDI_TOPIC_NAME);
         } catch (NamingException e)
         {
             e.printStackTrace();

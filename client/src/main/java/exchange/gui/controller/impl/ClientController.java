@@ -30,6 +30,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Observable;
 
 /**
  * Presenter linking the view and the controller
@@ -170,8 +171,9 @@ public class ClientController extends AbstractController implements IClientContr
         clientView.setVisible(show);
     }
 
-    public void messageReceived(StockOptionMessage stockOptionMessage)
+    public void update(Observable o, Object arg)
     {
+        StockOptionMessage stockOptionMessage = (StockOptionMessage) arg;
         switch (stockOptionMessage.getMessageType())
         {
             case ADD:

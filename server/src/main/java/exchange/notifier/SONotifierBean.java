@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package exchange.notifier.impl;
+package exchange.notifier;
 
 import exchange.ejb.SONotifierLocal;
 import exchange.model.StockOption;

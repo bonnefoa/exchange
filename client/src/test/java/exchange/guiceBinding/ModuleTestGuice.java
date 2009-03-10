@@ -34,10 +34,13 @@ import exchange.gui.view.IGlobalFrame;
 import exchange.gui.view.impl.AdminView;
 import exchange.gui.view.impl.ClientView;
 import exchange.gui.view.impl.GlobalFrame;
+import exchange.consumer.StockOptionMessageConsumer;
+import exchange.consumer.impl.StockOptionMessageConsumerImpl;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.jms.Topic;
 import java.util.Properties;
 
 /**
@@ -54,7 +57,8 @@ public class ModuleTestGuice extends AbstractModule
             Properties properties = new Properties();
             properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
             initialContext = new InitialContext(properties);
-        } catch (NamingException e)
+        }
+        catch (NamingException e)
         {
             e.printStackTrace();
         }
@@ -64,9 +68,10 @@ public class ModuleTestGuice extends AbstractModule
         bind(IAdminView.class).to(AdminView.class).in(Scopes.SINGLETON);
         bind(IClientModel.class).toInstance(getClientModelInstance());
         bind(IAdminModel.class).toInstance(getAdminModelInstance());
-        bind(StockOptionTopicReaderLocal.class).toInstance(getTopicReaderInstance());
+        bind(Topic.class).toInstance(getTopicInstance());
+        bind(StockOptionMessageConsumer.class).to(StockOptionMessageConsumerImpl.class).in(Scopes.SINGLETON);
         bind(IGlobalFrame.class).to(GlobalFrame.class).in(Scopes.SINGLETON);
-
+        bind(InitialContext.class).toInstance(initialContext);
     }
 
     private IClientModel getClientModelInstance()
@@ -75,7 +80,8 @@ public class ModuleTestGuice extends AbstractModule
         {
             IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
             return clientModel;
-        } catch (NamingException e)
+        }
+        catch (NamingException e)
         {
             e.printStackTrace();
         }
@@ -89,20 +95,21 @@ public class ModuleTestGuice extends AbstractModule
         {
             IAdminModel adminModel = new AdminModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
             return adminModel;
-        } catch (NamingException e)
+        }
+        catch (NamingException e)
         {
             e.printStackTrace();
         }
         return null;
     }
 
-
-    private StockOptionTopicReaderLocal getTopicReaderInstance()
+    private Topic getTopicInstance()
     {
         try
         {
-            return (StockOptionTopicReaderLocal) initialContext.lookup(StockOptionTopicReaderLocal.JNDI_NAME);
-        } catch (NamingException e)
+            return (Topic) initialContext.lookup(StockOptionMessageConsumer.JNDI_TOPIC_NAME);
+        }
+        catch (NamingException e)
         {
             e.printStackTrace();
         }
