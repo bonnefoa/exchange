@@ -19,15 +19,11 @@ package exchange;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import exchange.ejb.StockOptionEjbLocal;
+import exchange.gui.model.IAdminModel;
 import exchange.model.StockOption;
 import org.junit.After;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import java.util.Properties;
 
 /**
  * Junit class
@@ -35,35 +31,25 @@ import java.util.Properties;
 public abstract class BaseClass
 {
     protected Injector injector;
-    private StockOptionEjbLocal ejbStockOption;
 
-
-    protected BaseClass()
-    {
-        try
-        {
-            Properties properties = new Properties();
-            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
-            InitialContext initialContext = new InitialContext(properties);
-            ejbStockOption = (StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB);
-        } catch (NamingException e)
-        {
-            e.printStackTrace();
-        }
-    }
+    private IAdminModel adminModel;
 
     @Before
-    public void setUp()
+    public void setUp() throws InterruptedException
     {
-        ejbStockOption.createNewStockOption(new StockOption("titre", "company", 15));
-        ejbStockOption.createNewStockOption(new StockOption("titre2", "company2", 30));
         injector = Guice.createInjector(getModule());
+        adminModel = injector.getInstance(IAdminModel.class);
+        adminModel.deleteStockOption(adminModel.getStockOptionList());
+        assertEquals(0, adminModel.getStockOptionList().size());
+        adminModel.createNewStockOption(new StockOption("titre", "company", 15));
+        adminModel.createNewStockOption(new StockOption("titre2", "company2", 30));
+        assertEquals(2, adminModel.getStockOptionList().size());
     }
 
     @After
-    public void tearDown()
+    public void tearDown() throws InterruptedException
     {
-        ejbStockOption.deleteStockOption(ejbStockOption.getStockOptionList());
+
     }
 
     public abstract Module getModule();

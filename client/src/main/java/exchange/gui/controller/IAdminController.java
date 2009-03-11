@@ -18,6 +18,7 @@ package exchange.gui.controller;
 
 import exchange.message.impl.AddMessage;
 import exchange.message.impl.DeleteMessage;
+import exchange.message.impl.UpdateMessage;
 
 /**
  * Interface for the administration controller
@@ -28,4 +29,5 @@ public interface IAdminController extends IAbstractController
 
     void messageReceived(DeleteMessage stockOptionMessage);
 
+    void messageReceived(UpdateMessage stockOptionMessage);
 }

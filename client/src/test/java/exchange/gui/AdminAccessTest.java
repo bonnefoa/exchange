@@ -38,7 +38,7 @@ public class AdminAccessTest extends BaseClass
     private IClientView clientView;
 
     @Before
-    public void setUp()
+    public void setUp() throws InterruptedException
     {
         super.setUp();
         clientView = injector.getInstance(IClientView.class);
@@ -74,10 +74,9 @@ public class AdminAccessTest extends BaseClass
     }
 
     @After
-    public void tearDown()
+    public void tearDown() throws InterruptedException
     {
         super.tearDown();
-        
         window.cleanUp();
     }
 }

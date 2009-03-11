@@ -16,8 +16,8 @@
 
 package exchange.message.impl;
 
-import exchange.message.StockOptionMessage;
 import exchange.message.MessageType;
+import exchange.message.StockOptionMessage;
 import exchange.model.StockOption;
 
 /**
@@ -40,6 +40,14 @@ public class AddMessage implements StockOptionMessage
     public MessageType getMessageType()
     {
         return MessageType.ADD;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "AddMessage{" +
+                "stockOption=" + stockOption +
+                '}';
     }
 
     @Override

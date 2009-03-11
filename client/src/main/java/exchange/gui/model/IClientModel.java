@@ -23,7 +23,8 @@ import java.util.List;
 /**
  * Interface of the model
  */
-public interface IClientModel {
+public interface IClientModel
+{
 
     /**
      * Subscribe to the selected list
@@ -67,18 +68,16 @@ public interface IClientModel {
     String getName();
 
     /**
-     * Get the list of stockOptions
-     *
-     * @return List of stock options
-     */
-    List<StockOption> getStockOptionsFromServer();
-
-    /**
      * Get the list of subscribed options of the client
      *
      * @return List of subscribed options
      */
     List<StockOption> getSubscribed();
 
+    /**
+     * Get the list of stockOptions
+     *
+     * @return List of stock options
+     */
     List<StockOption> getStockOptionDisplayed();
 }

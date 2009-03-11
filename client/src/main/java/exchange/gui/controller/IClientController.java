@@ -26,7 +26,7 @@ import exchange.model.StockOption;
  */
 public interface IClientController extends IAbstractController
 {
-    String INCORRECT_PASSWORD = "Incorrect password";
+    String INCORRECT_PASSWORD = "Incorrect password. The correct password is adminadmin.";
     String PASSWORD = "adminadmin";
 
     /**

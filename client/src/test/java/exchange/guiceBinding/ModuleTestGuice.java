@@ -49,6 +49,7 @@ import java.util.Properties;
 public class ModuleTestGuice extends AbstractModule
 {
     private InitialContext initialContext;
+    private StockOptionEjbLocal stockOptionEjb;
 
     protected void configure()
     {
@@ -60,6 +61,7 @@ public class ModuleTestGuice extends AbstractModule
             properties.setProperty("openejb.embedded.remotable", "true");
             properties.setProperty("openejb.remotable.businessLocals", "true");
             initialContext = new InitialContext(properties);
+            stockOptionEjb = (StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB);
         }
         catch (NamingException e)
         {
@@ -94,31 +96,15 @@ public class ModuleTestGuice extends AbstractModule
 
     private IClientModel getClientModelInstance()
     {
-        try
-        {
-            IClientModel clientModel = new ClientModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
-            return clientModel;
-        }
-        catch (NamingException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
+        IClientModel clientModel = new ClientModel(stockOptionEjb);
+        return clientModel;
     }
 
 
     private IAdminModel getAdminModelInstance()
     {
-        try
-        {
-            IAdminModel adminModel = new AdminModel((StockOptionEjbLocal) initialContext.lookup(StockOptionEjbLocal.STOCK_OPTION_EJB));
-            return adminModel;
-        }
-        catch (NamingException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
+        IAdminModel adminModel = new AdminModel(stockOptionEjb);
+        return adminModel;
     }
 
     private Topic getTopicInstance()

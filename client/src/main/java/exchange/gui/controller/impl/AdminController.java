@@ -22,6 +22,7 @@ import exchange.gui.model.IAdminModel;
 import exchange.gui.view.IAdminView;
 import exchange.message.impl.AddMessage;
 import exchange.message.impl.DeleteMessage;
+import exchange.message.impl.UpdateMessage;
 import exchange.model.StockOption;
 
 import java.awt.event.MouseAdapter;
@@ -120,7 +121,11 @@ public class AdminController extends AbstractController implements IAdminControl
     {
         List<StockOption> stockOptions = new ArrayList<StockOption>();
         stockOptions.add(stockOptionMessage.getStockOption());
-        adminModel.deleteStockOption(stockOptions);
+        adminView.displayStockOptions(adminModel.getStockOptionList());
+    }
+
+    public void messageReceived(UpdateMessage stockOptionMessage)
+    {
         adminView.displayStockOptions(adminModel.getStockOptionList());
     }
 }

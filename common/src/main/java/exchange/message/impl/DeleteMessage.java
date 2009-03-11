@@ -16,9 +16,9 @@
 
 package exchange.message.impl;
 
-import exchange.model.StockOption;
-import exchange.message.StockOptionMessage;
 import exchange.message.MessageType;
+import exchange.message.StockOptionMessage;
+import exchange.model.StockOption;
 
 /**
  * A message indicating a deleted stock option.
@@ -40,6 +40,14 @@ public class DeleteMessage implements StockOptionMessage
     public MessageType getMessageType()
     {
         return MessageType.DELETE;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "DeleteMessage{" +
+                "stockOption=" + stockOption +
+                '}';
     }
 
     @Override

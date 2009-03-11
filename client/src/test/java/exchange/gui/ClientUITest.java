@@ -50,7 +50,7 @@ public class ClientUITest extends BaseClass
     private IClientController clientController;
 
     @Before
-    public void setUp()
+    public void setUp() throws InterruptedException
     {
         super.setUp();
         clientView = injector.getInstance(IClientView.class);
@@ -69,7 +69,7 @@ public class ClientUITest extends BaseClass
     }
 
     @After
-    public void tearDown()
+    public void tearDown() throws InterruptedException
     {
         super.tearDown();
         window.cleanUp();

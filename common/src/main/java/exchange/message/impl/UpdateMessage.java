@@ -16,8 +16,8 @@
 
 package exchange.message.impl;
 
-import exchange.message.StockOptionMessage;
 import exchange.message.MessageType;
+import exchange.message.StockOptionMessage;
 import exchange.model.StockOption;
 
 /**
@@ -40,6 +40,14 @@ public class UpdateMessage implements StockOptionMessage
     public MessageType getMessageType()
     {
         return MessageType.UPDATE;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "UpdateMessage{" +
+                "stockOption=" + stockOption +
+                '}';
     }
 
     @Override

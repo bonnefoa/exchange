@@ -42,8 +42,8 @@ public class AdminUITest extends BaseClass
 
     private IAdminModel adminModel;
 
-    private StockOption option1;
-    private StockOption option2;
+    private StockOption option1 = new StockOption("titre", "company", 15);
+    private StockOption option2 = new StockOption("titre2", "company2", 30);
 
     public Module getModule()
     {
@@ -51,7 +51,7 @@ public class AdminUITest extends BaseClass
     }
 
     @Before
-    public void setUp()
+    public void setUp() throws InterruptedException
     {
         super.setUp();
         adminView = injector.getInstance(IAdminView.class);
@@ -59,12 +59,11 @@ public class AdminUITest extends BaseClass
         window = new FrameFixture((Frame) adminView);
         adminView.setVisible(true);
         window.show();
-        option1 = new StockOption("titre", "company", 15);
-        option2 = new StockOption("titre2", "company2", 30);
+        assertEquals(2, window.list(IAdminView.STOCK_LIST).contents().length);
     }
 
     @After
-    public void tearDown()
+    public void tearDown() throws InterruptedException
     {
         super.tearDown();
         window.cleanUp();
@@ -75,7 +74,6 @@ public class AdminUITest extends BaseClass
     @Test
     public void testInitialOptions()
     {
-        assertEquals(2, window.list(IAdminView.STOCK_LIST).contents().length);
         assertEquals(option1, adminModel.getStockOptionList().get(0));
         assertEquals(option2, adminModel.getStockOptionList().get(1));
         assertEquals(0, window.textBox(IAdminView.TEXT_AREA_COMPANY_NAME).text().length());

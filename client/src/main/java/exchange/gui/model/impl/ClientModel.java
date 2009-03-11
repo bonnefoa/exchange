@@ -78,11 +78,6 @@ public class ClientModel implements IClientModel
         return name;
     }
 
-    public List<StockOption> getStockOptionsFromServer()
-    {
-        return new ArrayList<StockOption>();
-    }
-
     public List<StockOption> getStockOptionDisplayed()
     {
         return stockOptionEjb.getStockOptionList();

@@ -21,5 +21,16 @@ package exchange.model;
  */
 public enum Variation
 {
-    UP, DOWN, STALLED
+    UP(" is going up "), DOWN(" is going down "), STALLED(" is stalled ");
+    private String message;
+
+    Variation(String message)
+    {
+        this.message = message;
+    }
+
+    public String getMessage()
+    {
+        return message;
+    }
 }

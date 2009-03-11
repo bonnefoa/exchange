@@ -147,7 +147,9 @@ public class ClientController extends AbstractController implements IClientContr
 
     public void warnSubscribed(StockOption stockOption)
     {
-        clientView.displayMessageQuote(stockOption.toString() + ':' + stockOption.getQuote());
+        clientView.displayMessageQuote(stockOption.getTitle() + ' ' + stockOption.getVariation().getMessage());
+        clientView.displayMessageQuote("The new quote is " + '\t' + stockOption.getQuote());
+        clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
     }
 
     public void deleteStockOptions(StockOption stockOption)
@@ -186,7 +188,12 @@ public class ClientController extends AbstractController implements IClientContr
 
     public void messageReceived(UpdateMessage stockOptionMessage)
     {
-        if (clientModel.isConnected() && clientModel.getSubscribed().contains(stockOptionMessage.getStockOption()))
+        if (!clientModel.isConnected())
+        {
+            return;
+        }
+        clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
+        if (clientModel.getSubscribed().contains(stockOptionMessage.getStockOption()))
         {
             warnSubscribed(stockOptionMessage.getStockOption());
         }

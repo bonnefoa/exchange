@@ -16,13 +16,16 @@
 
 package exchange.manager;
 
+import exchange.ejb.SONotifierLocal;
+import exchange.ejb.StockOptionEjbLocal;
 import exchange.model.StockOption;
 import exchange.model.Variation;
-import exchange.ejb.StockOptionEjbLocal;
-import exchange.ejb.SONotifierLocal;
 
 import javax.annotation.PreDestroy;
-import javax.ejb.*;
+import javax.ejb.EJB;
+import javax.ejb.Lock;
+import javax.ejb.LockType;
+import javax.ejb.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,12 +88,20 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     @Lock(LockType.WRITE)
     public void deleteStockOption(List<StockOption> stockOptions)
     {
-        stockOptionList.removeAll(stockOptions);
         for (StockOption stockOption : stockOptions)
         {
             notifier.delete(stockOption);
         }
+        stockOptionList.removeAll(stockOptions);
     }
+
+    @Lock(LockType.WRITE)
+    public void deleteStockOption(StockOption stockOption)
+    {
+        stockOptionList.remove(stockOption);
+        notifier.delete(stockOption);
+    }
+
 
     public List<StockOption> getStockOptionList()
     {
@@ -101,6 +112,7 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     public void changesQuotes()
     {
         System.out.println(">> " + stockOptionList.size() + " stock options updated");
+        ArrayList<StockOption> toDelete = new ArrayList<StockOption>();
         for (StockOption stockOption : stockOptionList)
         {
             int rand = (int) ((Math.random() * 3) % 3);
@@ -110,18 +122,23 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
             {
                 stockOption.setQuote(quote - variation);
                 stockOption.setVariation(Variation.DOWN);
-            }
-            else if (rand == 1)
+            } else if (rand == 1)
             {
                 stockOption.setVariation(Variation.STALLED);
-            }
-            else if (rand == 2)
+            } else if (rand == 2)
             {
                 stockOption.setQuote(quote + variation);
                 stockOption.setVariation(Variation.UP);
             }
-
+            if (stockOption.getQuote() <= 0)
+            {
+                toDelete.add(stockOption);
+            }
             notifier.update(stockOption);
+        }
+        for (StockOption stockOption : toDelete)
+        {
+            deleteStockOption(stockOption);
         }
     }
 }

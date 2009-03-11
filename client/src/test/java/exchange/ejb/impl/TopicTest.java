@@ -21,11 +21,9 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import exchange.consumer.StockOptionMessageConsumer;
 import exchange.ejb.SONotifierLocal;
-import exchange.gui.controller.IAbstractController;
-import exchange.gui.view.IGlobalFrame;
 import exchange.guiceBinding.ModuleTestGuice;
-import exchange.message.StockOptionMessage;
 import exchange.message.MessageType;
+import exchange.message.StockOptionMessage;
 import exchange.message.impl.AddMessage;
 import exchange.message.impl.DeleteMessage;
 import exchange.message.impl.UpdateMessage;
@@ -33,15 +31,11 @@ import exchange.model.StockOption;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.jms.JMSException;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 /**
  * Created by IntelliJ IDEA.
@@ -54,8 +48,6 @@ public class TopicTest
 {
     @Inject
     private SONotifierLocal notifier;
-    private InitialContext jndiContext;
-
     @Inject
     private StockOptionMessageConsumer updateReader;
 
@@ -65,7 +57,6 @@ public class TopicTest
         Injector injector = Guice.createInjector(new ModuleTestGuice());
         injector.injectMembers(this);
     }
-
 
 
     @Test
@@ -83,20 +74,18 @@ public class TopicTest
         checkMessage(stockOption, observer.getReceivedMessages(), MessageType.UPDATE);
 
     }
+
     @Test
     public void testAdd() throws NamingException, JMSException, InterruptedException
     {
         MockMessageObserver observer = new MockMessageObserver();
-
         updateReader.addObserver(observer);
-
         StockOption stockOption = new StockOption("title", "compagny", (float) 123.456);
         notifier.add(stockOption);
-
         Thread.sleep(100);
-
         checkMessage(stockOption, observer.getReceivedMessages(), MessageType.ADD);
     }
+
     @Test
     public void testDelete() throws NamingException, JMSException, InterruptedException
     {
@@ -114,9 +103,7 @@ public class TopicTest
 
     private void checkMessage(StockOption stockOption, List<StockOptionMessage> receivedMessages, MessageType updateMessageType)
     {
-
         assertEquals(1, receivedMessages.size());
-
         switch (updateMessageType)
         {
             case ADD:
@@ -129,7 +116,6 @@ public class TopicTest
                 assertTrue(receivedMessages.get(0) instanceof UpdateMessage);
                 break;
         }
-
         assertEquals(stockOption, receivedMessages.get(0).getStockOption());
         assertEquals(stockOption.getQuote(), receivedMessages.get(0).getStockOption().getQuote(), 0.01);
     }

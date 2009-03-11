@@ -18,7 +18,6 @@ package exchange.consumer.impl;
 
 import com.google.inject.Inject;
 import exchange.consumer.StockOptionMessageConsumer;
-import exchange.message.StockOptionMessage;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -71,14 +70,16 @@ public class StockOptionMessageConsumerImpl extends Observable implements StockO
         System.out.println("StockOptionMessageConsumer MESSAGE RECEIVED");
 
         ObjectMessage objectMessage = (ObjectMessage) message;
+
         setChanged();
         try
         {
-            notifyObservers((StockOptionMessage) objectMessage.getObject());
+            System.out.println(objectMessage.getObject().toString());
+            notifyObservers(objectMessage.getObject());
         }
         catch (JMSException e)
         {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
     }
 }

@@ -60,7 +60,7 @@ public class GlobalController implements IGlobalController, Observer
                 break;
             case UPDATE:
                 clientController.messageReceived((UpdateMessage) stockOptionMessage);
-                clientController.warnSubscribed(stockOptionMessage.getStockOption());
+                adminController.messageReceived((UpdateMessage) stockOptionMessage);
                 break;
         }
     }
