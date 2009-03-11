@@ -99,23 +99,35 @@ public class ClientView extends AbstractView implements IClientView
         c.insets = new Insets(10, 2, 2, 2);
         Dimension dimButton = new Dimension(30, 20);
 
-        c.gridwidth = 2;
+        c.gridwidth = 5;
+        c.weighty = 1;
+
+        c.gridx = 0;
+        c.gridy = 0;
+
         //List
         stockList = new JList();
         stockList.setName(STOCK_LIST);
         stockList.setDragEnabled(true);
-        c.gridx = 0;
-        c.gridy = 0;
-        c.weightx = 0.5;
-        c.weighty = 1;
-        pane.add(stockList, c);
-
+        JScrollPane jlistScrollPane = new JScrollPane(stockList);
+        jlistScrollPane.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        pane.add(jlistScrollPane, c);
+        jlistScrollPane.setMinimumSize(new Dimension(200, 0));
         //Text area
-        c.gridwidth = 3;
         textArea = new JTextArea("Cours de la bourse\n");
         textArea.setName(TEXT_AREA_MESSAGES);
-        c.gridx = 2;
-        pane.add(textArea, c);
+        JScrollPane quoteAreaScrollPane = new JScrollPane(textArea);
+        quoteAreaScrollPane.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        pane.add(quoteAreaScrollPane, c);
+
+        //Split panel
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+                jlistScrollPane, quoteAreaScrollPane);
+        splitPane.setOneTouchExpandable(true);
+        splitPane.setDividerLocation(150);
+        pane.add(splitPane, c);
 
         //Second row
         c.gridwidth = 1;
@@ -217,6 +229,7 @@ public class ClientView extends AbstractView implements IClientView
     {
         adminField.setEditable(accessibility);
         buttonConnectAdmin.setEnabled(accessibility);
+        buttonConnectAdmin.setVisible(accessibility);
     }
 
     public char[] getPassword()

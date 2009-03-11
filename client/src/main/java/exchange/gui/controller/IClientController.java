@@ -55,4 +55,6 @@ public interface IClientController extends IAbstractController
     void messageReceived(DeleteMessage stockOptionMessage);
 
     void messageReceived(UpdateMessage stockOptionMessage);
+
+    void warnSubscribed(String message);
 }

@@ -148,13 +148,19 @@ public class ClientController extends AbstractController implements IClientContr
     public void warnSubscribed(StockOption stockOption)
     {
         clientView.displayMessageQuote(stockOption.getTitle() + ' ' + stockOption.getVariation().getMessage());
-        clientView.displayMessageQuote("The new quote is " + '\t' + stockOption.getQuote());
+        clientView.displayMessageQuote("The current quote is " + '\t' + stockOption.getQuote());
         clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
+    }
+
+    public void warnSubscribed(String message)
+    {
+        clientView.displayMessageQuote(message);
     }
 
     public void deleteStockOptions(StockOption stockOption)
     {
         clientModel.getStockOptionDisplayed().remove(stockOption);
+        warnSubscribed("The stockOption " + stockOption.getTitle() + " has been deleted");
         clientView.displayStockOptions(clientModel.getStockOptionDisplayed());
     }
 
