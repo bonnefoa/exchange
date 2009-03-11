@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package exchange.ejb;
+package exchange.manager;
 
 import exchange.model.StockOption;
+import exchange.ejb.StockOptionEjbLocal;
 import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;

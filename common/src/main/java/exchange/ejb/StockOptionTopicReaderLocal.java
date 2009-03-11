@@ -22,11 +22,7 @@ import javax.ejb.Remote;
 import java.util.Observer;
 
 /**
- * Created by IntelliJ IDEA.
- * User: tetradavid
- * Date: Mar 8, 2009
- * Time: 5:32:05 PM
- * To change this template use File | Settings | File Templates.
+ *
  */
 @Remote
 public interface StockOptionTopicReaderLocal

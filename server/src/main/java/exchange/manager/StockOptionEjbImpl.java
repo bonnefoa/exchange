@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package exchange.ejb;
+package exchange.manager;
 
 import exchange.model.StockOption;
 import exchange.model.Variation;
+import exchange.ejb.StockOptionEjbLocal;
+import exchange.ejb.SONotifierLocal;
 
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 import javax.ejb.*;
 import java.util.ArrayList;
 import java.util.List;

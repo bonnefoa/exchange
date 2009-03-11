@@ -14,23 +14,19 @@
  * limitations under the License.
  */
 
-package exchange.consumer;
+package exchange.controller;
 
-import javax.jms.MessageListener;
-import java.util.Observer;
+import exchange.message.StockOptionMessage;
 
 /**
- * Created by IntelliJ IDEA.
- * User: dev
- * Date: 10 mars 2009
- * Time: 15:06:20
- * To change this template use File | Settings | File Templates.
+ * Interface for the global controller
  */
-public interface StockOptionMessageConsumer
+public interface IGlobalController
 {
-    final String JNDI_TOPIC_NAME = "StockOptionTopic";
-
-    void addObserver(Observer o);
-
-    void deleteObserver(Observer o);
+    /**
+     * Process the message received
+     *
+     * @param stockOptionMessage The message to process
+     */
+    void receiveMessage(StockOptionMessage stockOptionMessage);
 }

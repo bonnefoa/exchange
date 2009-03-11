@@ -21,11 +21,7 @@ import exchange.message.StockOptionMessage;
 import exchange.message.MessageType;
 
 /**
- * Created by IntelliJ IDEA.
- * User: dev
- * Date: 9 mars 2009
- * Time: 18:18:24
- * To change this template use File | Settings | File Templates.
+ * A message indicating a deleted stock option.
  */
 public class DeleteMessage implements StockOptionMessage
 {

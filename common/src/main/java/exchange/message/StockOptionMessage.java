@@ -21,11 +21,7 @@ import exchange.model.StockOption;
 import java.io.Serializable;
 
 /**
- * Created by IntelliJ IDEA.
- * User: dev
- * Date: 9 mars 2009
- * Time: 18:15:51
- * To change this template use File | Settings | File Templates.
+ * A message telling about a state change of a stock option.
  */
 public interface StockOptionMessage extends Serializable
 {

@@ -27,13 +27,6 @@ import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.jms.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: dev
- * Date: 5 mars 2009
- * Time: 17:40:55
- * To change this template use File | Settings | File Templates.
- */
 @Stateless
 public class SONotifierBean implements SONotifierLocal
 {

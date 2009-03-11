@@ -55,7 +55,8 @@ public class ModuleTestGuice extends AbstractModule
         try
         {
             Properties properties = new Properties();
-            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.RemoteInitialContextFactory");
+            //properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.RemoteInitialContextFactory");
+            properties.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.openejb.client.LocalInitialContextFactory");
             properties.setProperty("openejb.embedded.remotable", "true");
             properties.setProperty("openejb.remotable.businessLocals", "true");
             initialContext = new InitialContext(properties);
