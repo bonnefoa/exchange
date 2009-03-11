@@ -24,6 +24,6 @@ Pour supprimer une stockOption, il suffit de sélectionner les stockOptions à s
 Les tests unitaires ont été réalisés avec fest (Fixture Easy Software Testing). Fest offre une API pour tester simplement les interfaces en simulant un utilisateur utilisant l'interface.
 
 \subsection{Communication avec le serveur}
-Lorsque le serveur se lance, le conteneur EJB se met en place en meme temps que le serveur JMS. Des qu'un client se lance, il se connecte entre autre au serveur JMS pour s'enregistrer sur le Topic qui contiendra les mises a jour des stock options.
+Lorsque le serveur se lance, le conteneur EJB se met en place en même temps que le serveur JMS. Dès qu'un client se lance, il se connecte entre autre au serveur JMS pour s'enregistrer sur le Topic qui contiendra les mises à jour des stock options.
 
-Pour administrer les stock options ou pour les lister, le client passe par le service d'annuaire JNDI pour charger les ejb et dialoguer avec eux.
+Pour administrer les stock options ou pour les lister, le client passe par le service d'annuaire JNDI pour accéder aux ejb.
