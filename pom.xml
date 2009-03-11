@@ -19,7 +19,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>exchange</groupId>
 	<artifactId>exchange</artifactId>
-	<packaging>pom</packaging>
+	<packaging>pom</packaging> 
 	<version>1.0-SNAPSHOT</version>
 	<modules>
 		<module>client</module>
@@ -53,10 +53,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.openejb</groupId>
-			<artifactId>openejb-ejbd</artifactId>
-			<version>3.1</version>
-			</dependency>    <dependency>
 			<groupId>org.apache.openejb</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>5.0-1</version>

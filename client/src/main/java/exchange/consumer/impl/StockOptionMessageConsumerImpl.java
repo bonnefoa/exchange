@@ -31,7 +31,6 @@ import java.util.Properties;
  */
 public class StockOptionMessageConsumerImpl extends Observable implements StockOptionMessageConsumer, MessageListener
 {
-    private Topic topic;
     private InitialContext initialContext;
     private Session session;
     private MessageConsumer messageConsumer;
@@ -41,7 +40,6 @@ public class StockOptionMessageConsumerImpl extends Observable implements StockO
     @Inject
     public StockOptionMessageConsumerImpl(Topic topic, InitialContext initialContext)
     {
-        this.topic = topic;
         Properties p2 = new Properties();
         p2.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
         p2.put("serverURL", "tcp://localhost:61616");

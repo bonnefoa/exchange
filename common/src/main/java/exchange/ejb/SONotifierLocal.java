@@ -28,7 +28,7 @@ import java.util.List;
 @Local
 public interface SONotifierLocal
 {
-    static String JNDI_NAME = "SONotifierBeanLocal";
+    static String JNDI_NAME = "SONotifierBeanBusinessLocal";
 
     /**
      * Send a message : a stockoption has been updated.
