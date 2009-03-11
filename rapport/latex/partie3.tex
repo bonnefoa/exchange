@@ -1,13 +1,12 @@
 \subsection{Limitations}
-\subsubsection{Rémanence des données}
+\subsubsection{Volatilité des données}
 Du fait de l'absence de base de données dans notre logiciel, les stock options enregistrés sont propres à une instance du serveur. Si ce dernier est relancé, la liste des stock options est remise à zéro.
-
-\subsubsection{}
-
 \subsection{Les problèmes}
 \subsubsection{Choix du serveur}
 L'un des principaux problèmes a été de trouver un serveur applicatif servant de conteneur d'EJBs et de broker de messages. Nous avons essaye dans un premier temps Glassfish. Cependant, la version glassfish prelude V3 est principalement un conteneur Web. La version V2 est un serveur applicatif intégral, il possède donc toutes les fonctionnalites nécessaires mais sa taille imposante (~150Mo) et le fait de devoir le configurer sur la machine d'utilisation l'a exclu de notre sélection.
 
 Nous cherchions un simple conteneur d'EJB qui puisse être facilement configurable. Nous avons choisis OpenEjb. Ce conteneur permet de faire fonctionner des Ejb 3.1. De plus, il est embedable, c'est a dire qu'il est exécutable directement exécutable dans un programme Java. C'était une solution tout a fait appropriée pour créer une application stand-alone pouvant se lancer de façon independante.
 \subsubsection{Lien entre Java SE et Java EE}
-Afin de récupérer des proxys pour utiliser les ejb, il faut passer par JNDI (Java Naming and Directory Interface). La principale difficulté a été de trouver les noms jndi des ejbs crées. Cependant, une fois les ejbs correctement écrits, le serveur indique le lien entre un ejb et son nom jndi.
+Afin de récupérer des proxys pour utiliser les ejb, il faut passer par JNDI (Java Naming and Directory Interface). La principale difficulté a été de trouver les noms jndi des ejbs crées. Cependant, une fois les ejbs correctement écrits, le serveur indique le lien entre un ejb et son nom jndi. Une autre difficulte non negligeable a ete de contacter le serveur JMS pour ecouter les messages envoyes sur le Topic.
+\subsubsection{Utilisation en mode embedded}
+Une des restrictions que l'on s'est imposée est d'utiliser le mode embedded de openEjb. Ceci afin d'en faire une application stand-alone. Le problème c'est que la configuration est plus délicate dans ce mode. C'est notament le cas pour le broker de JMS inclus dans openEjb.

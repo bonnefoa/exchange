@@ -35,6 +35,8 @@ import exchange.gui.view.impl.ClientView;
 import exchange.gui.view.impl.GlobalFrame;
 import exchange.consumer.impl.StockOptionMessageConsumerImpl;
 import exchange.consumer.StockOptionMessageConsumer;
+import exchange.controller.IGlobalController;
+import exchange.controller.impl.GlobalController;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -61,6 +63,7 @@ public class MainModule extends AbstractModule
         {
             e.printStackTrace();
         }
+        bind(IGlobalController.class).to(GlobalController.class).asEagerSingleton();
         bind(IClientController.class).to(ClientController.class).asEagerSingleton();
         bind(IAdminController.class).to(AdminController.class).asEagerSingleton();
         bind(IClientView.class).to(ClientView.class).in(Scopes.SINGLETON);

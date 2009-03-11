@@ -43,6 +43,7 @@ public class GlobalController implements IGlobalController, Observer
         this.clientController = clientController;
         this.adminController = adminController;
         topicReader.addObserver(this);
+        System.out.println("add observer");
     }
 
     public void receiveMessage(StockOptionMessage stockOptionMessage)

@@ -6,13 +6,7 @@ Cet Ejb est un singleton (grâce a l'annotation \verb|@Singleton|), tout les cli
 \subsection{L'EJB SONotifier}
 Cet ejb a pour charge d'envoyer sur un topic (nommé \verb|StockOptionTopic|) les informations de mise à jour des StockOptions (ajout, modification, suppression). Il est appelé par l'ejb stockOption.
 
-\subsection{L'EJB ClientMessageConsumer}
-Cet ejb écoute le topic \verb|StockOptionTopic| (c'est un Message Driven Bean) : des qu'une information est posté sur le topic, il en informe l'ejb StockOptionTopicReader.
-
-\subsection{L'EJB StockOptionTopicReader}
-Cet ejb fait le lien entre les classes java ``normales'' (java SE) du client et l'ejb ClientMessageConsumer (java EE). Des qu'il est informé d'un message, il transmet l'information aux instances des contrôleurs (coté client) qui se sont enregistrés.
-
 \subsection{OpenEjb}
 Il est nécessaire d'avoir un conteneur d'ejb pour utiliser des ejb. Pour cela, nous avons choisis OpenEjb. Ce conteneur présente l'avantage d'être relativement léger (quelques Mo), simple à utiliser et encapsulable dans une application. De plus, il charge automatiquement les ejb qui sont présents dans son classpath. Il est ainsi facile de lancer le serveur pour des tests unitaires et, à terme, pour une application stand-alone. 
 
-
+Un autre avantage de OpenEjb est qu'il contient un serveur JMS (Java Messaging Service) : OpenMQ.
