@@ -23,17 +23,15 @@ import exchange.model.Variation;
 
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
 import javax.ejb.Singleton;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Implementation of the stock option ejb
  */
 @Singleton
-@Lock(LockType.READ)
 public class StockOptionEjbImpl implements StockOptionEjbLocal
 {
     private List<StockOption> stockOptionList;
@@ -44,12 +42,10 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
     private Thread updateThread;
     private StockOptionEjbImpl self;
 
-
     public StockOptionEjbImpl()
     {
         self = this;
-        stockOptionList = new ArrayList<StockOption>();
-
+        stockOptionList = Collections.synchronizedList(new ArrayList<StockOption>());
         updateThread = new Thread()
         {
             @Override
@@ -78,27 +74,33 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         updateThread.stop();
     }
 
-    @Lock(LockType.WRITE)
     public void createNewStockOption(StockOption stockOption)
     {
-        stockOptionList.add(stockOption);
+        synchronized (stockOptionList)
+        {
+            stockOptionList.add(stockOption);
+        }
         notifier.add(stockOption);
     }
 
-    @Lock(LockType.WRITE)
     public void deleteStockOption(List<StockOption> stockOptions)
     {
         for (StockOption stockOption : stockOptions)
         {
             notifier.delete(stockOption);
         }
-        stockOptionList.removeAll(stockOptions);
+        synchronized (stockOptionList)
+        {
+            stockOptionList.removeAll(stockOptions);
+        }
     }
 
-    @Lock(LockType.WRITE)
     public void deleteStockOption(StockOption stockOption)
     {
-        stockOptionList.remove(stockOption);
+        synchronized (stockOptionList)
+        {
+            stockOptionList.remove(stockOption);
+        }
         notifier.delete(stockOption);
     }
 
@@ -108,33 +110,35 @@ public class StockOptionEjbImpl implements StockOptionEjbLocal
         return stockOptionList;
     }
 
-    @Lock(LockType.WRITE)
     public void changesQuotes()
     {
         System.out.println(">> " + stockOptionList.size() + " stock options updated");
         ArrayList<StockOption> toDelete = new ArrayList<StockOption>();
-        for (StockOption stockOption : stockOptionList)
+        synchronized (stockOptionList)
         {
-            int rand = (int) ((Math.random() * 3) % 3);
-            float variation = (float) (Math.random() * 10);
-            float quote = stockOption.getQuote();
-            if (rand == 0)
+            for (StockOption stockOption : stockOptionList)
             {
-                stockOption.setQuote(quote - variation);
-                stockOption.setVariation(Variation.DOWN);
-            } else if (rand == 1)
-            {
-                stockOption.setVariation(Variation.STALLED);
-            } else if (rand == 2)
-            {
-                stockOption.setQuote(quote + variation);
-                stockOption.setVariation(Variation.UP);
+                int rand = (int) ((Math.random() * 3) % 3);
+                float variation = (float) (Math.random() * 10);
+                float quote = stockOption.getQuote();
+                if (rand == 0)
+                {
+                    stockOption.setQuote(quote - variation);
+                    stockOption.setVariation(Variation.DOWN);
+                } else if (rand == 1)
+                {
+                    stockOption.setVariation(Variation.STALLED);
+                } else if (rand == 2)
+                {
+                    stockOption.setQuote(quote + variation);
+                    stockOption.setVariation(Variation.UP);
+                }
+                if (stockOption.getQuote() <= 0)
+                {
+                    toDelete.add(stockOption);
+                }
+                notifier.update(stockOption);
             }
-            if (stockOption.getQuote() <= 0)
-            {
-                toDelete.add(stockOption);
-            }
-            notifier.update(stockOption);
         }
         for (StockOption stockOption : toDelete)
         {

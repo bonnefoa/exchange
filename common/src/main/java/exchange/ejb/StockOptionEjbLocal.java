@@ -19,8 +19,6 @@ package exchange.ejb;
 import exchange.model.StockOption;
 
 import javax.ejb.Local;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
 import java.util.List;
 
 /**
@@ -57,6 +55,5 @@ public interface StockOptionEjbLocal
      */
     void changesQuotes();
 
-    @Lock(LockType.WRITE)
     void deleteStockOption(StockOption stockOption);
 }
