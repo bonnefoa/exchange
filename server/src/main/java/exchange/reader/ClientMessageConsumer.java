@@ -16,11 +16,7 @@
 
 package exchange.reader;
 
-import exchange.ejb.StockOptionTopicReaderLocal;
-import exchange.message.StockOptionMessage;
-
 import javax.ejb.MessageDriven;
-import javax.ejb.EJB;
 import javax.jms.*;
 import java.util.logging.Logger;
 
@@ -30,27 +26,9 @@ import java.util.logging.Logger;
 @MessageDriven(name = "StockOptionTopic")
 public class ClientMessageConsumer implements MessageListener
 {
-
-    @EJB
-    StockOptionTopicReaderLocal stockOptionTopicReader;
-
     private static final Logger logger = Logger.getLogger(ClientMessageConsumer.class.getCanonicalName());
 
     public void onMessage(Message message)
     {
-        /*
-        if (message instanceof ObjectMessage)
-        {
-            try
-            {
-                StockOptionMessage stockOptionMessage = (StockOptionMessage) ((ObjectMessage) message).getObject();
-                stockOptionTopicReader.messageReceived(stockOptionMessage);
-            }
-            catch (JMSException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        */
     }
 }
